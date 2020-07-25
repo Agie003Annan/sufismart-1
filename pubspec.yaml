@@ -1,0 +1,47 @@
+name: sufismart
+description: A new Flutter application.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+  http: ^0.12.0+2
+  provider: ^3.1.0+1
+  custom_navigator: ^0.3.0
+  shared_preferences: ^0.5.1+1
+  font_awesome_flutter: ^8.5.0
+  carousel_slider: ^2.1.0
+  flutter_swiper: ^1.1.6
+  cached_network_image: ^2.0.0
+  skeleton_text: ^1.0.0
+  smooth_page_indicator: ^0.1.5
+  getflutter: ^1.0.11
+  hexcolor: ^1.0.2
+  get_it: ^3.1.0
+  modal_progress_hud: ^0.1.2
+  webview_flutter: ^0.3.19+8
+  flutter_webview_plugin: ^0.3.10+1
+  flutter_html: ^0.11.1
+  flutter_money_formatter: ^0.8.3  
+  flutter_styled_toast: ^1.2.1
+  dio: ^3.0.9
+  fancy_bottom_navigation: ^0.3.2
+  intl: ">=0.15.0 <1.0.0"  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/images/
+

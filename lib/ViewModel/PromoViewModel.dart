@@ -8,9 +8,10 @@ import 'package:sufismart/services/api.dart';
 class PromoViewModel extends BaseViewModel{
   Api _api = locator<Api>();
   List<PromoModel> promo;
-  Future getAll(BuildContext context){    
-    getDataPromo(context);
-  }
+  
+  // Future getAll(BuildContext context){    
+  //   getDataPromo(context);
+  // }
 
   Future getDataPromo(BuildContext context) async{
     setState(ViewState.Busy);

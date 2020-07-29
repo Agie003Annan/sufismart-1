@@ -23,7 +23,7 @@ class _NewsViewState extends State<NewsView> {
   @override
   Widget build(BuildContext context) {
     return BaseView<NewsViewModel>(
-      onModelReady: (model) => model.getAll(context),
+      onModelReady: (model) => model.getDataNews(context),
       builder: (context, model, child) => Scaffold(
         backgroundColor: Color(0XFFEEEEEE),
         appBar: AppBar(
@@ -42,11 +42,11 @@ class _NewsViewState extends State<NewsView> {
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : RefreshIndicator(
-                  onRefresh: () async {
-                    model.getAll(context);
-                  },
-                  child: SingleChildScrollView(
+              // : RefreshIndicator(
+              //     onRefresh: () async {
+              //       model.getAll(context);
+              //     },
+                  : SingleChildScrollView(
                     child: Container(
                         padding: EdgeInsets.all(5),
                         child: Column(
@@ -164,26 +164,26 @@ class _NewsViewState extends State<NewsView> {
                                                     ),
                                                   ),
                                                 ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                          Container(
-                                            //text kepanjangan jadi titik-titik
-                                            margin: const EdgeInsets.only(
-                                                bottom: 10.0,
-                                                right: 5.0,
-                                                left: 5.0),
-                                            child: Text(
-                                              model.news[index].newstitle,
-                                              style: TextStyle(
-                                                  fontSize: 17,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.blue[900]),
-                                              maxLines: 2,
-                                              textAlign: TextAlign.justify,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ),
+                                          // SizedBox(
+                                          //   height: 5,
+                                          // ),
+                                          // Container(
+                                          //   //text kepanjangan jadi titik-titik
+                                          //   margin: const EdgeInsets.only(
+                                          //       bottom: 10.0,
+                                          //       right: 5.0,
+                                          //       left: 5.0),
+                                          //   child: Text(
+                                          //     model.news[index].newstitle,
+                                          //     style: TextStyle(
+                                          //         fontSize: 17,
+                                          //         fontWeight: FontWeight.bold,
+                                          //         color: Colors.blue[900]),
+                                          //     maxLines: 2,
+                                          //     textAlign: TextAlign.justify,
+                                          //     overflow: TextOverflow.ellipsis,
+                                          //   ),
+                                          // ),
                                         ],
                                       ),
                                     ),
@@ -240,7 +240,7 @@ class _NewsViewState extends State<NewsView> {
                   ),
                 ),
         ),
-      ),
+      //),
     );
   }
 }

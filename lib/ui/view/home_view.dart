@@ -18,6 +18,8 @@ import 'package:sufismart/ui/view/product_view.dart';
 import 'package:sufismart/ui/view/promo_view.dart';
 import 'package:sufismart/ui/view/testWebView.dart';
 
+import 'news_detail_view.dart';
+
 class HomeView extends StatefulWidget {
   @override
   _HomeViewState createState() => _HomeViewState();
@@ -47,9 +49,7 @@ class _HomeViewState extends State<HomeView> {
         ),
         body: ModalProgressHUD(
           inAsyncCall: model.state == ViewState.Busy ?? ViewState.Idle,
-          child: model.banner == null ||
-                  model.imgPromo == null ||
-                  model.imgNews == null
+          child: model.banner == null || model.imgNews == null
               ? Center(
                   child: CircularProgressIndicator(),
                 )
@@ -694,6 +694,21 @@ class _HomeViewState extends State<HomeView> {
                                     itemBuilder: (context, index) {
                                       return InkWell(
                                         onTap: () {
+                                          Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => NewsDetail(
+                                                detailNewsId:
+                                                    model.imgNews[index].newsid,
+                                                detailTitle:
+                                                    model.imgNews[index].title,
+                                                detailDate:
+                                                    model.imgNews[index].newsdate,
+                                                detailDesc: model.imgNews[index]
+                                                    .desc,
+                                                detailImg: model
+                                                    .imgNews[index].imagepath),
+                                          ));
                                           // Navigator.push(
                                           //     context,
                                           //     MaterialPageRoute(

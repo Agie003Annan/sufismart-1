@@ -16,7 +16,7 @@ class HomeViewModel extends BaseViewModel{
 
   Future getAll(BuildContext context){
     getBanner(context);
-    getImgPromo(context);
+    //getImgPromo(context);
     getImgNews(context);
   }
 
@@ -27,12 +27,12 @@ class HomeViewModel extends BaseViewModel{
     setState(ViewState.Idle);
   }
 
-  Future getImgPromo(BuildContext context) async {
-    setState(ViewState.Busy);
-    imgPromo = await _api.getImgPromoHome(context);
-    notifyListeners();
-    setState(ViewState.Idle);
-  }
+  // Future getImgPromo(BuildContext context) async {
+  //   setState(ViewState.Busy);
+  //   imgPromo = await _api.getImgPromoHome(context);
+  //   notifyListeners();
+  //   setState(ViewState.Idle);
+  // }
 
    Future getImgNews(BuildContext context) async {
     setState(ViewState.Busy);

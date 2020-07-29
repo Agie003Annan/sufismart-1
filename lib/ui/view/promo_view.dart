@@ -20,7 +20,7 @@ class _PromoViewState extends State<PromoView>{
   @override
   Widget build(BuildContext context) {
     return BaseView<PromoViewModel>(
-      onModelReady: (model) => model.getAll(context),
+      onModelReady: (model) => model.getDataPromo(context),
       builder: (context, model, child) => Scaffold(
         backgroundColor: Color(0XFFEEEEEE),
         appBar: AppBar(
@@ -39,11 +39,12 @@ class _PromoViewState extends State<PromoView>{
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : RefreshIndicator(
-                  onRefresh: () async {
-                    model.getAll(context);
-                  },
-                  child: SingleChildScrollView(
+              // : RefreshIndicator(
+              //     onRefresh: () async {
+              //       model.getDataPromo(context);
+              //     },
+              //     child: 
+                  : SingleChildScrollView(
                     child: Container(
                         padding: EdgeInsets.all(5),
                         child: Column(
@@ -115,21 +116,21 @@ class _PromoViewState extends State<PromoView>{
                                                   ),
                                                 ),
                                               ),
-                                            SizedBox(height: 5,),                                                                                        
-                                              Container(                                                
-                                                //text kepanjangan jadi titik-titik                                                                              
-                                                margin: const EdgeInsets.only(bottom: 10.0,right: 5.0,left: 5.0),
-                                                child: Text(
-                                                  model.promo[index].newstitle,
-                                                  style: TextStyle(
-                                                      fontSize: 17,
-                                                      fontWeight: FontWeight.bold,
-                                                      color: Colors.blue[900]),
-                                                  maxLines: 2,
-                                                  textAlign: TextAlign.justify,
-                                                  overflow: TextOverflow.ellipsis,
-                                                ),
-                                              ),
+                                            // SizedBox(height: 5,),                                                                                        
+                                            //   Container(                                                
+                                            //     //text kepanjangan jadi titik-titik                                                                              
+                                            //     margin: const EdgeInsets.only(bottom: 10.0,right: 5.0,left: 5.0),
+                                            //     child: Text(
+                                            //       model.promo[index].newstitle,
+                                            //       style: TextStyle(
+                                            //           fontSize: 17,
+                                            //           fontWeight: FontWeight.bold,
+                                            //           color: Colors.blue[900]),
+                                            //       maxLines: 2,
+                                            //       textAlign: TextAlign.justify,
+                                            //       overflow: TextOverflow.ellipsis,
+                                            //     ),
+                                            //   ),
                                             ],
                                           ),
                                         ),
@@ -185,7 +186,7 @@ class _PromoViewState extends State<PromoView>{
                   ),
                 ),
         ),
-      ),
+ //     ),
     );
   }
 

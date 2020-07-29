@@ -8,9 +8,10 @@ import 'package:sufismart/services/api.dart';
 class NewsViewModel extends BaseViewModel{
   Api _api = locator<Api>();
   List<NewsModel> news;
-  Future getAll(BuildContext context){    
-    getDataNews(context);
-  }
+  
+  // Future getAll(BuildContext context){    
+  //   getDataNews(context);
+  // }
 
   Future getDataNews(BuildContext context) async{
     setState(ViewState.Busy);

@@ -7,6 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sufismart/model/banner_model.dart';
 import 'package:sufismart/model/imagenews_model.dart';
 import 'package:sufismart/model/imagepromo_model.dart';
+import 'package:sufismart/model/kota_model.dart';
+import 'package:sufismart/model/kotadetail_model.dart';
 import 'package:sufismart/model/news_detail_model.dart';
 import 'package:sufismart/model/news_model.dart';
 import 'package:sufismart/model/product_model.dart';
@@ -15,7 +17,8 @@ import 'package:sufismart/model/producttype_model.dart';
 import 'package:sufismart/model/promo_model.dart';
 
 class Api extends ChangeNotifier {
-  static const endpoint = 'http://172.60.3.23/sufismart_ci/api/';
+  //static const endpoint = 'http://172.60.3.23/sufismart_ci/api/';
+  static const endpoint = 'https://sufismart.sfi.co.id/sufismart_ci/api/';
   //static const endpoint = 'http://192.168.0.164:81/api/';
   var client = http.Client();
   static const _timeout = 20;
@@ -395,6 +398,60 @@ class Api extends ChangeNotifier {
       return false;
     }
   }
+
+  //branch
+  Future<List<KotaModel>> getKota(BuildContext context) async {
+    try {
+      final response = await client.get(endpoint+'getData_branch',
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          }
+      ).timeout(const Duration (seconds: _timeout));
+      if (response.statusCode == 200) {
+        notifyListeners();
+        Iterable data = json.decode(response.body)['data'];
+        List<KotaModel> listData = data.map((map) => KotaModel.fromJson(map)).toList();
+        //print(json.decode(response.body)['data']);
+        return listData;        
+      } else {
+        print(response.statusCode);
+        //errorPage(response.statusCode.toString(), "getProvinsi", response.statusCode.toString(), context);
+      }
+    // }on SocketException catch(e){
+    //   errorPage("no_internet", "getProvinsi", e.toString(), context);
+    // }on TimeoutException catch (e) {
+    //   errorPage("timeout", "getProvinsi", e.toString(), context);
+    }catch(e) {
+      print(e);
+      //errorPage("error", "getProvinsi", e.toString(), context);
+    }
+  }
+
+  Future<List<KotaDetailModel>> getBranchDetail(
+      BuildContext context, String kota) async {
+    try {
+      final response =
+          await client.get(endpoint + 'getDataBranchID/' + kota, headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      }).timeout(const Duration(seconds: _timeout));
+      if (response.statusCode == 200) {
+        notifyListeners();
+        Iterable data = json.decode(response.body)['data'];
+        List<KotaDetailModel> listdata =
+            data.map((map) => KotaDetailModel.fromJson(map)).toList();
+        print(json.decode(response.body)['data']);
+        return listdata;        
+      } else {
+        print(response.statusCode);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+  
+
 
 // json.encode({
 //             "email": email,

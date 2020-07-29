@@ -6,19 +6,27 @@ import 'package:skeleton_text/skeleton_text.dart';
 import 'package:sufismart/ui/view/WebView.dart';
 
 class ProductDetailView extends StatefulWidget {
-  String productDCode, productDImage, productDname, productDprice,prodType,prodCategory,prodName,prodCode,prodCategoryCode;
-  ProductDetailView(
-      {Key key,
-      this.productDCode,
-      this.productDImage,
-      this.productDname,
-      this.productDprice,
-      this.prodType,
-      this.prodCategory,
-      this.prodName,
-      this.prodCode,
-      this.prodCategoryCode,
-      });
+  String productDCode,
+      productDImage,
+      productDname,
+      productDprice,
+      prodType,
+      prodCategory,
+      prodName,
+      prodCode,
+      prodCategoryCode;
+  ProductDetailView({
+    Key key,
+    this.productDCode,
+    this.productDImage,
+    this.productDname,
+    this.productDprice,
+    this.prodType,
+    this.prodCategory,
+    this.prodName,
+    this.prodCode,
+    this.prodCategoryCode,
+  });
   @override
   _ProductDetailViewState createState() => _ProductDetailViewState();
 }
@@ -51,7 +59,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                   children: <Widget>[
                     widget.productDImage == null
                         ? Container(
-                            height: MediaQuery.of(context).size.height / 3,
+                            height: MediaQuery.of(context).size.height / 4,
                             decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5)),
@@ -64,7 +72,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                         : CachedNetworkImage(
                             imageUrl: widget.productDImage,
                             imageBuilder: (context, imageProvider) => Container(
-                              height: MediaQuery.of(context).size.height / 3,
+                              height: MediaQuery.of(context).size.height / 3.5,
                               child: Card(
                                 margin: const EdgeInsets.only(bottom: 5.0),
                                 child: Container(
@@ -80,14 +88,14 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                             placeholder: (context, url) =>
                                 new SkeletonAnimation(
                                     child: Container(
-                              height: MediaQuery.of(context).size.height / 3,
+                              height: MediaQuery.of(context).size.height / 4,
                               decoration: BoxDecoration(
                                   color: Colors.grey[300],
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10))),
                             )),
                             errorWidget: (context, url, error) => new Container(
-                              height: MediaQuery.of(context).size.height / 3,
+                              height: MediaQuery.of(context).size.height / 4,
                               decoration: BoxDecoration(
                                   color: Colors.grey[300],
                                   borderRadius:
@@ -127,23 +135,32 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                     // ),
                     Align(
                       alignment: Alignment.topLeft,
-                      child:Container(                    
+                      child: Container(
                         alignment: Alignment.topLeft,
-                        width: 150,
-                        margin: EdgeInsets.only(
-                            top: 5, left: 10.0, right: 10.0, bottom: 10.0),
-                            decoration: BoxDecoration(
-                            color: Color(0xff0d306b),
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(5))),
-                        child: Text(                          
-                          "Rp. "+FlutterMoneyFormatter(amount: double.parse(widget.productDprice)).output.withoutFractionDigits.toString(),                          
+                        //width: 150,
+                        width: MediaQuery.of(context).size.width / 1,
+                        margin: EdgeInsets.only(top: 5, left: 10.0, right: 10.0, bottom: 10.0),
+                        padding: EdgeInsets.only(top: 5, left: 10.0, right: 10.0, bottom: 10.0),
+                        decoration: BoxDecoration(                          
+                          color: Color(0xff0d306b),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                          ),
+                        child: Text(
+                          "Rp. " +
+                              FlutterMoneyFormatter(
+                                      amount:
+                                          double.parse(widget.productDprice))
+                                  .output
+                                  .withoutFractionDigits
+                                  .toString(),
                           style: TextStyle(fontSize: 20, color: Colors.white),
                           textAlign: TextAlign.left,
                         ),
                       ),
                     ),
-                    
+
                     Container(
                       width: MediaQuery.of(context).size.width,
                       margin: EdgeInsets.only(
@@ -160,32 +177,39 @@ class _ProductDetailViewState extends State<ProductDetailView> {
               ),
               InkWell(
                 onTap: () async {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              WebView2(linkurl: "https://sufismart.sfi.co.id/sufismart/api/credit_simulation4.php?type=${widget.prodType}&prod_code=${widget.prodCode}&prod_name=${widget.prodName}&detail_code=${widget.productDCode}&detail_name=${widget.productDname}&harga=${widget.productDprice}&kategori=${widget.prodCategory}&kategori_code=${widget.prodCategoryCode}"),
-                        ));
-                  },
-                  child: Card(                
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WebView2(
+                            linkurl:
+                                "https://sufismart.sfi.co.id/sufismart/api/credit_simulation4.php?type=${widget.prodType}&prod_code=${widget.prodCode}&prod_name=${widget.prodName}&detail_code=${widget.productDCode}&detail_name=${widget.productDname}&harga=${widget.productDprice}&kategori=${widget.prodCategory}&kategori_code=${widget.prodCategoryCode}"),
+                      ));
+                },
+                child: Card(
                   child: Column(
                     children: <Widget>[
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Container(                          
+                          Container(
                             margin: EdgeInsets.only(
-                                top: 20.0, left: 10.0, right: 10.0, bottom: 10.0),
+                                top: 20.0,
+                                left: 10.0,
+                                right: 10.0,
+                                bottom: 10.0),
                             child: Text(
                               "Simulasi Kredit",
                               style:
                                   TextStyle(fontSize: 20, color: Colors.black),
                               textAlign: TextAlign.left,
                             ),
-                          ), 
-                          Container(                          
+                          ),
+                          Container(
                             margin: EdgeInsets.only(
-                                top: 20.0, left: 10.0, right: 10.0, bottom: 10.0),
+                                top: 20.0,
+                                left: 10.0,
+                                right: 10.0,
+                                bottom: 10.0),
                             // child: Text(
                             //   ">",
                             //   style:
@@ -193,7 +217,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                             //   textAlign: TextAlign.left,
                             // ),
                             child: Icon(Icons.arrow_forward_ios),
-                          ),  
+                          ),
                         ],
                       ),
                       Container(
@@ -202,8 +226,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                             top: 5.0, left: 10.0, right: 10.0, bottom: 10.0),
                         child: Text(
                           "Hitung Cicilan Produk ini",
-                          style:
-                              TextStyle(fontSize: 20, color: Colors.black),
+                          style: TextStyle(fontSize: 20, color: Colors.black),
                           textAlign: TextAlign.left,
                         ),
                       ),
@@ -220,8 +243,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                           top: 20.0, left: 10.0, right: 10.0, bottom: 10.0),
                       child: Text(
                         "Deskripsi",
-                        style:
-                            TextStyle(fontSize: 20, color: Colors.black),
+                        style: TextStyle(fontSize: 20, color: Colors.black),
                         textAlign: TextAlign.left,
                       ),
                     ),

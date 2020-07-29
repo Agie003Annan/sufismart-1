@@ -12,6 +12,7 @@ import 'package:sufismart/enums/viewstate.dart';
 import 'package:sufismart/ui/view/WebView.dart';
 import 'package:sufismart/ui/view/about_view.dart';
 import 'package:sufismart/ui/view/base_view.dart';
+import 'package:sufismart/ui/view/branch_view.dart';
 import 'package:sufismart/ui/view/news_view.dart';
 import 'package:sufismart/ui/view/product_view.dart';
 import 'package:sufismart/ui/view/promo_view.dart';
@@ -24,11 +25,10 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final controller = PageController(viewportFraction: 0.8);
- 
+
   void initState() {
     super.initState();
   }
- 
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,9 @@ class _HomeViewState extends State<HomeView> {
         ),
         body: ModalProgressHUD(
           inAsyncCall: model.state == ViewState.Busy ?? ViewState.Idle,
-          child: model.banner == null || model.imgPromo == null  || model.imgNews == null
+          child: model.banner == null ||
+                  model.imgPromo == null ||
+                  model.imgNews == null
               ? Center(
                   child: CircularProgressIndicator(),
                 )
@@ -133,7 +135,8 @@ class _HomeViewState extends State<HomeView> {
                           // ),
                           //slider
                           Container(
-                            height: 200,
+                            // height: 200,
+                            height: MediaQuery.of(context).size.height / 3.5,
                             child: Swiper(
                               itemBuilder: (BuildContext context, int index) {
                                 return Container(
@@ -282,7 +285,7 @@ class _HomeViewState extends State<HomeView> {
                                       flex: 1,
                                       child: InkWell(
                                         onTap: () {
-                                         Navigator.push(
+                                          Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
@@ -321,12 +324,17 @@ class _HomeViewState extends State<HomeView> {
                                       flex: 1,
                                       child: InkWell(
                                         onTap: () async {
+                                          // Navigator.push(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //       builder: (context) =>
+                                          //           WebView2(linkurl: "https://sufismart.sfi.co.id/sufismart/api/branch.php"),
+                                          //     ));
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                builder: (context) =>
-                                                    WebView2(linkurl: "https://sufismart.sfi.co.id/sufismart/api/branch.php"),
-                                              ));
+                                                  builder: (context) =>
+                                                      BranchView()));
                                         },
                                         child: Container(
                                           child: Center(
@@ -367,8 +375,9 @@ class _HomeViewState extends State<HomeView> {
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                builder: (context) =>
-                                                    WebView2(linkurl: "https://sufismart.sfi.co.id/sufismart/api/credit_simulation2.php"),
+                                                builder: (context) => WebView2(
+                                                    linkurl:
+                                                        "https://sufismart.sfi.co.id/sufismart/api/credit_simulation2.php"),
                                               ));
                                         },
                                         child: Container(
@@ -448,8 +457,8 @@ class _HomeViewState extends State<HomeView> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                  //  WebView(linkurl: "https://sufismart.sfi.co.id/sufismart/api/layanan.php"),
-                                                  TestWebView(),
+                                                    //  WebView(linkurl: "https://sufismart.sfi.co.id/sufismart/api/layanan.php"),
+                                                    TestWebView(),
                                               ));
                                         },
                                         child: Container(
@@ -507,8 +516,8 @@ class _HomeViewState extends State<HomeView> {
                                 //              Navigator.push(
                                 //               context,
                                 //               MaterialPageRoute(
-                                //                 builder: (context) => 
-                                //                 PromoView(),                                                   
+                                //                 builder: (context) =>
+                                //                 PromoView(),
                                 //               ));
                                 //           },
                                 //           child: Container(
@@ -557,7 +566,7 @@ class _HomeViewState extends State<HomeView> {
                                 //           //       ),
                                 //           //     ));
                                 //         },
-                                //         child: Container(                                         
+                                //         child: Container(
                                 //           child: Column(
                                 //             children: <Widget>[
                                 //               model.imgPromo[index].imagepath == null ?
@@ -569,9 +578,9 @@ class _HomeViewState extends State<HomeView> {
                                 //                   image: DecorationImage(
                                 //                       image: AssetImage("assets/images/image_default.jpg"), fit: BoxFit.cover),
                                 //                 ),
-                                //               ) : CachedNetworkImage(                                                
+                                //               ) : CachedNetworkImage(
                                 //                 imageUrl: model.imgPromo[index].imagepath,
-                                //                 imageBuilder: (context, imageProvider) => Container(                                                  
+                                //                 imageBuilder: (context, imageProvider) => Container(
                                 //                     width: MediaQuery.of(context).size.width * 0.6,
                                 //                     height: MediaQuery.of(context).size.height * 0.30,
                                 //                     child: Card(
@@ -595,7 +604,7 @@ class _HomeViewState extends State<HomeView> {
                                 //                         //   ),
                                 //                         // ),
                                 //                       ),
-                                //                     ),                                                  
+                                //                     ),
                                 //                 ),
                                 //                 placeholder: (context, url) => new SkeletonAnimation(
                                 //                     child: Container(
@@ -645,13 +654,13 @@ class _HomeViewState extends State<HomeView> {
                                       child: Align(
                                         alignment: Alignment.topRight,
                                         child: InkWell(
-                                          onTap: (){
-                                             Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) => 
-                                                NewsView(),                                                   
-                                              ));
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      NewsView(),
+                                                ));
                                           },
                                           child: Container(
                                             width: 80,
@@ -675,7 +684,8 @@ class _HomeViewState extends State<HomeView> {
                                 ),
                                 Container(
                                   padding: EdgeInsets.symmetric(vertical: 10.0),
-                                  height: MediaQuery.of(context).size.height * 0.33,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.33,
                                   color: Colors.transparent,
                                   child: ListView.builder(
                                     shrinkWrap: true,
@@ -697,72 +707,113 @@ class _HomeViewState extends State<HomeView> {
                                           //             .category[index]
                                           //             .category_name,
                                           //       ),
-                                          //     ));                                          
+                                          //     ));
                                         },
-                                        child: Container(                                         
+                                        child: Container(
                                           child: Column(
                                             children: <Widget>[
-                                              model.imgNews[index].imagepath == null ?
-                                              Container(
-                                                width: MediaQuery.of(context).size.width * 0.6,
-                                                height: MediaQuery.of(context).size.height * 0.30,
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                                                  image: DecorationImage(
-                                                      image: AssetImage("assets/images/image_default.jpg"), fit: BoxFit.cover),
-                                                ),
-                                              ) : CachedNetworkImage(                                                
-                                                imageUrl: model.imgNews[index].imagepath,
-                                                imageBuilder: (context, imageProvider) => Container(                                                  
-                                                    width: MediaQuery.of(context).size.width * 0.6,
-                                                    height: MediaQuery.of(context).size.height * 0.30,
-                                                    child: Card(
-                                                      child: Container(
-                                                        // height: 60,
-                                                        // width: 30,
-                                                        decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                                                          image: DecorationImage(
-                                                              image: imageProvider, fit: BoxFit.fill),
-                                                        ),
-                                                        // decoration: BoxDecoration(
-                                                        //   color: Colors.green,
-                                                        //   borderRadius: BorderRadius.all(
-                                                        //     Radius.circular(5),
-                                                        //   ),
-                                                        //   image: DecorationImage(
-                                                        //     image: NetworkImage(
-                                                        //         "https://www.sfi.co.id/assets/images/news/Brosur-PRIME-CUSTOMER-Action-Figure.jpg"),
-                                                        //     fit: BoxFit.fill,
-                                                        //   ),
-                                                        // ),
-                                                      ),
-                                                    ),                                                  
-                                                ),
-                                                placeholder: (context, url) => new SkeletonAnimation(
-                                                    child: Container(
-                                                      width: MediaQuery.of(context).size.width * 0.6,
-                                                      height: MediaQuery.of(context).size.height * 0.30,
+                                              model.imgNews[index].imagepath ==
+                                                      null
+                                                  ? Container(
+                                                      width:MediaQuery.of(context).size.width *0.6,
+                                                      height:MediaQuery.of(context).size.height * 0.30,
                                                       decoration: BoxDecoration(
-                                                          color: Colors.grey[300],
-                                                          borderRadius: BorderRadius.all(Radius.circular(5))
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5)),
+                                                        image: DecorationImage(
+                                                            image: AssetImage(
+                                                                "assets/images/image_default.jpg"),
+                                                            fit: BoxFit.fill),
                                                       ),
                                                     )
-                                                ),
-                                                errorWidget: (context, url, error) => new Container(
-                                                  width: MediaQuery.of(context).size.width * 0.6,
-                                                  height: MediaQuery.of(context).size.height * 0.30,
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.grey[300],
-                                                      borderRadius: BorderRadius.all(Radius.circular(5))
-                                                  ),
-                                                  child: Center(
-                                                    child: Icon(
-                                                        Icons.error
+                                                  : CachedNetworkImage(
+                                                      imageUrl: model.imgNews[index].imagepath, 
+                                                      imageBuilder: (context, imageProvider) => Container(
+                                                        width: MediaQuery.of( context).size.width * 0.6,
+                                                        height: MediaQuery.of(context).size.height * 0.30,
+                                                        child: Card(
+                                                          child: Container(
+                                                            // height: 60,
+                                                            // width: 30,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .all(Radius
+                                                                          .circular(
+                                                                              5)),
+                                                              image: DecorationImage(
+                                                                  image:
+                                                                      imageProvider,
+                                                                  fit: BoxFit
+                                                                      .fill),
+                                                            ),
+                                                            // decoration: BoxDecoration(
+                                                            //   color: Colors.green,
+                                                            //   borderRadius: BorderRadius.all(
+                                                            //     Radius.circular(5),
+                                                            //   ),
+                                                            //   image: DecorationImage(
+                                                            //     image: NetworkImage(
+                                                            //         "https://www.sfi.co.id/assets/images/news/Brosur-PRIME-CUSTOMER-Action-Figure.jpg"),
+                                                            //     fit: BoxFit.fill,
+                                                            //   ),
+                                                            // ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      placeholder: (context,
+                                                              url) =>
+                                                          new SkeletonAnimation(
+                                                              child: Container(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.6,
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            0.30,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors
+                                                                .grey[300],
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            5))),
+                                                      )),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          new Container(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.6,
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height *
+                                                            0.30,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors
+                                                                .grey[300],
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            5))),
+                                                        child: Center(
+                                                          child:
+                                                              Icon(Icons.error),
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ),
-                                                ),
-                                              ),
                                             ],
                                           ),
                                         ),

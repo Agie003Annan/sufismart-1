@@ -9,6 +9,8 @@ import 'package:sufismart/ViewModel/RegistrasiViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
 import 'package:sufismart/ui/view/base_view.dart';
 
+import 'success_view.dart';
+
 class RegistrasiView extends StatefulWidget {
   _RegistrasiViewState createState() => _RegistrasiViewState();
 }
@@ -92,7 +94,7 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                               WhitelistingTextInputFormatter(
                                   new RegExp('[a-zA-Z ]'))
                             ],
-                            //controller: _namalengkapController,
+                            controller: _namalengkapController,
                             decoration: const InputDecoration(
                               labelText: 'Nama Lengkap',
                               labelStyle: TextStyle(
@@ -171,7 +173,7 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                             },
                           ),
                           TextFormField(
-                            //controller: _nohpController,
+                            controller: _nohpController,
                             autofocus: false,
                             decoration: const InputDecoration(
                                 labelText: 'Nomor Telepon',
@@ -199,7 +201,7 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                             },
                           ),
                           TextFormField(
-                            //controller: _emailController,
+                            controller: _emailController,
                             autofocus: false,
                             decoration: const InputDecoration(
                                 labelText: 'Email',
@@ -227,7 +229,7 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                             },
                           ),
                           TextFormField(
-                            //controller: _passwordController,
+                            controller: _passwordController,
                             obscureText: model.hidePass,
                             autofocus: false,
                             decoration: InputDecoration(
@@ -239,15 +241,15 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                                 borderSide: BorderSide(color: Colors.grey),
                               ),
                               suffixIcon: IconButton(
-                                    icon: Icon(
-                                      model.hidePass
-                                          ? FontAwesomeIcons.eyeSlash
-                                          : FontAwesomeIcons.eye,
-                                      color: Colors.black,
-                                      size: 14,
-                                    ),
-                                    onPressed: () => model.changeHidePass(),
-                                  ),
+                                icon: Icon(
+                                  model.hidePass
+                                      ? FontAwesomeIcons.eyeSlash
+                                      : FontAwesomeIcons.eye,
+                                  color: Colors.black,
+                                  size: 14,
+                                ),
+                                onPressed: () => model.changeHidePass(),
+                              ),
                             ),
                             keyboardType: TextInputType.emailAddress,
                             cursorColor: Colors.grey,
@@ -407,14 +409,21 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                                   //       builder: (context) => SuccessView(),
                                   //     )
                                   // );
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => SuccessView(),
+                                      ));
                                   final SharedPreferences prefs =
                                       await SharedPreferences.getInstance();
                                   setState(() {
                                     _error = prefs.getString('message_regis');
-                                    // _name = "";
-                                    // _phone = "";
-                                    // _email = "";
-                                    // _password = "";
+                                    _autoValidate = false;
+                                    _namalengkapController.clear();
+                                    _nohpController.clear();
+                                    _emailController.clear();
+                                    _passwordController.clear();
+                                    _dateFromController.clear();                                  
                                   });
                                 } else {
                                   final SharedPreferences prefs =

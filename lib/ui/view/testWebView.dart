@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:sufismart/ui/view/WebView.dart';
+//import 'package:sufismart/ui/view/WebView.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:webview_flutter/webview_flutter.dart' as web;
+//import 'package:webview_flutter/webview_flutter.dart' as web;
 
 class TestWebView extends StatefulWidget {
   @override
@@ -10,7 +10,7 @@ class TestWebView extends StatefulWidget {
 }
 
 class _TestWebViewState extends State<TestWebView> {
-  WebViewController _controller;
+  WebViewController _controller ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,7 @@ class _TestWebViewState extends State<TestWebView> {
         automaticallyImplyLeading: false,
       ),
       body: SafeArea(
-        child: web.WebView(
+        child: WebView(
           initialUrl: "https://sufismart.sfi.co.id/sufismart/api/layanan.php",
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {},

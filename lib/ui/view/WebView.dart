@@ -21,7 +21,7 @@ class WebView2 extends StatelessWidget {
       appBar: AppBar(
         title: //Text("Suzuki Finance Indonesia"),
             Image.asset(
-          'assets/logo_sfi_white.png',
+          'assets/images/logo_sfi_white.png',
           fit: BoxFit.cover,
           height: 30,
         ),

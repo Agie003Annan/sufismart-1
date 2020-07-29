@@ -43,6 +43,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  characters:
+    dependency: transitive
+    description:
+      name: characters
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   charcode:
     dependency: transitive
     description:
@@ -205,6 +212,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.11"
+  google_fonts:
+    dependency: transitive
+    description:
+      name: google_fonts
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   hexcolor:
     dependency: "direct main"
     description:
@@ -247,6 +261,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.15.8"
+  logging:
+    dependency: transitive
+    description:
+      name: logging
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.11.4"
+  lottie:
+    dependency: transitive
+    description:
+      name: lottie
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.1"
   matcher:
     dependency: transitive
     description:
@@ -392,6 +420,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.5"
+  somedialog:
+    dependency: "direct main"
+    description:
+      name: somedialog
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   source_span:
     dependency: transitive
     description:
@@ -499,4 +534,4 @@ packages:
     version: "3.6.1"
 sdks:
   dart: ">=2.7.0 <3.0.0"
-  flutter: ">=1.12.13+hotfix.5 <2.0.0"
+  flutter: ">=1.17.0 <2.0.0"

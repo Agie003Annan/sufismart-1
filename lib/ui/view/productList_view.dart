@@ -77,7 +77,7 @@ class _ProductListViewState extends State<ProductListView>{
                                             children: <Widget>[
                                               model.productList[index].productImage == null ?
                                               Container(
-                                                height: MediaQuery.of(context).size.height / 3,
+                                                height: MediaQuery.of(context).size.height / 4,
                                                 decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.all(Radius.circular(5)),
                                                   image: DecorationImage(
@@ -86,7 +86,7 @@ class _ProductListViewState extends State<ProductListView>{
                                               ) : CachedNetworkImage(
                                                 imageUrl: model.productList[index].productImage,
                                                 imageBuilder: (context, imageProvider) => Container(
-                                                    height: MediaQuery.of(context).size.height / 3,                                                    
+                                                    height: MediaQuery.of(context).size.height / 4,                                                    
                                                       margin: const EdgeInsets.only(bottom: 5.0),                                                                                                                                                                         
                                                         child: Container(
                                                           decoration: BoxDecoration(
@@ -99,7 +99,7 @@ class _ProductListViewState extends State<ProductListView>{
                                                 ),
                                                 placeholder: (context, url) => new SkeletonAnimation(
                                                     child: Container(
-                                                      height: MediaQuery.of(context).size.height / 3,
+                                                      height: MediaQuery.of(context).size.height / 4,
                                                       decoration: BoxDecoration(
                                                           color: Colors.grey[300],
                                                           borderRadius: BorderRadius.all(Radius.circular(5))
@@ -107,7 +107,7 @@ class _ProductListViewState extends State<ProductListView>{
                                                     )
                                                 ),
                                                 errorWidget: (context, url, error) => new Container(
-                                                  height: MediaQuery.of(context).size.height / 3,
+                                                  height: MediaQuery.of(context).size.height / 4,
                                                   decoration: BoxDecoration(
                                                       color: Colors.grey[300],
                                                       borderRadius: BorderRadius.all(Radius.circular(5))

@@ -93,8 +93,8 @@ class _ProductCategoryViewState extends State<ProductCategory>{
                                                 placeholder: (context, url) => new SkeletonAnimation(
                                                     child: Container(
                                                       //height: MediaQuery.of(context).size.height / 2,
-                                                      width: 100,
-                                                      height: 100,
+                                                      width: 110,
+                                                      height: 110, 
                                                       decoration: BoxDecoration(
                                                           color: Colors.grey[300],
                                                           borderRadius: BorderRadius.all(Radius.circular(5))
@@ -102,8 +102,8 @@ class _ProductCategoryViewState extends State<ProductCategory>{
                                                     )
                                                 ),
                                                 errorWidget: (context, url, error) => new Container(
-                                                  width: 100,
-                                                  height: 100,
+                                                  width: 110,
+                                                  height: 110, 
                                                   decoration: BoxDecoration(
                                                       color: Colors.grey[300],
                                                       borderRadius: BorderRadius.all(Radius.circular(5))

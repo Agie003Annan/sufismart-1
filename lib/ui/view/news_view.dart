@@ -42,11 +42,11 @@ class _NewsViewState extends State<NewsView> {
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              // : RefreshIndicator(
-              //     onRefresh: () async {
-              //       model.getAll(context);
-              //     },
-                  : SingleChildScrollView(
+              : RefreshIndicator(
+                  onRefresh: () async {
+                    model.getDataNews(context);
+                  },
+                  child : SingleChildScrollView(
                     child: Container(
                         padding: EdgeInsets.all(5),
                         child: Column(
@@ -240,7 +240,7 @@ class _NewsViewState extends State<NewsView> {
                   ),
                 ),
         ),
-      //),
+      ),
     );
   }
 }

@@ -16,6 +16,7 @@ import 'package:sufismart/ui/view/branch_view.dart';
 import 'package:sufismart/ui/view/news_view.dart';
 import 'package:sufismart/ui/view/product_view.dart';
 import 'package:sufismart/ui/view/promo_view.dart';
+import 'package:sufismart/ui/view/statuskontrak_view.dart';
 import 'package:sufismart/ui/view/testWebView.dart';
 
 import 'news_detail_view.dart';
@@ -149,8 +150,9 @@ class _HomeViewState extends State<HomeView> {
                                       ? Container(
                                           height: 160,
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10)),
+                                            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight: Radius.circular(15)),
+                                            // borderRadius: BorderRadius.all(
+                                            //     Radius.circular(10)),
                                             image: DecorationImage(
                                                 image: AssetImage(
                                                     "assets/images/image_default.jpg"),
@@ -165,8 +167,9 @@ class _HomeViewState extends State<HomeView> {
                                                   Container(
                                             height: 160,
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(15)),
+                                              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight: Radius.circular(15)),
+                                              // borderRadius: BorderRadius.all(
+                                              //     Radius.circular(15)),
                                               image: DecorationImage(
                                                   image: imageProvider,
                                                   fit: BoxFit.fill),
@@ -178,16 +181,18 @@ class _HomeViewState extends State<HomeView> {
                                             height: 160,
                                             decoration: BoxDecoration(
                                                 color: Colors.grey[300],
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(10))),
+                                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight: Radius.circular(15))
+                                                    ,),
                                           )),
                                           errorWidget: (context, url, error) =>
                                               new Container(
                                             height: 160,
                                             decoration: BoxDecoration(
                                                 color: Colors.grey[300],
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(10))),
+                                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight: Radius.circular(15))
+                                                // borderRadius: BorderRadius.all(
+                                                //     Radius.circular(10))
+                                                    ,),
                                             child: Center(
                                               child: Icon(Icons.error),
                                             ),
@@ -222,13 +227,13 @@ class _HomeViewState extends State<HomeView> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(
-                                  "Features",
-                                  style: TextStyle(
-                                      color: Color(0xff0d306b),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                ),
+                                // Text(
+                                //   "Features",
+                                //   style: TextStyle(
+                                //       color: Color(0xff0d306b),
+                                //       fontSize: 16,
+                                //       fontWeight: FontWeight.bold),
+                                // ),
                                 SizedBox(
                                   height: 10,
                                 ),
@@ -257,8 +262,8 @@ class _HomeViewState extends State<HomeView> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: <Widget>[
-                                                Image.asset(
-                                                  "assets/images/ic_icon_promo.png",
+                                                Image.network(
+                                                  "https://www.sfi.co.id/assets/images/menu/Icon-Promo.png",
                                                   width: 60,
                                                   height: 60,
                                                 ),
@@ -298,8 +303,8 @@ class _HomeViewState extends State<HomeView> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: <Widget>[
-                                                Image.asset(
-                                                  "assets/images/ic_icon_product.png",
+                                                Image.network(
+                                                  "https://www.sfi.co.id/assets/images/menu/ic_menu/product.png",
                                                   width: 60,
                                                   height: 60,
                                                 ),
@@ -323,7 +328,7 @@ class _HomeViewState extends State<HomeView> {
                                     Expanded(
                                       flex: 1,
                                       child: InkWell(
-                                        onTap: () async {
+                                        onTap: (){
                                           // Navigator.push(
                                           //     context,
                                           //     MaterialPageRoute(
@@ -342,15 +347,15 @@ class _HomeViewState extends State<HomeView> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: <Widget>[
-                                                Image.asset(
-                                                  "assets/images/ic_icon_branch.png",
+                                                Image.network(
+                                                  "https://www.sfi.co.id/assets/images/menu/ic_menu/dealerservice.png",
                                                   width: 60,
                                                   height: 60,
                                                 ),
                                                 SizedBox(
                                                   height: 10,
                                                 ),
-                                                Text("Branch\n",
+                                                Text("Cabang\n",
                                                     style: TextStyle(
                                                       fontSize: 12,
                                                     ),
@@ -371,7 +376,7 @@ class _HomeViewState extends State<HomeView> {
                                     Expanded(
                                       flex: 1,
                                       child: InkWell(
-                                        onTap: () async {
+                                        onTap: (){
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
@@ -384,8 +389,8 @@ class _HomeViewState extends State<HomeView> {
                                           child: Center(
                                             child: Column(
                                               children: <Widget>[
-                                                Image.asset(
-                                                  "assets/images/ic_icon_credit_simulation.png",
+                                                Image.network(
+                                                  "https://www.sfi.co.id/assets/images/menu/ic_menu/creditsimulation.png",
                                                   width: 60,
                                                   height: 60,
                                                 ),
@@ -393,7 +398,7 @@ class _HomeViewState extends State<HomeView> {
                                                   height: 10,
                                                 ),
                                                 Text(
-                                                  "Credit\nSimulation",
+                                                  "Simulasi\nKredit",
                                                   style: TextStyle(
                                                     fontSize: 12,
                                                   ),
@@ -411,12 +416,12 @@ class _HomeViewState extends State<HomeView> {
                                     Expanded(
                                       flex: 1,
                                       child: InkWell(
-                                        onTap: () async {
+                                        onTap: () {
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    AboutView(),
+                                                    StatusKontrakView(),
                                               ));
                                         },
                                         child: Container(
@@ -425,8 +430,8 @@ class _HomeViewState extends State<HomeView> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: <Widget>[
-                                                Image.asset(
-                                                  "assets/images/ic_icon_installment_status.png",
+                                                Image.network(
+                                                  "https://www.sfi.co.id/assets/images/menu/ic_menu/inststat.png",
                                                   width: 60,
                                                   height: 60,
                                                 ),
@@ -434,7 +439,7 @@ class _HomeViewState extends State<HomeView> {
                                                   height: 10,
                                                 ),
                                                 Text(
-                                                  "Installment\nStatus",
+                                                  "Status\nKontrak",
                                                   style: TextStyle(
                                                     fontSize: 12,
                                                   ),
@@ -452,7 +457,7 @@ class _HomeViewState extends State<HomeView> {
                                     Expanded(
                                       flex: 1,
                                       child: InkWell(
-                                        onTap: () async {
+                                        onTap: () {
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
@@ -465,8 +470,8 @@ class _HomeViewState extends State<HomeView> {
                                           child: Center(
                                             child: Column(
                                               children: <Widget>[
-                                                Image.asset(
-                                                  "assets/images/ic_icon_wop.png",
+                                                Image.network(
+                                                  "https://www.sfi.co.id/assets/images/menu/Icon-Layanan.png",
                                                   width: 60,
                                                   height: 60,
                                                 ),
@@ -474,7 +479,7 @@ class _HomeViewState extends State<HomeView> {
                                                   height: 10,
                                                 ),
                                                 Text(
-                                                  "Payment\nOptions",
+                                                  "Pembayaran &\n Asuransi",
                                                   style: TextStyle(
                                                     fontSize: 12,
                                                   ),

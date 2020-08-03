@@ -213,7 +213,7 @@ class _ContactViewState extends State<ContactView> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    SuccessView(),
+                                                    SuccessView(msg: "Successfully Send Data",),
                                               ));
                                           setState(() {
                                             _error = "";

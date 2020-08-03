@@ -8,9 +8,11 @@ import 'package:somedialog/somedialog.dart';
 import 'package:sufismart/ViewModel/LoginViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
 import 'package:sufismart/ui/view/base_view.dart';
+import 'package:sufismart/ui/view/forgotpassword_view.dart';
 import 'package:sufismart/ui/view/profil_view.dart';
 import 'package:sufismart/ui/view/registration_view.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter/webview_flutter.dart' as web;
 
 class LoginView extends StatefulWidget {
   @override
@@ -441,7 +443,7 @@ class _LoginViewState extends State<LoginView> {
                                             height: 10,
                                           ),
                                           GestureDetector(
-                                            onTap: () {
+                                            onTap: () async {
                                               Navigator.of(context).push(
                                                   MaterialPageRoute(
                                                       builder: (context) =>
@@ -468,18 +470,26 @@ class _LoginViewState extends State<LoginView> {
                                               )),
                                             ),
                                           ),
-                                          Container(
-                                            margin: EdgeInsets.only(top: 10),
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            child: Text(
-                                              "Lupa Password ?",
-                                              style: TextStyle(
-                                                color: Hexcolor("#0d306b"),
-                                                fontSize: 14,
+                                          GestureDetector(
+                                            onTap: () async{
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ForgotPasswordView()));
+                                            },
+                                            child: Container(
+                                              margin: EdgeInsets.only(top: 20),
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              child: Text(
+                                                "Lupa Password ?",
+                                                style: TextStyle(
+                                                  color: Hexcolor("#0d306b"),
+                                                  fontSize: 14,
+                                                ),
+                                                textAlign: TextAlign.right,
                                               ),
-                                              textAlign: TextAlign.right,
                                             ),
                                           ),
                                         ],
@@ -495,7 +505,9 @@ class _LoginViewState extends State<LoginView> {
               ),
             );
           } else {
-            return CircularProgressIndicator();
+            return Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
           }
         });
   }
@@ -516,18 +528,18 @@ Widget profilView(BuildContext context, String url) {
           onPressed: () async {
             SomeDialog(
                 context: context,
-                path: "assets/images/img_failed.png",
+                path: "assets/images/logout_img.png",
                 mode: SomeMode.Asset,
                 content: "apakah anda yakin ingin keluar \ndari akun ini ?",
                 title: "Logout",
                 appName: "",
-                imageHeight: 100,
-                imageWidth: 100,
-                dialogHeight: 260,
+                imageHeight: 150,
+                imageWidth: 150,
+                dialogHeight: 300,
                 buttonConfig: ButtonConfig(
                   dialogDone: "yakin",
                   dialogCancel: "batal",
-                  buttonDoneColor: Colors.orange,
+                  buttonDoneColor: Hexcolor("0d306b"),
                 ),
                 submit: () async {
                   SharedPreferences prefs =
@@ -536,13 +548,11 @@ Widget profilView(BuildContext context, String url) {
                   prefs.setString('is_login', "");
                   print(prefs.getString('username'));
                   print(prefs.getString('is_login'));
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => LoginView()));
-
-                  // Navigator.pushAndRemoveUntil(
-                  //     context,
-                  //     MaterialPageRoute(builder: (context) => LoginView()),
-                  //     (Route<dynamic> route) => false);
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => LoginView(),
+                    ),
+                  );
                 });
           },
           child: Icon(FontAwesomeIcons.signOutAlt),
@@ -552,7 +562,7 @@ Widget profilView(BuildContext context, String url) {
       backgroundColor: Hexcolor("#0d306b"),
       automaticallyImplyLeading: false,
     ),
-    body: WebView(
+    body: web.WebView(
       initialUrl:
           "https://sufismart.sfi.co.id/sufismart/api/profil.php?EMAIL=${url}",
       javascriptMode: JavascriptMode.unrestricted,
@@ -580,21 +590,5 @@ Widget profilView(BuildContext context, String url) {
         print("Finish url $url");
       },
     ),
-    // child: WebviewScaffold(
-    //   url:
-    //       'https://sufismart.sfi.co.id/sufismart/api/profil.php?EMAIL=${widget.user}',
-    //   withJavascript: true,
-    //   withLocalStorage: true,
-    //   withZoom: false,
-    //   // javascriptChannels: <JavascriptChannel>[
-    //   //   _alertJavascriptChannel(context),
-    //   // ].toSet()
-
-    //   // javascriptMode: JavascriptMode.unrestricted,
-    //   // onWebViewCreated: (WebViewController webViewController) {
-    //   //   _controller.complete(webViewController);
-    //   // },
-    // ),
-    //resizeToAvoidBottomInset: true,
   );
 }

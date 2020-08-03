@@ -14,4 +14,11 @@ class ContactViewModel extends BaseViewModel{
     setState(ViewState.Idle);
     return success;
   }
+
+  Future<bool> sendForgotPassword(String strEmail,BuildContext context) async{
+    setState(ViewState.Busy);
+    var success = await _api.insertForgotPassword(strEmail, context);
+    setState(ViewState.Idle);
+    return success; 
+  }
 }

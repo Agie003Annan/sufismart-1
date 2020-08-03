@@ -11,6 +11,7 @@ import 'package:sufismart/model/kota_model.dart';
 import 'package:sufismart/model/kotadetail_model.dart';
 import 'package:sufismart/model/news_detail_model.dart';
 import 'package:sufismart/model/news_model.dart';
+import 'package:sufismart/model/pekerjaan_model.dart';
 import 'package:sufismart/model/product_model.dart';
 import 'package:sufismart/model/productlist_model.dart';
 import 'package:sufismart/model/producttype_model.dart';
@@ -399,6 +400,34 @@ class Api extends ChangeNotifier {
     }
   }
 
+  Future<List<ModelPekerjaan>> getListPekerjaan(BuildContext context) async {
+    try {
+      final response = await client.get(endpoint+'getPekerjaan',
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          }
+      ).timeout(const Duration (seconds: _timeout));
+      if (response.statusCode == 200) {
+        notifyListeners();
+        Iterable data = json.decode(response.body)['data'];
+        List<ModelPekerjaan> listData = data.map((map) => ModelPekerjaan.fromJson(map)).toList();
+        //print(json.decode(response.body)['data']);
+        return listData;        
+      } else {
+        print(response.statusCode);
+        //errorPage(response.statusCode.toString(), "getProvinsi", response.statusCode.toString(), context);
+      }
+    // }on SocketException catch(e){
+    //   errorPage("no_internet", "getProvinsi", e.toString(), context);
+    // }on TimeoutException catch (e) {
+    //   errorPage("timeout", "getProvinsi", e.toString(), context);
+    }catch(e) {
+      print(e);
+      //errorPage("error", "getProvinsi", e.toString(), context);
+    }
+  }
+
   //branch
   Future<List<KotaModel>> getKota(BuildContext context) async {
     try {
@@ -450,9 +479,48 @@ class Api extends ChangeNotifier {
       print(e);
     }
   }
-  
 
-
+  //forgot password
+  Future<bool> insertForgotPassword(String email,BuildContext context) async {
+    Map<String, dynamic> data = {      
+      "email": email,      
+    };
+    try {
+      Response response;
+      Dio dio = new Dio();
+      FormData formData = FormData.fromMap(data);
+      var headers = {
+        "Content-Type": "multipart/form-data",
+      };
+      response = await dio
+          .post(endpoint + "action_resetpassword",
+              data: formData,
+              options: Options(
+                headers: headers,
+                // followRedirects: false,
+              ))
+          .timeout(const Duration(seconds: _timeout));
+      if (response.statusCode == 200) {
+        if (response.data['isSuccess'] == true) {
+          SharedPreferences prefs = await SharedPreferences.getInstance();          
+          prefs.setString('message_password', response.data['message']);
+          print(response.data['message']);
+          return true;
+        } else {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('message_password', response.data['message']);
+          print(response.data['message']);
+          return false;
+        }
+      } else {
+        print(response.statusCode);
+        return false;
+      }
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
 // json.encode({
 //             "email": email,
 //             "pass": password

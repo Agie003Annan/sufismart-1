@@ -119,7 +119,7 @@ class _NewsDetailViewState extends State<NewsDetail> {
                   Container(
                     margin: const EdgeInsets.only(
                         bottom: 10.0, right: 5.0, left: 5.0),
-                    child: Html(
+                    child: Html(                      
                       data: widget.detailDesc,
                       //text kepanjangan jadi titik-titik
                       // child: Text(

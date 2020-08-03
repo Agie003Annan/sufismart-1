@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutView extends StatefulWidget {
   @override
@@ -10,6 +11,10 @@ class AboutView extends StatefulWidget {
 }
 
 class _AboutViewState extends State<AboutView> {
+  String notlep = "08676767676";
+  static void openPhone(String phone){
+    launch("tel:$phone");
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,13 +86,18 @@ class _AboutViewState extends State<AboutView> {
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          Text(
-                            "123123",
-                            style: TextStyle(
-                              color: Hexcolor("#0d306b"),
-                              fontSize: 18,
+                          GestureDetector(
+                            onTap: (){
+                              openPhone(notlep);
+                            },
+                            child: Text(                              
+                              notlep,
+                              style: TextStyle(
+                                color: Hexcolor("#0d306b"),
+                                fontSize: 18,
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                            textAlign: TextAlign.center,
                           ),
                         ],
                       ),

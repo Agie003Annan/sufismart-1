@@ -160,7 +160,6 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                         ),
                       ),
                     ),
-
                     Container(
                       width: MediaQuery.of(context).size.width,
                       margin: EdgeInsets.only(
@@ -173,65 +172,6 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                       ),
                     ),
                   ],
-                ),
-              ),
-              InkWell(
-                onTap: () async {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => WebView2(
-                            linkurl:
-                                "https://sufismart.sfi.co.id/sufismart/api/credit_simulation4.php?type=${widget.prodType}&prod_code=${widget.prodCode}&prod_name=${widget.prodName}&detail_code=${widget.productDCode}&detail_name=${widget.productDname}&harga=${widget.productDprice}&kategori=${widget.prodCategory}&kategori_code=${widget.prodCategoryCode}"),
-                      ));
-                },
-                child: Card(
-                  child: Column(
-                    children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.only(
-                                top: 20.0,
-                                left: 10.0,
-                                right: 10.0,
-                                bottom: 10.0),
-                            child: Text(
-                              "Simulasi Kredit",
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.black),
-                              textAlign: TextAlign.left,
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(
-                                top: 20.0,
-                                left: 10.0,
-                                right: 10.0,
-                                bottom: 10.0),
-                            // child: Text(
-                            //   ">",
-                            //   style:
-                            //       TextStyle(fontSize: 20, color: Colors.black),
-                            //   textAlign: TextAlign.left,
-                            // ),
-                            child: Icon(Icons.arrow_forward_ios),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.only(
-                            top: 5.0, left: 10.0, right: 10.0, bottom: 10.0),
-                        child: Text(
-                          "Hitung Cicilan Produk ini",
-                          style: TextStyle(fontSize: 20, color: Colors.black),
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
               ),
               Card(
@@ -304,7 +244,68 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                     // ),
                   ],
                 ),
-              )
+              ),
+              InkWell(                
+                onTap: () async {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => WebView2(
+                            linkurl:
+                                "https://sufismart.sfi.co.id/sufismart/api/credit_simulation4.php?type=${widget.prodType}&prod_code=${widget.prodCode}&prod_name=${widget.prodName}&detail_code=${widget.productDCode}&detail_name=${widget.productDname}&harga=${widget.productDprice}&kategori=${widget.prodCategory}&kategori_code=${widget.prodCategoryCode}"),
+                      ));
+                },
+                child: Card(    
+                                
+                  color: Hexcolor("#0d306b"),
+                  child: Column(
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,  
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.only(
+                                top: 20.0,
+                                left: 10.0,
+                                right: 10.0,
+                                bottom: 10.0),
+                            child: Text(
+                              "Simulasi Kredit",
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
+                              textAlign: TextAlign.left,
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(
+                                top: 20.0,
+                                left: 10.0,
+                                right: 10.0,
+                                bottom: 10.0),
+                            // child: Text(
+                            //   ">",
+                            //   style:
+                            //       TextStyle(fontSize: 20, color: Colors.black),
+                            //   textAlign: TextAlign.left,
+                            // ),
+                            child: Icon(Icons.arrow_forward_ios,color: Colors.white),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.only(
+                            top: 5.0, left: 10.0, right: 10.0, bottom: 10.0),
+                        child: Text(
+                          "Hitung Cicilan Produk ini",
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               // Card(
               //     child:Container(
               //       width: MediaQuery.of(context).size.width,

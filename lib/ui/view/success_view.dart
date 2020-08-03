@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SuccessView extends StatefulWidget{  
+class SuccessView extends StatefulWidget{ 
+  String msg;
+  SuccessView({Key key, @required this.msg}) : super(key: key);
 _SuccessViewState createState() => _SuccessViewState();
 }
 
@@ -43,7 +45,7 @@ class _SuccessViewState extends State<SuccessView>{
                     ),
                     SizedBox(height: 10,),
                     Text(
-                      "Successfuly Save Data.",
+                      widget.msg,
                       style: TextStyle(
                         color: Colors.grey,
                         height: 1.5

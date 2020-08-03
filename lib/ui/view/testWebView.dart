@@ -26,7 +26,7 @@ class _TestWebViewState extends State<TestWebView> {
       ),
       body: SafeArea(
         child: WebView(
-          initialUrl: "https://sufismart.sfi.co.id/sufismart/api/layanan.php",
+          initialUrl: "https://sufismart.sfi.co.id/sufismart/api/layanan_2.php",
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {},
           javascriptChannels: <JavascriptChannel>[
@@ -45,12 +45,12 @@ class _TestWebViewState extends State<TestWebView> {
             //       );
             //     }),
           ].toSet(),
-          onPageStarted: (String url) {
-            print("start url $url");
-          },
-          onPageFinished: (String url) {
-            print("Finish url $url");
-          },
+          // onPageStarted: (String url) {
+          //   print("start url $url");
+          // },
+          // onPageFinished: (String url) {
+          //   print("Finish url $url");
+          // },
         ),
       ),
     );

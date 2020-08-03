@@ -54,7 +54,8 @@ class _ProductListViewState extends State<ProductListView>{
                         child: Column(
                           children: <Widget>[
                             Container(
-                              child: ListView.builder(shrinkWrap: true,
+                              child: ListView.builder(
+                                    shrinkWrap: true,
                                     itemCount: model.productList.length,
                                     physics: NeverScrollableScrollPhysics(),                                    
                                     itemBuilder: (context, index) {

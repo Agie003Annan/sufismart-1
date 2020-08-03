@@ -7,6 +7,9 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sufismart/ViewModel/RegistrasiViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
+import 'package:sufismart/locator.dart';
+import 'package:sufismart/model/pekerjaan_model.dart';
+import 'package:sufismart/services/api.dart';
 import 'package:sufismart/ui/view/base_view.dart';
 
 import 'success_view.dart';
@@ -20,6 +23,23 @@ class _RegistrasiViewState extends State<RegistrasiView> {
   String _valDropDownGender;
   DateTime selectedDateFrom = DateTime.now();
   String _error = "";
+  Api _api = locator<Api>();
+  List<ModelPekerjaan> dataPekerjaanModelList = List();
+
+  Future<String> getPekerjaanList(BuildContext context) async {
+    var responsePekerjaan = await _api.getListPekerjaan(context);
+    setState(() {
+      dataPekerjaanModelList = responsePekerjaan;
+    });
+    return "Success";
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getPekerjaanList(context);
+  }
+
   final TextEditingController _dateFromController = TextEditingController();
   final TextEditingController _namalengkapController = TextEditingController();
   final TextEditingController _nohpController = TextEditingController();
@@ -266,12 +286,13 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                             },
                           ),
                           Container(
-                            margin: const EdgeInsets.only(top: 10),
+                            margin: EdgeInsets.only(top: 10),                            
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,                            
                               children: <Widget>[
                                 Text("Pilih Pekerjaan"),
                                 Container(
+                                  padding: EdgeInsets.only(left: 10),
                                   decoration: BoxDecoration(
                                       color: Color(0xFFEEEEEE),
                                       borderRadius:
@@ -282,30 +303,49 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                                   child: DropdownButton<String>(
                                     hint: Text(
                                       "Choose job",
-                                      style: TextStyle(fontSize: 12),
+                                      style: TextStyle(fontSize: 12),                                      
                                     ),
                                     value: _valDropDownJob,
                                     icon: Icon(Icons.arrow_drop_down),
                                     isExpanded: true,
-                                    iconSize: 24,
+                                    iconSize: 24,                                    
                                     elevation: 16,
-                                    style: TextStyle(color: Colors.blue[900]),
+                                    style: TextStyle(color: Colors.black),
                                     underline: Container(
                                       height: 2,
                                       color: Colors.transparent,
                                     ),
                                     onChanged: (value) {
                                       setState(() {
+                                        // _valDropDownJob = value;
+                                        FocusScope.of(context)
+                                            .requestFocus(new FocusNode());
                                         _valDropDownJob = value;
                                       });
                                     },
-                                    items: job.map((value) {
-                                      return DropdownMenuItem(
-                                        child: Text(
-                                          value,
+                                    // items: job.map((value) {
+                                    //   return DropdownMenuItem(
+                                    //     child: Text(
+                                    //       value,
+                                    //       style: TextStyle(fontSize: 12),
+                                    //     ),
+                                    //     value: value,
+                                    //   );
+                                    // }).toList(),
+                                    items: dataPekerjaanModelList.map((item) {
+                                      return new DropdownMenuItem(
+                                        value: item.pekerjaanName.toString() !=
+                                                null
+                                            ? item.pekerjaanName.toString()
+                                            : "",
+                                        child: new Text(
+                                          item.pekerjaanName != null
+                                              ? item.pekerjaanName
+                                              : "",
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
                                           style: TextStyle(fontSize: 12),
                                         ),
-                                        value: value,
                                       );
                                     }).toList(),
                                   ),
@@ -314,6 +354,7 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                             ),
                             width: double.infinity,
                           ),
+                          Divider(),
                           Container(
                             margin: const EdgeInsets.only(top: 10),
                             child: Column(
@@ -321,6 +362,7 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                               children: <Widget>[
                                 Text("Gender"),
                                 Container(
+                                  padding: EdgeInsets.only(left: 10),
                                   decoration: BoxDecoration(
                                       color: Color(0xFFEEEEEE),
                                       borderRadius:
@@ -338,7 +380,7 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                                     isExpanded: true,
                                     iconSize: 24,
                                     elevation: 16,
-                                    style: TextStyle(color: Colors.blue[900]),
+                                    style: TextStyle(color: Colors.black),
                                     underline: Container(
                                       height: 2,
                                       color: Colors.transparent,
@@ -363,6 +405,7 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                             ),
                             width: double.infinity,
                           ),
+                          Divider(),
                           SizedBox(
                             height: 10,
                           ),
@@ -403,16 +446,12 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                                     _valDropDownGender,
                                     context);
                                 if (register == true) {
-                                  // Navigator.pushReplacement(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //       builder: (context) => SuccessView(),
-                                  //     )
-                                  // );
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => SuccessView(),
+                                        builder: (context) => SuccessView(
+                                          msg: "Successfully send data",
+                                        ),
                                       ));
                                   final SharedPreferences prefs =
                                       await SharedPreferences.getInstance();
@@ -423,7 +462,7 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                                     _nohpController.clear();
                                     _emailController.clear();
                                     _passwordController.clear();
-                                    _dateFromController.clear();                                  
+                                    _dateFromController.clear();
                                   });
                                 } else {
                                   final SharedPreferences prefs =

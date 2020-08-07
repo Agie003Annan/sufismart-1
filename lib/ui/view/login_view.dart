@@ -10,6 +10,7 @@ import 'package:sufismart/enums/viewstate.dart';
 import 'package:sufismart/ui/view/base_view.dart';
 import 'package:sufismart/ui/view/forgotpassword_view.dart';
 import 'package:sufismart/ui/view/profil_view.dart';
+//import 'package:sufismart/ui/view/profil_view.dart';
 import 'package:sufismart/ui/view/registration_view.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter/webview_flutter.dart' as web;
@@ -24,8 +25,8 @@ class _LoginViewState extends State<LoginView> {
   String islogin = "";
   String username = "";
 
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
+  // final TextEditingController _passwordController = TextEditingController();
+  // final TextEditingController _emailController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _autoValidate = false;
@@ -118,7 +119,7 @@ class _LoginViewState extends State<LoginView> {
                 //   automaticallyImplyLeading: false,
                 // ),
                 body: islogin != ""
-                    ? profilView(context, islogin)
+                    ? profilView(context,islogin)
                     : ModalProgressHUD(
                         inAsyncCall:
                             model.state == ViewState.Busy ?? ViewState.Idle,
@@ -380,16 +381,15 @@ class _LoginViewState extends State<LoginView> {
                                                         _password,
                                                         context);
                                                 if (loginSuccess) {
-                                                  final SharedPreferences
-                                                      prefs =
-                                                      await SharedPreferences
-                                                          .getInstance();
-                                                  // Navigator.push(
+                                                  // final SharedPreferences
+                                                  //     prefs =
+                                                  //     await SharedPreferences
+                                                  //         .getInstance();
+                                                  // Navigator.pushReplacement(
                                                   //     context,
                                                   //     MaterialPageRoute(
                                                   //       builder: (context) =>
                                                   //           ProfilView(
-                                                  //         user: _email,
                                                   //       ),
                                                   //     ));
                                                   profilView(context, _email);
@@ -471,7 +471,7 @@ class _LoginViewState extends State<LoginView> {
                                             ),
                                           ),
                                           GestureDetector(
-                                            onTap: () async{
+                                            onTap: () async {
                                               Navigator.of(context).push(
                                                   MaterialPageRoute(
                                                       builder: (context) =>
@@ -502,6 +502,31 @@ class _LoginViewState extends State<LoginView> {
                           ),
                         ),
                       ),
+                // bottomNavigationBar: Container(
+                //   height: 30,
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: <Widget>[
+                //       Text(
+                //         "Belum Punya Akun ? silahkan daftar "
+                //       ),
+                //       Text(
+                //         "disini"
+                //       )
+                //       // ButtonTheme(
+                //       //   minWidth: MediaQuery.of(context).size.width,
+                //       //   child: RaisedButton(
+                //       //     onPressed: () async {},
+                //       //     child: Text(
+                //       //       "Simpan",
+                //       //       style: TextStyle(color: Colors.white),
+                //       //     ),
+                //       //   ),
+                //       // )
+                //     ],
+                //   ),
+                // ),
               ),
             );
           } else {
@@ -523,46 +548,49 @@ Widget profilView(BuildContext context, String url) {
         height: 30,
       ),
       actions: <Widget>[
-        FlatButton(
-          textColor: Colors.white,
-          onPressed: () async {
-            SomeDialog(
-                context: context,
-                path: "assets/images/logout_img.png",
-                mode: SomeMode.Asset,
-                content: "apakah anda yakin ingin keluar \ndari akun ini ?",
-                title: "Logout",
-                appName: "",
-                imageHeight: 150,
-                imageWidth: 150,
-                dialogHeight: 300,
-                buttonConfig: ButtonConfig(
-                  dialogDone: "yakin",
-                  dialogCancel: "batal",
-                  buttonDoneColor: Hexcolor("0d306b"),
-                ),
-                submit: () async {
-                  SharedPreferences prefs =
-                      await SharedPreferences.getInstance();
-                  prefs.setString("username", "");
-                  prefs.setString('is_login', "");
-                  print(prefs.getString('username'));
-                  print(prefs.getString('is_login'));
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => LoginView(),
-                    ),
-                  );
-                });
-          },
-          child: Icon(FontAwesomeIcons.signOutAlt),
-          shape: CircleBorder(side: BorderSide(color: Colors.transparent)),
+        Visibility(
+          visible: url == "" ? false : true,
+          child: FlatButton(
+            textColor: Colors.white,
+            onPressed: () async {
+              SomeDialog(
+                  context: context,
+                  path: "assets/images/logout_img.png",
+                  mode: SomeMode.Asset,
+                  content: "apakah anda yakin ingin keluar \ndari akun ini ?",
+                  title: "Logout",
+                  appName: "",
+                  imageHeight: 150,
+                  imageWidth: 150,
+                  dialogHeight: 300,
+                  buttonConfig: ButtonConfig(
+                    dialogDone: "yakin",
+                    dialogCancel: "batal",
+                    buttonDoneColor: Hexcolor("0d306b"),
+                  ),
+                  submit: () async {
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    prefs.setString("username", "");
+                    prefs.setString('is_login', "");
+                    // print(prefs.getString('username'));
+                    // print(prefs.getString('is_login'));
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => LoginView(),
+                      ),
+                    );
+                  });
+            },
+            child: Icon(FontAwesomeIcons.signOutAlt),
+            shape: CircleBorder(side: BorderSide(color: Colors.transparent)),
+          ),
         ),
       ],
       backgroundColor: Hexcolor("#0d306b"),
       automaticallyImplyLeading: false,
     ),
-    body: web.WebView(
+    body: WebView(
       initialUrl:
           "https://sufismart.sfi.co.id/sufismart/api/profil.php?EMAIL=${url}",
       javascriptMode: JavascriptMode.unrestricted,
@@ -583,12 +611,12 @@ Widget profilView(BuildContext context, String url) {
         //       );
         //     }),
       ].toSet(),
-      onPageStarted: (String url) {
-        print("start url $url");
-      },
-      onPageFinished: (String url) {
-        print("Finish url $url");
-      },
+      // onPageStarted: (String url) {
+      //   print("start url $url");
+      // },
+      // onPageFinished: (String url) {
+      //   print("Finish url $url");
+      // },
     ),
   );
 }

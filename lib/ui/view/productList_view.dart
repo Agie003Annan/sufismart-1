@@ -5,7 +5,7 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:skeleton_text/skeleton_text.dart';
 import 'package:sufismart/ViewModel/ProductViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
-import 'package:sufismart/model/producttype_model.dart';
+//import 'package:sufismart/model/producttype_model.dart';
 import 'package:sufismart/ui/view/base_view.dart';
 import 'package:sufismart/ui/view/productType_view.dart';
 

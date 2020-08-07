@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:url_launcher/url_launcher.dart';
 //import 'package:sufismart/ui/view/WebView.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 //import 'package:webview_flutter/webview_flutter.dart' as web;
@@ -10,7 +11,15 @@ class TestWebView extends StatefulWidget {
 }
 
 class _TestWebViewState extends State<TestWebView> {
-  WebViewController _controller ;
+  //WebViewController _controller ;
+  static Future<void> openbrowser(String url) async {
+    //final url = 'http://maps.google.com/maps?q=loc:${lat},${lon}(${tag})';    
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,20 +39,21 @@ class _TestWebViewState extends State<TestWebView> {
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {},
           javascriptChannels: <JavascriptChannel>[
-            // JavascriptChannel(
-            //     name: 'Toast_funct',
-            //     onMessageReceived: (JavascriptMessage message) {
-            //       // if(message.message == "Testing Inject"){
+            JavascriptChannel(
+                name: 'Toast_funct',
+                onMessageReceived: (JavascriptMessage message) {
+                  // if(message.message == "Testing Inject"){
                     
-            //       // }
-            //       print('message.message: ${message.message}');
-            //       Navigator.push(
-            //           context,
-            //           MaterialPageRoute(
-            //             builder: (context) => WebView2(linkurl:message.message),
-            //           )
-            //       );
-            //     }),
+                  // }
+                  openbrowser(message.message);
+                  print('message.message: ${message.message}');
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => WebView2(linkurl:message.message),
+                  //     )
+                  // );
+                }),
           ].toSet(),
           // onPageStarted: (String url) {
           //   print("start url $url");

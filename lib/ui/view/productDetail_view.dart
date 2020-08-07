@@ -255,15 +255,16 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                 "https://sufismart.sfi.co.id/sufismart/api/credit_simulation4.php?type=${widget.prodType}&prod_code=${widget.prodCode}&prod_name=${widget.prodName}&detail_code=${widget.productDCode}&detail_name=${widget.productDname}&harga=${widget.productDprice}&kategori=${widget.prodCategory}&kategori_code=${widget.prodCategoryCode}"),
                       ));
                 },
-                child: Card(    
-                                
+                child: Card(                                                      
                   color: Hexcolor("#0d306b"),
+                  margin: EdgeInsets.only(left: 20,top: 5,right: 3),
                   child: Column(
                     children: <Widget>[
-                      Row(
+                      Row(                        
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,  
                         children: <Widget>[
                           Container(
+                            
                             margin: EdgeInsets.only(
                                 top: 20.0,
                                 left: 10.0,

@@ -2,20 +2,20 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:skeleton_text/skeleton_text.dart';
 import 'package:sufismart/ViewModel/HomeViewModel.dart';
-import 'package:sufismart/ViewModel/ProductViewModel.dart';
+//import 'package:sufismart/ViewModel/ProductViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
 import 'package:sufismart/ui/view/WebView.dart';
-import 'package:sufismart/ui/view/about_view.dart';
+//import 'package:sufismart/ui/view/about_view.dart';
 import 'package:sufismart/ui/view/base_view.dart';
 import 'package:sufismart/ui/view/branch_view.dart';
 import 'package:sufismart/ui/view/news_view.dart';
 import 'package:sufismart/ui/view/product_view.dart';
-import 'package:sufismart/ui/view/promo_view.dart';
+//import 'package:sufismart/ui/view/promo_view.dart';
 import 'package:sufismart/ui/view/statuskontrak_view.dart';
 import 'package:sufismart/ui/view/testWebView.dart';
 
@@ -150,7 +150,10 @@ class _HomeViewState extends State<HomeView> {
                                       ? Container(
                                           height: 160,
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight: Radius.circular(15)),
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft: Radius.circular(15),
+                                                bottomRight:
+                                                    Radius.circular(15)),
                                             // borderRadius: BorderRadius.all(
                                             //     Radius.circular(10)),
                                             image: DecorationImage(
@@ -167,7 +170,11 @@ class _HomeViewState extends State<HomeView> {
                                                   Container(
                                             height: 160,
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight: Radius.circular(15)),
+                                              borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(15),
+                                                  bottomRight:
+                                                      Radius.circular(15)),
                                               // borderRadius: BorderRadius.all(
                                               //     Radius.circular(15)),
                                               image: DecorationImage(
@@ -180,19 +187,28 @@ class _HomeViewState extends State<HomeView> {
                                                   child: Container(
                                             height: 160,
                                             decoration: BoxDecoration(
-                                                color: Colors.grey[300],
-                                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight: Radius.circular(15))
-                                                    ,),
+                                              color: Colors.grey[300],
+                                              borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(15),
+                                                  bottomRight:
+                                                      Radius.circular(15)),
+                                            ),
                                           )),
                                           errorWidget: (context, url, error) =>
                                               new Container(
                                             height: 160,
                                             decoration: BoxDecoration(
-                                                color: Colors.grey[300],
-                                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15),bottomRight: Radius.circular(15))
-                                                // borderRadius: BorderRadius.all(
-                                                //     Radius.circular(10))
-                                                    ,),
+                                              color: Colors.grey[300],
+                                              borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(15),
+                                                  bottomRight:
+                                                      Radius.circular(15))
+                                              // borderRadius: BorderRadius.all(
+                                              //     Radius.circular(10))
+                                              ,
+                                            ),
                                             child: Center(
                                               child: Icon(Icons.error),
                                             ),
@@ -211,7 +227,6 @@ class _HomeViewState extends State<HomeView> {
                               containerHeight: 180,
                             ),
                           ),
-
                           SizedBox(
                             height: 5,
                           ),
@@ -273,7 +288,7 @@ class _HomeViewState extends State<HomeView> {
                                                 Text(
                                                   "Promo\n",
                                                   style: TextStyle(
-                                                    fontSize: 12,
+                                                    fontSize: 13,
                                                   ),
                                                   textAlign: TextAlign.center,
                                                 )
@@ -313,7 +328,7 @@ class _HomeViewState extends State<HomeView> {
                                                 ),
                                                 Text("Product\n",
                                                     style: TextStyle(
-                                                      fontSize: 12,
+                                                      fontSize: 13,
                                                     ),
                                                     textAlign: TextAlign.center)
                                               ],
@@ -328,7 +343,7 @@ class _HomeViewState extends State<HomeView> {
                                     Expanded(
                                       flex: 1,
                                       child: InkWell(
-                                        onTap: (){
+                                        onTap: () {
                                           // Navigator.push(
                                           //     context,
                                           //     MaterialPageRoute(
@@ -357,7 +372,7 @@ class _HomeViewState extends State<HomeView> {
                                                 ),
                                                 Text("Cabang\n",
                                                     style: TextStyle(
-                                                      fontSize: 12,
+                                                      fontSize: 13,
                                                     ),
                                                     textAlign: TextAlign.center)
                                               ],
@@ -376,7 +391,7 @@ class _HomeViewState extends State<HomeView> {
                                     Expanded(
                                       flex: 1,
                                       child: InkWell(
-                                        onTap: (){
+                                        onTap: () {
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
@@ -400,7 +415,7 @@ class _HomeViewState extends State<HomeView> {
                                                 Text(
                                                   "Simulasi\nKredit",
                                                   style: TextStyle(
-                                                    fontSize: 12,
+                                                    fontSize: 13,
                                                   ),
                                                   textAlign: TextAlign.center,
                                                 )
@@ -441,7 +456,7 @@ class _HomeViewState extends State<HomeView> {
                                                 Text(
                                                   "Status\nKontrak",
                                                   style: TextStyle(
-                                                    fontSize: 12,
+                                                    fontSize: 13,
                                                   ),
                                                   textAlign: TextAlign.center,
                                                 )
@@ -481,7 +496,7 @@ class _HomeViewState extends State<HomeView> {
                                                 Text(
                                                   "Pembayaran &\n Asuransi",
                                                   style: TextStyle(
-                                                    fontSize: 12,
+                                                    fontSize: 13,
                                                   ),
                                                   textAlign: TextAlign.center,
                                                 )
@@ -493,13 +508,13 @@ class _HomeViewState extends State<HomeView> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Divider(),
-                                SizedBox(
-                                  height: 10,
-                                ),
+                                // SizedBox(
+                                //   height: 10,
+                                // ),
+                                // Divider(),
+                                // SizedBox(
+                                //   height: 10,
+                                // ),
                                 // Row(
                                 //   children: <Widget>[
                                 //     Expanded(
@@ -642,205 +657,7 @@ class _HomeViewState extends State<HomeView> {
                                 //     },
                                 //   ),
                                 // ),
-                                Row(
-                                  children: <Widget>[
-                                    Expanded(
-                                      flex: 1,
-                                      child: Text(
-                                        "Berita Terkini",
-                                        style: TextStyle(
-                                            color: Color(0xff0d306b),
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 1,
-                                      child: Align(
-                                        alignment: Alignment.topRight,
-                                        child: InkWell(
-                                          onTap: () {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      NewsView(),
-                                                ));
-                                          },
-                                          child: Container(
-                                            width: 80,
-                                            padding: EdgeInsets.all(5),
-                                            decoration: BoxDecoration(
-                                                color: Color(0xff0d306b),
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(20))),
-                                            child: Text(
-                                              "Show All",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 12),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                Container(
-                                  padding: EdgeInsets.symmetric(vertical: 10.0),
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.33,
-                                  color: Colors.transparent,
-                                  child: ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: model.imgNews.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (context, index) {
-                                      return InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => NewsDetail(
-                                                detailNewsId:
-                                                    model.imgNews[index].newsid,
-                                                detailTitle:
-                                                    model.imgNews[index].title,
-                                                detailDate:
-                                                    model.imgNews[index].newsdate,
-                                                detailDesc: model.imgNews[index]
-                                                    .desc,
-                                                detailImg: model
-                                                    .imgNews[index].imagepath),
-                                          ));
-                                          // Navigator.push(
-                                          //     context,
-                                          //     MaterialPageRoute(
-                                          //       builder: (context) =>
-                                          //           ProductCategoryView(
-                                          //         categoryId: model
-                                          //             .category[index]
-                                          //             .category_id
-                                          //             .toString(),
-                                          //         categoryName: model
-                                          //             .category[index]
-                                          //             .category_name,
-                                          //       ),
-                                          //     ));
-                                        },
-                                        child: Container(
-                                          child: Column(
-                                            children: <Widget>[
-                                              model.imgNews[index].imagepath ==
-                                                      null
-                                                  ? Container(
-                                                      width:MediaQuery.of(context).size.width *0.6,
-                                                      height:MediaQuery.of(context).size.height * 0.30,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    5)),
-                                                        image: DecorationImage(
-                                                            image: AssetImage(
-                                                                "assets/images/image_default.jpg"),
-                                                            fit: BoxFit.fill),
-                                                      ),
-                                                    )
-                                                  : CachedNetworkImage(
-                                                      imageUrl: model.imgNews[index].imagepath, 
-                                                      imageBuilder: (context, imageProvider) => Container(
-                                                        width: MediaQuery.of( context).size.width * 0.6,
-                                                        height: MediaQuery.of(context).size.height * 0.30,
-                                                        child: Card(
-                                                          child: Container(
-                                                            // height: 60,
-                                                            // width: 30,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .all(Radius
-                                                                          .circular(
-                                                                              5)),
-                                                              image: DecorationImage(
-                                                                  image:
-                                                                      imageProvider,
-                                                                  fit: BoxFit
-                                                                      .fill),
-                                                            ),
-                                                            // decoration: BoxDecoration(
-                                                            //   color: Colors.green,
-                                                            //   borderRadius: BorderRadius.all(
-                                                            //     Radius.circular(5),
-                                                            //   ),
-                                                            //   image: DecorationImage(
-                                                            //     image: NetworkImage(
-                                                            //         "https://www.sfi.co.id/assets/images/news/Brosur-PRIME-CUSTOMER-Action-Figure.jpg"),
-                                                            //     fit: BoxFit.fill,
-                                                            //   ),
-                                                            // ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      placeholder: (context,
-                                                              url) =>
-                                                          new SkeletonAnimation(
-                                                              child: Container(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            0.6,
-                                                        height: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height *
-                                                            0.30,
-                                                        decoration: BoxDecoration(
-                                                            color: Colors
-                                                                .grey[300],
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            5))),
-                                                      )),
-                                                      errorWidget: (context,
-                                                              url, error) =>
-                                                          new Container(
-                                                        width: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .width *
-                                                            0.6,
-                                                        height: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height *
-                                                            0.30,
-                                                        decoration: BoxDecoration(
-                                                            color: Colors
-                                                                .grey[300],
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .all(Radius
-                                                                        .circular(
-                                                                            5))),
-                                                        child: Center(
-                                                          child:
-                                                              Icon(Icons.error),
-                                                        ),
-                                                      ),
-                                                    ),
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
+                                //sini
                                 // Container(
                                 //   padding: EdgeInsets.symmetric(vertical: 10.0),
                                 //   height:
@@ -988,6 +805,243 @@ class _HomeViewState extends State<HomeView> {
                               ],
                             ),
                           ),
+                          Container(
+                            margin: EdgeInsets.only(top:10),
+                            decoration: BoxDecoration(
+                              color: Colors.white,                              
+                            ),
+                            padding: EdgeInsets.only(top:10,right: 20,left: 20),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      flex: 1,
+                                      child: Text(
+                                        "Berita Terkini",
+                                        style: TextStyle(
+                                            color: Color(0xff0d306b),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: Align(
+                                        alignment: Alignment.topRight,
+                                        child: InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      NewsView(),
+                                                ));
+                                          },
+                                          child: Container(
+                                            width: 80,
+                                            padding: EdgeInsets.all(5),
+                                            decoration: BoxDecoration(
+                                                color: Color(0xff0d306b),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20))),
+                                            child: Text(
+                                              "Show All",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 12),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                Container(
+                                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                                  height:
+                                      MediaQuery.of(context).size.height / 2.7,
+                                  color: Colors.transparent,
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    itemCount: model.imgNews.length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      return InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    NewsDetail(
+                                                        detailNewsId: model
+                                                            .imgNews[index]
+                                                            .newsid,
+                                                        detailTitle: model
+                                                            .imgNews[index]
+                                                            .title,
+                                                        detailDate: model
+                                                            .imgNews[index]
+                                                            .newsdate,
+                                                        detailDesc: model
+                                                            .imgNews[index]
+                                                            .desc,
+                                                        detailImg: model
+                                                            .imgNews[index]
+                                                            .imagepath),
+                                              ));
+                                          // Navigator.push(
+                                          //     context,
+                                          //     MaterialPageRoute(
+                                          //       builder: (context) =>
+                                          //           ProductCategoryView(
+                                          //         categoryId: model
+                                          //             .category[index]
+                                          //             .category_id
+                                          //             .toString(),
+                                          //         categoryName: model
+                                          //             .category[index]
+                                          //             .category_name,
+                                          //       ),
+                                          // ));
+                                        },
+                                        child: Container(
+                                          child: Column(
+                                            children: <Widget>[
+                                              model.imgNews[index].imagepath ==
+                                                      null
+                                                  ? Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      height:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .height /
+                                                              3,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    5)),
+                                                        image: DecorationImage(
+                                                            image: AssetImage(
+                                                                "assets/images/logo_suzuki.png"),
+                                                            fit: BoxFit.cover),
+                                                      ),
+                                                    )
+                                                  : CachedNetworkImage(
+                                                      imageUrl: model
+                                                          .imgNews[index]
+                                                          .imagepath,
+                                                      imageBuilder: (context,
+                                                              imageProvider) =>
+                                                          Container(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.6,
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height /
+                                                            3,
+                                                        child: Card(
+                                                          child: Container(
+                                                            // height: 60,
+                                                            // width: 30,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .all(Radius
+                                                                          .circular(
+                                                                              5)),
+                                                              image: DecorationImage(
+                                                                  image:
+                                                                      imageProvider,
+                                                                  fit: BoxFit
+                                                                      .fill),
+                                                            ),
+                                                            // decoration: BoxDecoration(
+                                                            //   color: Colors.green,
+                                                            //   borderRadius: BorderRadius.all(
+                                                            //     Radius.circular(5),
+                                                            //   ),
+                                                            //   image: DecorationImage(
+                                                            //     image: NetworkImage(
+                                                            //         "https://www.sfi.co.id/assets/images/news/Brosur-PRIME-CUSTOMER-Action-Figure.jpg"),
+                                                            //     fit: BoxFit.fill,
+                                                            //   ),
+                                                            // ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      placeholder: (context,
+                                                              url) =>
+                                                          new SkeletonAnimation(
+                                                              child: Container(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.6,
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height /
+                                                            3,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors
+                                                                .grey[300],
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            5))),
+                                                      )),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          new Container(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.6,
+                                                        height: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .height /
+                                                            3,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors
+                                                                .grey[300],
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            5))),
+                                                        child: Center(
+                                                          child:
+                                                              Icon(Icons.error),
+                                                        ),
+                                                      ),
+                                                    ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ),

@@ -16,7 +16,7 @@ class ContactView extends StatefulWidget {
 
 class _ContactViewState extends State<ContactView> {
   final TextEditingController _namalengkapController = TextEditingController();
-  final TextEditingController _nohpController = TextEditingController();
+  //final TextEditingController _nohpController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _pesanController = TextEditingController();

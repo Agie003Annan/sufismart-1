@@ -6,6 +6,7 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:skeleton_text/skeleton_text.dart';
 import 'package:sufismart/ViewModel/ProductViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
+import 'package:sufismart/ui/view/WebView.dart';
 import 'package:sufismart/ui/view/base_view.dart';
 import 'package:sufismart/ui/view/productDetail_view.dart';
 
@@ -70,8 +71,8 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                                   imageUrl: widget.productImage,
                                   imageBuilder: (context, imageProvider) =>
                                       Container(
-                                    height:
-                                        MediaQuery.of(context).size.height / 3.5,
+                                    height: MediaQuery.of(context).size.height /
+                                        3.5,
                                     child: Card(
                                       margin:
                                           const EdgeInsets.only(bottom: 5.0),
@@ -89,8 +90,8 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                                   placeholder: (context, url) =>
                                       new SkeletonAnimation(
                                           child: Container(
-                                    height:
-                                        MediaQuery.of(context).size.height / 3.5,
+                                    height: MediaQuery.of(context).size.height /
+                                        3.5,
                                     decoration: BoxDecoration(
                                         color: Colors.grey[300],
                                         borderRadius: BorderRadius.all(
@@ -98,8 +99,8 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                                   )),
                                   errorWidget: (context, url, error) =>
                                       new Container(
-                                    height:
-                                        MediaQuery.of(context).size.height / 3.5,
+                                    height: MediaQuery.of(context).size.height /
+                                        3.5,
                                     decoration: BoxDecoration(
                                         color: Colors.grey[300],
                                         borderRadius: BorderRadius.all(
@@ -141,30 +142,48 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                                     //       model.productType[index]
                                     //           .productDetailImage),
                                     // ));
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              ProductDetailView(
-                                            productDCode: model
-                                                .productType[index]
-                                                .productDetailCode,
-                                            productDImage: model
-                                                .productType[index]
-                                                .productDetailImage,
-                                            productDname: model
-                                                .productType[index]
-                                                .productDetailName,
-                                            productDprice: model
-                                                .productType[index]
-                                                .productDetailPrice,
-                                            prodType: model.productType[index].prodType,
-                                            prodCategory: model.productType[index].productCategory,
-                                            prodName: model.productType[index].productName,
-                                            prodCode: widget.productCode,
-                                            prodCategoryCode: model.productType[index].productCategoryCode,
-                                          ),
-                                        ));
+                                    var typeprod =
+                                        model.productType[index].prodType;
+                                    if (typeprod == "OBM") {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => WebView2(
+                                                linkurl:
+                                                    "https://sufismart.sfi.co.id/sufismart/api/credit_simulation_apply_2.php"),
+                                          ));
+                                    } else {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                ProductDetailView(
+                                              productDCode: model
+                                                  .productType[index]
+                                                  .productDetailCode,
+                                              productDImage: model
+                                                  .productType[index]
+                                                  .productDetailImage,
+                                              productDname: model
+                                                  .productType[index]
+                                                  .productDetailName,
+                                              productDprice: model
+                                                  .productType[index]
+                                                  .productDetailPrice,
+                                              prodType: model
+                                                  .productType[index].prodType,
+                                              prodCategory: model
+                                                  .productType[index]
+                                                  .productCategory,
+                                              prodName: model.productType[index]
+                                                  .productName,
+                                              prodCode: widget.productCode,
+                                              prodCategoryCode: model
+                                                  .productType[index]
+                                                  .productCategoryCode,
+                                            ),
+                                          ));
+                                    }
                                   },
                                   child: Card(
                                     child: Column(
@@ -196,8 +215,16 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                                               Container(
                                                 padding: EdgeInsets.all(5),
                                                 child: Text(
-                                                   "Rp. "+FlutterMoneyFormatter(amount: double.parse(model.productType[index].productDetailPrice)).output.withoutFractionDigits.toString(), 
-                                                  
+                                                  "Rp. " +
+                                                      FlutterMoneyFormatter(
+                                                              amount: double
+                                                                  .parse(model
+                                                                      .productType[
+                                                                          index]
+                                                                      .productDetailPrice))
+                                                          .output
+                                                          .withoutFractionDigits
+                                                          .toString(),
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 16,

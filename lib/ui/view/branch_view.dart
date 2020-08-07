@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+//import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -21,7 +21,7 @@ class BranchView extends StatefulWidget {
 class _BrancViewState extends State<BranchView> {
   Api _api = locator<Api>();
   String _valueKota;
-  Future<void> _launched;
+  //Future<void> _launched;
   List<KotaModel> dataKotaModelList = List();
 
   Future<String> getKotaList(BuildContext context) async {

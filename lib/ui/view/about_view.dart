@@ -38,7 +38,7 @@ class _AboutViewState extends State<AboutView> {
                 height: 50,
               ),
               Image.asset(
-                'assets/images/logo_suzuki.png',
+                'assets/images/sufismart.png',
                 height: 100.0,
                 width: 100.0,
               ),

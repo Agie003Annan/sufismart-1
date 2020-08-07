@@ -142,8 +142,8 @@ class _HomeViewState extends State<HomeView> {
                               itemBuilder: (BuildContext context, int index) {
                                 return Container(
                                   decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Color(0xffeeeeee), width: 1.0),
+                                    // border: Border.all(
+                                    //     color: Color(0xffeeeeee), width: 1.0),
                                     //borderRadius: BorderRadius.all(Radius.circular(10)),
                                   ),
                                   child: model.banner[index].imagepath == null

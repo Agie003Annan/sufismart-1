@@ -50,7 +50,7 @@ class _BrancViewState extends State<BranchView> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<BranchViewModel>(
+    return BaseView<BranchViewModel>( 
       onModelReady: (model) => model.getDataBranchdetail(context, _valueKota),
       builder: (context, model, child) => Scaffold(
         backgroundColor: Colors.white,

@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sufismart/model/ModelAplikasi.dart';
 import 'package:sufismart/model/banner_model.dart';
 import 'package:sufismart/model/imagenews_model.dart';
 import 'package:sufismart/model/imagepromo_model.dart';
@@ -149,6 +150,31 @@ class Api extends ChangeNotifier {
         final Map parsed = json.decode(response.body)['data'];
         final dataNews = DataDetailNews.fromJson(parsed);
         return dataNews;
+      } else {
+        print(response.statusCode);
+      }
+    } catch (e) {
+      print(e);
+      //errorPage("error", "getAddressDetail", e.toString(), context);
+    }
+  }
+
+  //detail news
+  Future<DataAplikasi> getAplikasi(
+      BuildContext context) async {
+    String url = endpoint + 'getAplikasi';
+    print('$url');
+    try {
+      final response =
+          await client.get(url, headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      }).timeout(const Duration(seconds: _timeout));
+      if (response.statusCode == 200) {
+        notifyListeners();
+        final Map parsed = json.decode(response.body)['data'];
+        final dataAplikasi = DataAplikasi.fromJson(parsed);
+        return dataAplikasi;
       } else {
         print(response.statusCode);
       }

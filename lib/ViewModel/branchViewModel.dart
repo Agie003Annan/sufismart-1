@@ -7,7 +7,7 @@ import '../services/api.dart';
 import 'base_viewmodel.dart';
 
 class BranchViewModel extends BaseViewModel{
-   Api _api = locator<Api>();
+  Api _api = locator<Api>();
   List<KotaDetailModel> dataDetailBranch;
   
    Future getDataBranchdetail(BuildContext context,String kota) async {

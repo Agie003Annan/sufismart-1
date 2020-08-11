@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_money_formatter/flutter_money_formatter.dart';
@@ -59,20 +61,20 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                   children: <Widget>[
                     widget.productDImage == null
                         ? Container(
-                            height: MediaQuery.of(context).size.height / 4,
+                            height: MediaQuery.of(context).size.height / 3,
                             decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5)),
                               image: DecorationImage(
                                   image: AssetImage(
-                                      "assets/images/image_default.jpg"),
+                                      "assets/images/logo_suzuki.png"),
                                   fit: BoxFit.fill),
                             ),
                           )
                         : CachedNetworkImage(
                             imageUrl: widget.productDImage,
                             imageBuilder: (context, imageProvider) => Container(
-                              height: MediaQuery.of(context).size.height / 3.5,
+                              height: MediaQuery.of(context).size.height / 3,
                               child: Card(
                                 margin: const EdgeInsets.only(bottom: 5.0),
                                 child: Container(
@@ -88,14 +90,14 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                             placeholder: (context, url) =>
                                 new SkeletonAnimation(
                                     child: Container(
-                              height: MediaQuery.of(context).size.height / 4,
+                              height: MediaQuery.of(context).size.height / 3,
                               decoration: BoxDecoration(
                                   color: Colors.grey[300],
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10))),
                             )),
                             errorWidget: (context, url, error) => new Container(
-                              height: MediaQuery.of(context).size.height / 4,
+                              height: MediaQuery.of(context).size.height / 3,
                               decoration: BoxDecoration(
                                   color: Colors.grey[300],
                                   borderRadius:
@@ -136,29 +138,38 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                     Align(
                       alignment: Alignment.topLeft,
                       child: Container(
-                        alignment: Alignment.topLeft,
-                        //width: 150,
-                        width: MediaQuery.of(context).size.width / 1,
-                        margin: EdgeInsets.only(top: 5, left: 10.0, right: 10.0, bottom: 10.0),
-                        padding: EdgeInsets.only(top: 5, left: 10.0, right: 10.0, bottom: 10.0),
-                        decoration: BoxDecoration(                          
-                          color: Color(0xff0d306b),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(5),
+                          alignment: Alignment.topLeft,
+                          //width: 150,
+                          width: MediaQuery.of(context).size.width / 1,
+                          margin: EdgeInsets.only(
+                              top: 5, left: 10.0, right: 10.0, bottom: 10.0),
+                          padding: EdgeInsets.only(
+                              top: 5, left: 10.0, right: 10.0, bottom: 10.0),
+                          decoration: BoxDecoration(
+                            color: Color(0xff0d306b),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(5),
+                            ),
                           ),
-                          ),
-                        child: Text(
-                          "Rp. " +
-                              FlutterMoneyFormatter(
-                                      amount:
-                                          double.parse(widget.productDprice))
-                                  .output
-                                  .withoutFractionDigits
-                                  .toString(),
-                          style: TextStyle(fontSize: 20, color: Colors.white),
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
+                          child: Container(
+                            padding: EdgeInsets.only(top: 5),
+                            child: Column(
+                              children: <Widget>[
+                                Text(
+                                  "Rp. " +
+                                      FlutterMoneyFormatter(
+                                              amount: double.parse(
+                                                  widget.productDprice))
+                                          .output
+                                          .withoutFractionDigits
+                                          .toString(),
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white),
+                                  textAlign: TextAlign.left,
+                                ),
+                              ],
+                            ),
+                          )),
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width,
@@ -245,7 +256,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                   ],
                 ),
               ),
-              InkWell(                
+              InkWell(
                 onTap: () async {
                   Navigator.push(
                       context,
@@ -255,16 +266,15 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                 "https://sufismart.sfi.co.id/sufismart/api/credit_simulation4.php?prod_code=${widget.prodCode}&detail_code=${widget.productDCode}"),
                       ));
                 },
-                child: Card(                                                      
+                child: Card(
                   color: Hexcolor("#0d306b"),
-                  margin: EdgeInsets.only(left: 20,top: 5,right: 3),
+                  margin: EdgeInsets.only(left: 20, top: 5, right: 3),
                   child: Column(
                     children: <Widget>[
-                      Row(                        
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,  
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Container(
-                            
                             margin: EdgeInsets.only(
                                 top: 20.0,
                                 left: 10.0,
@@ -289,7 +299,8 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                             //       TextStyle(fontSize: 20, color: Colors.black),
                             //   textAlign: TextAlign.left,
                             // ),
-                            child: Icon(Icons.arrow_forward_ios,color: Colors.white),
+                            child: Icon(Icons.arrow_forward_ios,
+                                color: Colors.white),
                           ),
                         ],
                       ),
@@ -307,6 +318,9 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              )
               // Card(
               //     child:Container(
               //       width: MediaQuery.of(context).size.width,

@@ -137,7 +137,7 @@ class _HomeViewState extends State<HomeView> {
                           //slider
                           Container(
                             // height: 200,
-                            height: MediaQuery.of(context).size.height / 3.5,
+                            height: MediaQuery.of(context).size.height / 3,
                             child: Swiper(
                               itemBuilder: (BuildContext context, int index) {
                                 return Container(
@@ -148,7 +148,7 @@ class _HomeViewState extends State<HomeView> {
                                   ),
                                   child: model.banner[index].imagepath == null
                                       ? Container(
-                                          height: 160,
+                                          height: MediaQuery.of(context).size.height / 3,
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.only(
                                                 bottomLeft: Radius.circular(15),
@@ -158,7 +158,7 @@ class _HomeViewState extends State<HomeView> {
                                             //     Radius.circular(10)),
                                             image: DecorationImage(
                                                 image: AssetImage(
-                                                    "assets/images/image_default.jpg"),
+                                                    "assets/images/logo_suzuki.png"),
                                                 fit: BoxFit.fill),
                                           ),
                                         )
@@ -168,7 +168,7 @@ class _HomeViewState extends State<HomeView> {
                                           imageBuilder:
                                               (context, imageProvider) =>
                                                   Container(
-                                            height: 160,
+                                            height: MediaQuery.of(context).size.height / 3,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.only(
                                                   bottomLeft:
@@ -185,7 +185,7 @@ class _HomeViewState extends State<HomeView> {
                                           placeholder: (context, url) =>
                                               new SkeletonAnimation(
                                                   child: Container(
-                                            height: 160,
+                                            height: MediaQuery.of(context).size.height / 3,
                                             decoration: BoxDecoration(
                                               color: Colors.grey[300],
                                               borderRadius: BorderRadius.only(
@@ -197,7 +197,7 @@ class _HomeViewState extends State<HomeView> {
                                           )),
                                           errorWidget: (context, url, error) =>
                                               new Container(
-                                            height: 160,
+                                            height: MediaQuery.of(context).size.height / 3,
                                             decoration: BoxDecoration(
                                               color: Colors.grey[300],
                                               borderRadius: BorderRadius.only(

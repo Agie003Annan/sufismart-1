@@ -95,7 +95,7 @@ class _NewsViewState extends State<NewsView> {
                                                             Radius.circular(5)),
                                                     image: DecorationImage(
                                                         image: AssetImage(
-                                                            "assets/images/image_default.jpg"),
+                                                            "assets/images/logo_suzuki.png"),
                                                         fit: BoxFit.fill),
                                                   ),
                                                 )

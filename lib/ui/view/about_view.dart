@@ -79,8 +79,9 @@ class _AboutViewState extends State<AboutView> {
                             )
                           ]),
                         ),
+                        Divider(),
                         SizedBox(
-                          height: 50,
+                          height: 20,
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width,

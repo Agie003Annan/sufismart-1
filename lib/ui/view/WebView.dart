@@ -2,20 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-class WebView2 extends StatelessWidget {
-  final String linkurl;
-  // receive data from the FirstScreen as a parameter
+
+class WebView2 extends StatefulWidget{
+  final String linkurl;  
   WebView2({Key key, @required this.linkurl}) : super(key: key);
+  _WebView2State createState() => _WebView2State();
+}
 
-  // JavascriptChannel _alertJavascriptChannel(BuildContext context) {
-  //   return JavascriptChannel(
-  //       name: 'Toast_funct',
-  //       onMessageReceived: (JavascriptMessage message) {
-  //         print(message.message);
-  //       });
-  // }
-
-  @override
+class _WebView2State extends State<WebView2>{
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -30,7 +25,7 @@ class WebView2 extends StatelessWidget {
       ),
       body: Container(
         child: WebviewScaffold(
-            url: linkurl,
+            url: widget.linkurl,
             withJavascript: true,
             withLocalStorage: true,
             withZoom: false,

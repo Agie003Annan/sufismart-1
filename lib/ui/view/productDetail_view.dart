@@ -252,7 +252,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                       MaterialPageRoute(
                         builder: (context) => WebView2(
                             linkurl:
-                                "https://sufismart.sfi.co.id/sufismart/api/credit_simulation4.php?type=${widget.prodType}&prod_code=${widget.prodCode}&prod_name=${widget.prodName}&detail_code=${widget.productDCode}&detail_name=${widget.productDname}&harga=${widget.productDprice}&kategori=${widget.prodCategory}&kategori_code=${widget.prodCategoryCode}"),
+                                "https://sufismart.sfi.co.id/sufismart/api/credit_simulation4.php?prod_code=${widget.prodCode}&detail_code=${widget.productDCode}"),
                       ));
                 },
                 child: Card(                                                      

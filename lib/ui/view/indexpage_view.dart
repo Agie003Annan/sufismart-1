@@ -38,7 +38,7 @@ class _IndexViewState extends State<IndexView> {
                       ))),
               BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.phone_iphone,
+                    Icons.phone_android,
                     color: currentIndex == 1 ? Colors.white : Colors.white54,
                   ),
                   title: Text('About',

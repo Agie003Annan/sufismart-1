@@ -1,6 +1,7 @@
 // import 'package:custom_navigator/custom_navigation.dart';
 //import 'package:custom_navigator/custom_scaffold.dart';
 //import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 //import 'package:hexcolor/hexcolor.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
@@ -25,9 +26,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'NeoSans',
         primarySwatch: Colors.indigo,
+      //   pageTransitionsTheme: PageTransitionsTheme(
+      //   builders: {
+      //     TargetPlatform.android: SharedAxisPageTransitionsBuilder(
+      //       transitionType: SharedAxisTransitionType.horizontal,
+      //     ),
+      //     TargetPlatform.iOS: SharedAxisPageTransitionsBuilder(
+      //       transitionType: SharedAxisTransitionType.horizontal,
+      //     ),
+      //   },
+      // ),
       ),
       debugShowCheckedModeBanner: false,
-      home: SplashScreenView(),
+      home: new SplashScreenView(),
     );
   }
 }

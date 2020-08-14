@@ -56,14 +56,14 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                         children: <Widget>[
                           widget.productImage == null
                               ? Container(
-                                  height:
-                                      MediaQuery.of(context).size.height / 3,
+                                  //height:MediaQuery.of(context).size.height / 3.5,
+                                  height: 230,
                                   decoration: BoxDecoration(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5)),
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            "assets/images/image_default.jpg"),
+                                            "assets/images/logo_sfi_white.png"),
                                         fit: BoxFit.fill),
                                   ),
                                 )
@@ -71,8 +71,8 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                                   imageUrl: widget.productImage,
                                   imageBuilder: (context, imageProvider) =>
                                       Container(
-                                    height: MediaQuery.of(context).size.height /
-                                        3,
+                                    //height: MediaQuery.of(context).size.height / 3.5,
+                                    height: 230,
                                     child: Card(
                                       margin:
                                           const EdgeInsets.only(bottom: 5.0),
@@ -90,8 +90,8 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                                   placeholder: (context, url) =>
                                       new SkeletonAnimation(
                                           child: Container(
-                                    height: MediaQuery.of(context).size.height /
-                                        3,
+                                    //height: MediaQuery.of(context).size.height / 3.5,
+                                    height: 230,
                                     decoration: BoxDecoration(
                                         color: Colors.grey[300],
                                         borderRadius: BorderRadius.all(
@@ -99,8 +99,8 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                                   )),
                                   errorWidget: (context, url, error) =>
                                       new Container(
-                                    height: MediaQuery.of(context).size.height /
-                                        3,
+                                    //height: MediaQuery.of(context).size.height / 3.5,
+                                    height: 230,
                                     decoration: BoxDecoration(
                                         color: Colors.grey[300],
                                         borderRadius: BorderRadius.all(

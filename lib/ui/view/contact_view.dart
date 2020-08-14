@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +7,7 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sufismart/ViewModel/ContactViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
+import 'package:sufismart/ui/componen/dialog.dart';
 import 'package:sufismart/ui/view/base_view.dart';
 import 'package:sufismart/ui/view/success_view.dart';
 
@@ -195,48 +197,63 @@ class _ContactViewState extends State<ContactView> {
                                   ),
                                   GestureDetector(
                                     onTap: () async {
-                                      if (_formKey.currentState.validate()) {
-                                        // No any error in validation
-                                        _formKey.currentState.save();
-                                        print(_name);
-                                        print(_email);
-                                        print(_phone);
-                                        print(_pesan);
-                                        var keluhan = await model.sendKeluhan(
-                                            _name,
-                                            _email,
-                                            _phone,
-                                            _pesan,
-                                            context);
-                                        if (keluhan == true) {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SuccessView(msg: "Successfully Send Data",),
-                                              ));
+                                      var connectivityResult =
+                                          await (Connectivity()
+                                              .checkConnectivity());
+                                      if (connectivityResult ==
+                                          ConnectivityResult.none) {
+                                        DialogForm.dialogForm(
+                                            context,
+                                            'No Internet',
+                                            "You're not connected to a network");
+                                      } else {
+                                        if (_formKey.currentState.validate()) {
+                                          // No any error in validation
+                                          _formKey.currentState.save();
+                                          print(_name);
+                                          print(_email);
+                                          print(_phone);
+                                          print(_pesan);
+                                          var keluhan = await model.sendKeluhan(
+                                              _name,
+                                              _email,
+                                              _phone,
+                                              _pesan,
+                                              context);
+                                          if (keluhan == true) {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SuccessView(
+                                                    msg:
+                                                        "Successfully Send Data",
+                                                  ),
+                                                ));
+                                            setState(() {
+                                              _error = "";
+                                              _autoValidate = false;
+                                              _namalengkapController.clear();
+                                              _phoneController.clear();
+                                              _emailController.clear();
+                                              _pesanController.clear();
+                                            });
+                                          } else {
+                                            final SharedPreferences prefs =
+                                                await SharedPreferences
+                                                    .getInstance();
+                                            setState(() {
+                                              _error =
+                                                  prefs.getString('message');
+                                            });
+                                          }
+                                        } else {
+                                          // validation error
                                           setState(() {
                                             _error = "";
-                                            _autoValidate = false;
-                                            _namalengkapController.clear();
-                                            _phoneController.clear();
-                                            _emailController.clear();
-                                            _pesanController.clear();
-                                          });
-                                        } else {
-                                          final SharedPreferences prefs =
-                                              await SharedPreferences
-                                                  .getInstance();
-                                          setState(() {
-                                            _error = prefs.getString('message');
+                                            _autoValidate = true;
                                           });
                                         }
-                                      } else {
-                                        // validation error
-                                        setState(() {
-                                          _error = "";
-                                          _autoValidate = true;
-                                        });
                                       }
                                     },
                                     child: Container(

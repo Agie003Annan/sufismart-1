@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:somedialog/somedialog.dart';
 import 'package:sufismart/ViewModel/LoginViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
+import 'package:sufismart/ui/componen/dialog.dart';
 import 'package:sufismart/ui/view/base_view.dart';
 import 'package:sufismart/ui/view/forgotpassword_view.dart';
 import 'package:sufismart/ui/view/profil_view.dart';
@@ -119,7 +121,7 @@ class _LoginViewState extends State<LoginView> {
                 //   automaticallyImplyLeading: false,
                 // ),
                 body: islogin != ""
-                    ? profilView(context,islogin)
+                    ? profilView(context, islogin)
                     : ModalProgressHUD(
                         inAsyncCall:
                             model.state == ViewState.Busy ?? ViewState.Idle,
@@ -371,52 +373,60 @@ class _LoginViewState extends State<LoginView> {
                                           ),
                                           GestureDetector(
                                             onTap: () async {
-                                              if (_formKey.currentState
-                                                  .validate()) {
-                                                // No any error in validation
-                                                _formKey.currentState.save();
-                                                var loginSuccess =
-                                                    await model.checkLogin(
-                                                        _email,
-                                                        _password,
-                                                        context);
-                                                if (loginSuccess) {
-                                                  // final SharedPreferences
-                                                  //     prefs =
-                                                  //     await SharedPreferences
-                                                  //         .getInstance();
-                                                  // Navigator.pushReplacement(
-                                                  //     context,
-                                                  //     MaterialPageRoute(
-                                                  //       builder: (context) =>
-                                                  //           ProfilView(
-                                                  //       ),
-                                                  //     ));
-                                                  profilView(context, _email);
-                                                  // Scaffold.of(context)
-                                                  //     .showSnackBar(SnackBar(
-                                                  //   content: Text(_error =
-                                                  //       prefs.getString('username')),
-                                                  // ));
-                                                  // print("berhasil login");
+                                              var connectivityResult =
+                                                  await (Connectivity()
+                                                      .checkConnectivity());
+                                              if (connectivityResult ==
+                                                  ConnectivityResult.none) {
+                                                DialogForm.dialogForm(context,'No Internet',"You're not connected to a network");
+                                              } else {
+                                                if (_formKey.currentState
+                                                    .validate()) {
+                                                  // No any error in validation
+                                                  _formKey.currentState.save();
+                                                  var loginSuccess =
+                                                      await model.checkLogin(
+                                                          _email,
+                                                          _password,
+                                                          context);
+                                                  if (loginSuccess) {
+                                                    // final SharedPreferences
+                                                    //     prefs =
+                                                    //     await SharedPreferences
+                                                    //         .getInstance();
+                                                    // Navigator.pushReplacement(
+                                                    //     context,
+                                                    //     MaterialPageRoute(
+                                                    //       builder: (context) =>
+                                                    //           ProfilView(
+                                                    //       ),
+                                                    //     ));
+                                                    profilView(context, _email);
+                                                    // Scaffold.of(context)
+                                                    //     .showSnackBar(SnackBar(
+                                                    //   content: Text(_error =
+                                                    //       prefs.getString('username')),
+                                                    // ));
+                                                    // print("berhasil login");
+                                                    setState(() {
+                                                      _error = "";
+                                                    });
+                                                  } else {
+                                                    final SharedPreferences
+                                                        prefs =
+                                                        await SharedPreferences
+                                                            .getInstance();
+                                                    setState(() {
+                                                      _error = prefs
+                                                          .getString('message');
+                                                    });
+                                                  }
+                                                } else {
                                                   setState(() {
                                                     _error = "";
-                                                  });
-                                                } else {
-                                                  final SharedPreferences
-                                                      prefs =
-                                                      await SharedPreferences
-                                                          .getInstance();
-                                                  setState(() {
-                                                    _error = prefs
-                                                        .getString('message');
+                                                    _autoValidate = true;
                                                   });
                                                 }
-                                              } else {
-                                                setState(() {
-                                                  _error = "";
-                                                  _autoValidate = true;
-                                                });
                                               }
                                             },
                                             child: Container(
@@ -536,7 +546,16 @@ class _LoginViewState extends State<LoginView> {
           }
         });
   }
+
+  
 }
+
+// Widget dialog(BuildContext context, String title, String text) {
+  
+// }
+
+
+
 
 Widget profilView(BuildContext context, String url) {
   return Scaffold(

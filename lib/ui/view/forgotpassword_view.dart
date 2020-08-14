@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +7,7 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sufismart/ViewModel/ContactViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
+import 'package:sufismart/ui/componen/dialog.dart';
 import 'package:sufismart/ui/view/success_view.dart';
 
 import 'base_view.dart';
@@ -14,12 +16,12 @@ class ForgotPasswordView extends StatefulWidget {
   _ForgotPasswordViewState createState() => _ForgotPasswordViewState();
 }
 
-class _ForgotPasswordViewState extends State<ForgotPasswordView> {  
-  final TextEditingController _emailController = TextEditingController();  
+class _ForgotPasswordViewState extends State<ForgotPasswordView> {
+  final TextEditingController _emailController = TextEditingController();
   String _error = "";
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _autoValidate = false;
-  String _email;  
+  String _email;
   @override
   Widget build(BuildContext context) {
     return BaseView<ContactViewModel>(
@@ -107,67 +109,77 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                                       _email = value;
                                     },
                                   ),
-                                   SizedBox(
+                                  SizedBox(
                                     height: 10,
                                   ),
-                                  
                                   Visibility(
-                                            visible:
-                                                _error == "" ? false : true,
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Text(
-                                                  _error,
-                                                  style: TextStyle(
-                                                      color: Colors.red),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
+                                    visible: _error == "" ? false : true,
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(
+                                          _error,
+                                          style: TextStyle(color: Colors.red),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                   SizedBox(
                                     height: 20,
                                   ),
-                                  
                                   GestureDetector(
                                     onTap: () async {
-                                      if (_formKey.currentState.validate()) {
-                                        // No any error in validation
-                                        _formKey.currentState.save();
-                                        print(_email);
-                                        var keluhan = await model.sendForgotPassword(
-                                            _email,
-                                            context);
-                                        if (keluhan == true) {
-                                        final SharedPreferences prefs =
-                                              await SharedPreferences
-                                                  .getInstance();
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    SuccessView(msg:prefs.getString('message_password')),
-                                              ));
+                                      var connectivityResult =
+                                          await (Connectivity()
+                                              .checkConnectivity());
+                                      if (connectivityResult ==
+                                          ConnectivityResult.none) {
+                                        DialogForm.dialogForm(
+                                            context,
+                                            'No Internet',
+                                            "You're not connected to a network");
+                                      } else {
+                                        if (_formKey.currentState.validate()) {
+                                          // No any error in validation
+                                          _formKey.currentState.save();
+                                          print(_email);
+                                          var keluhan =
+                                              await model.sendForgotPassword(
+                                                  _email, context);
+                                          if (keluhan == true) {
+                                            final SharedPreferences prefs =
+                                                await SharedPreferences
+                                                    .getInstance();
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SuccessView(
+                                                          msg: prefs.getString(
+                                                              'message_password')),
+                                                ));
+                                            setState(() {
+                                              _error = "";
+                                              _autoValidate = false;
+                                              _emailController.clear();
+                                            });
+                                          } else {
+                                            final SharedPreferences prefs =
+                                                await SharedPreferences
+                                                    .getInstance();
+                                            setState(() {
+                                              _error = prefs.getString(
+                                                  'message_password');
+                                            });
+                                          }
+                                        } else {
+                                          // validation error
                                           setState(() {
                                             _error = "";
-                                            _autoValidate = false;
-                                            _emailController.clear();
-                                          });
-                                        } else {
-                                          final SharedPreferences prefs =
-                                              await SharedPreferences
-                                                  .getInstance();
-                                          setState(() {
-                                            _error = prefs.getString('message_password');
+                                            _autoValidate = true;
                                           });
                                         }
-                                      } else {
-                                        // validation error
-                                        setState(() {
-                                          _error = "";
-                                          _autoValidate = true;
-                                        });
                                       }
                                     },
                                     child: Container(

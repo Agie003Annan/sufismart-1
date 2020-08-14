@@ -159,11 +159,12 @@ class _ProductCategoryViewState extends State<ProductCategory> {
                                               child: Column(
                                                 children: <Widget>[
                                                   Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.65,
+                                                    // width:
+                                                    //     MediaQuery.of(context)
+                                                    //             .size
+                                                    //             .width *
+                                                    //         0.65,
+                                                    width: 250,
                                                     child: Row(
                                                       mainAxisAlignment:
                                                           MainAxisAlignment

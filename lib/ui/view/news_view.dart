@@ -85,10 +85,11 @@ class _NewsViewState extends State<NewsView> {
                                         children: <Widget>[
                                           model.news[index].newsimage == null
                                               ? Container(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      2,
+                                                  // height: MediaQuery.of(context)
+                                                  //         .size
+                                                  //         .height /
+                                                  //     2,
+                                                  height: 400,
                                                   decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.all(
@@ -105,11 +106,12 @@ class _NewsViewState extends State<NewsView> {
                                                   imageBuilder: (context,
                                                           imageProvider) =>
                                                       Container(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height /
-                                                            2,
+                                                    // height:
+                                                    //     MediaQuery.of(context)
+                                                    //             .size
+                                                    //             .height /
+                                                    //         2,
+                                                    height: 400,
                                                     child: Card(
                                                       margin:
                                                           const EdgeInsets.only(
@@ -133,11 +135,12 @@ class _NewsViewState extends State<NewsView> {
                                                   placeholder: (context, url) =>
                                                       new SkeletonAnimation(
                                                           child: Container(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height /
-                                                            2,
+                                                    // height:
+                                                    //     MediaQuery.of(context)
+                                                    //             .size
+                                                    //             .height /
+                                                    //         2,
+                                                    height: 400,
                                                     decoration: BoxDecoration(
                                                         color: Colors.grey[300],
                                                         borderRadius:
@@ -148,11 +151,12 @@ class _NewsViewState extends State<NewsView> {
                                                   errorWidget:
                                                       (context, url, error) =>
                                                           new Container(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height /
-                                                            2,
+                                                    // height:
+                                                    //     MediaQuery.of(context)
+                                                    //             .size
+                                                    //             .height /
+                                                    //         2,
+                                                    height: 400,
                                                     decoration: BoxDecoration(
                                                         color: Colors.grey[300],
                                                         borderRadius:

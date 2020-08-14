@@ -55,7 +55,8 @@ class _NewsDetailViewState extends State<NewsDetail> {
                 children: <Widget>[
                   widget.detailImg == null
                       ? Container(
-                          height: MediaQuery.of(context).size.height / 2,
+                          //height: MediaQuery.of(context).size.height / 2,
+                          height: 400,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(5)),
                             image: DecorationImage(
@@ -67,7 +68,8 @@ class _NewsDetailViewState extends State<NewsDetail> {
                       : CachedNetworkImage(
                           imageUrl: widget.detailImg,
                           imageBuilder: (context, imageProvider) => Container(
-                            height: MediaQuery.of(context).size.height / 2,
+                            //height: MediaQuery.of(context).size.height / 2,
+                            height: 400,
                             child: Card(
                               margin: const EdgeInsets.only(bottom: 10.0),
                               child: Container(
@@ -82,14 +84,16 @@ class _NewsDetailViewState extends State<NewsDetail> {
                           ),
                           placeholder: (context, url) => new SkeletonAnimation(
                               child: Container(
-                            height: MediaQuery.of(context).size.height / 2,
+                            //height: MediaQuery.of(context).size.height / 2,
+                            height: 400,
                             decoration: BoxDecoration(
                                 color: Colors.grey[300],
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10))),
                           )),
                           errorWidget: (context, url, error) => new Container(
-                            height: MediaQuery.of(context).size.height / 2,
+                            //height: MediaQuery.of(context).size.height / 2,
+                            height: 400,
                             decoration: BoxDecoration(
                                 color: Colors.grey[300],
                                 borderRadius:

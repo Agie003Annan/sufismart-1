@@ -41,8 +41,8 @@ class _SplashScreenState extends State<SplashScreenView> with SingleTickerProvid
       body: new Center(
         child: new Image.asset(
           "assets/images/splashscreen.png",
-          height: 100.0,
-          width: 200.0,
+          height: 150.0,
+          width: 250.0,
         ),
       ),
     );

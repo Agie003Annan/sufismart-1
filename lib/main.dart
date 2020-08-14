@@ -1,17 +1,6 @@
-// import 'package:custom_navigator/custom_navigation.dart';
-//import 'package:custom_navigator/custom_scaffold.dart';
-//import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-//import 'package:hexcolor/hexcolor.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sufismart/locator.dart';
-// import 'package:sufismart/ui/view/about_view.dart';
-// import 'package:sufismart/ui/view/contact_view.dart';
-// import 'package:sufismart/ui/view/home_view.dart';
-// import 'package:sufismart/ui/view/login_view.dart';
 import 'package:sufismart/ui/view/splashscreen_view.dart';
-// import 'package:sufismart/ui/view/user_view.dart';
 
 void main() {
   setupLocator();
@@ -22,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'sufismart',
+      title: 'SUFI SMART',
       theme: ThemeData(
         fontFamily: 'NeoSans',
         primarySwatch: Colors.indigo,

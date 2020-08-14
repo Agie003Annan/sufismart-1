@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -9,6 +10,7 @@ import 'package:skeleton_text/skeleton_text.dart';
 import 'package:sufismart/ViewModel/HomeViewModel.dart';
 //import 'package:sufismart/ViewModel/ProductViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
+import 'package:sufismart/ui/componen/dialog.dart';
 import 'package:sufismart/ui/view/WebView.dart';
 //import 'package:sufismart/ui/view/about_view.dart';
 import 'package:sufismart/ui/view/base_view.dart';
@@ -137,18 +139,20 @@ class _HomeViewState extends State<HomeView> {
                           //slider
                           Container(
                             // height: 200,
-                            height: MediaQuery.of(context).size.height / 3,
+                            //height: MediaQuery.of(context).size.height / 3.5,
+                            height: 230,
                             child: Swiper(
                               itemBuilder: (BuildContext context, int index) {
                                 return Container(
                                   decoration: BoxDecoration(
-                                    // border: Border.all(
-                                    //     color: Color(0xffeeeeee), width: 1.0),
-                                    //borderRadius: BorderRadius.all(Radius.circular(10)),
-                                  ),
+                                      // border: Border.all(
+                                      //     color: Color(0xffeeeeee), width: 1.0),
+                                      //borderRadius: BorderRadius.all(Radius.circular(10)),
+                                      ),
                                   child: model.banner[index].imagepath == null
                                       ? Container(
-                                          height: MediaQuery.of(context).size.height / 3,
+                                          //height: MediaQuery.of(context).size.height / 3.5,
+                                          height: 230,
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.only(
                                                 bottomLeft: Radius.circular(15),
@@ -158,7 +162,7 @@ class _HomeViewState extends State<HomeView> {
                                             //     Radius.circular(10)),
                                             image: DecorationImage(
                                                 image: AssetImage(
-                                                    "assets/images/logo_suzuki.png"),
+                                                    "assets/images/logo_sfi_white.png"),
                                                 fit: BoxFit.fill),
                                           ),
                                         )
@@ -168,7 +172,8 @@ class _HomeViewState extends State<HomeView> {
                                           imageBuilder:
                                               (context, imageProvider) =>
                                                   Container(
-                                            height: MediaQuery.of(context).size.height / 3,
+                                            //height: MediaQuery.of(context).size.height / 3.5,
+                                            height: 230,
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.only(
                                                   bottomLeft:
@@ -185,7 +190,8 @@ class _HomeViewState extends State<HomeView> {
                                           placeholder: (context, url) =>
                                               new SkeletonAnimation(
                                                   child: Container(
-                                            height: MediaQuery.of(context).size.height / 3,
+                                            //height: MediaQuery.of(context).size.height / 3,
+                                            height: 230,
                                             decoration: BoxDecoration(
                                               color: Colors.grey[300],
                                               borderRadius: BorderRadius.only(
@@ -197,7 +203,8 @@ class _HomeViewState extends State<HomeView> {
                                           )),
                                           errorWidget: (context, url, error) =>
                                               new Container(
-                                            height: MediaQuery.of(context).size.height / 3,
+                                            //height: MediaQuery.of(context).size.height / 3,
+                                            height: 230,
                                             decoration: BoxDecoration(
                                               color: Colors.grey[300],
                                               borderRadius: BorderRadius.only(
@@ -277,11 +284,58 @@ class _HomeViewState extends State<HomeView> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: <Widget>[
-                                                Image.network(
-                                                  "https://www.sfi.co.id/assets/images/menu/Icon-Promo.png",
-                                                  width: 60,
-                                                  height: 60,
+                                                CachedNetworkImage(
+                                                  imageUrl: "https://www.sfi.co.id/assets/images/menu/Icon-Promo.png",
+                                                  imageBuilder: (context,
+                                                          imageProvider) =>
+                                                      Container(
+                                                    //height: MediaQuery.of(context).size.height / 3.5,
+                                                    //height: 230,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.all(Radius.circular(50)),
+                                                      // borderRadius: BorderRadius.all(
+                                                      //     Radius.circular(15)),
+                                                      image: DecorationImage(
+                                                          image: imageProvider,
+                                                          fit: BoxFit.fill),
+                                                    ),
+                                                  ),
+                                                  placeholder: (context, url) =>
+                                                      new SkeletonAnimation(
+                                                          child: Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                           BorderRadius.all(Radius.circular(50)),
+                                                    ),
+                                                  )),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          new Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                          BorderRadius.all(Radius.circular(50)),
+                                                    ),
+                                                    child: Center(
+                                                      child: Icon(Icons.error),
+                                                    ),
+                                                  ),
                                                 ),
+                                                // Image.network(
+                                                //   "https://www.sfi.co.id/assets/images/menu/Icon-Promo.png",
+                                                //   width: 60,
+                                                //   height: 60,
+                                                // ),
                                                 SizedBox(
                                                   height: 10,
                                                 ),
@@ -318,11 +372,58 @@ class _HomeViewState extends State<HomeView> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: <Widget>[
-                                                Image.network(
-                                                  "https://www.sfi.co.id/assets/images/menu/ic_menu/product.png",
-                                                  width: 60,
-                                                  height: 60,
+                                                CachedNetworkImage(
+                                                  imageUrl: "https://www.sfi.co.id/assets/images/menu/ic_menu/product.png",
+                                                  imageBuilder: (context,
+                                                          imageProvider) =>
+                                                      Container(
+                                                    //height: MediaQuery.of(context).size.height / 3.5,
+                                                    //height: 230,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.all(Radius.circular(50)),
+                                                      // borderRadius: BorderRadius.all(
+                                                      //     Radius.circular(15)),
+                                                      image: DecorationImage(
+                                                          image: imageProvider,
+                                                          fit: BoxFit.fill),
+                                                    ),
+                                                  ),
+                                                  placeholder: (context, url) =>
+                                                      new SkeletonAnimation(
+                                                          child: Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                           BorderRadius.all(Radius.circular(50)),
+                                                    ),
+                                                  )),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          new Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                          BorderRadius.all(Radius.circular(50)),
+                                                    ),
+                                                    child: Center(
+                                                      child: Icon(Icons.error),
+                                                    ),
+                                                  ),
                                                 ),
+                                                // Image.network(
+                                                //   "https://www.sfi.co.id/assets/images/menu/ic_menu/product.png",
+                                                //   width: 60,
+                                                //   height: 60,
+                                                // ),
                                                 SizedBox(
                                                   height: 10,
                                                 ),
@@ -362,11 +463,58 @@ class _HomeViewState extends State<HomeView> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: <Widget>[
-                                                Image.network(
-                                                  "https://www.sfi.co.id/assets/images/menu/ic_menu/dealerservice.png",
-                                                  width: 60,
-                                                  height: 60,
+                                                CachedNetworkImage(
+                                                  imageUrl: "https://www.sfi.co.id/assets/images/menu/dealerservice.png",
+                                                  imageBuilder: (context,
+                                                          imageProvider) =>
+                                                      Container(
+                                                    //height: MediaQuery.of(context).size.height / 3.5,
+                                                    //height: 230,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.all(Radius.circular(50)),
+                                                      // borderRadius: BorderRadius.all(
+                                                      //     Radius.circular(15)),
+                                                      image: DecorationImage(
+                                                          image: imageProvider,
+                                                          fit: BoxFit.fill),
+                                                    ),
+                                                  ),
+                                                  placeholder: (context, url) =>
+                                                      new SkeletonAnimation(
+                                                          child: Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                           BorderRadius.all(Radius.circular(50)),
+                                                    ),
+                                                  )),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          new Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                          BorderRadius.all(Radius.circular(50)),
+                                                    ),
+                                                    child: Center(
+                                                      child: Icon(Icons.error),
+                                                    ),
+                                                  ),
                                                 ),
+                                                // Image.network(
+                                                //   "https://www.sfi.co.id/assets/images/menu/ic_menu/dealerservice.png",
+                                                //   width: 60,
+                                                //   height: 60,
+                                                // ),
                                                 SizedBox(
                                                   height: 10,
                                                 ),
@@ -391,24 +539,82 @@ class _HomeViewState extends State<HomeView> {
                                     Expanded(
                                       flex: 1,
                                       child: InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) => WebView2(
-                                                    linkurl:
-                                                        "https://sufismart.sfi.co.id/sufismart/api/credit_simulation2.php"),
-                                              ));
+                                        onTap: () async {
+                                          var connectivityResult =
+                                              await (Connectivity()
+                                                  .checkConnectivity());
+                                          if (connectivityResult ==
+                                              ConnectivityResult.none) {
+                                            DialogForm.dialogForm(
+                                                context,
+                                                'No Internet',
+                                                "You're not connected to a network");
+                                          } else {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => WebView2(
+                                                      linkurl:
+                                                          "https://sufismart.sfi.co.id/sufismart/api/credit_simulation2.php"),
+                                                ));
+                                          }
                                         },
                                         child: Container(
                                           child: Center(
                                             child: Column(
                                               children: <Widget>[
-                                                Image.network(
-                                                  "https://www.sfi.co.id/assets/images/menu/ic_menu/creditsimulation.png",
-                                                  width: 60,
-                                                  height: 60,
+                                                CachedNetworkImage(
+                                                  imageUrl: "https://www.sfi.co.id/assets/images/menu/creditsimulation.png",
+                                                  imageBuilder: (context,
+                                                          imageProvider) =>
+                                                      Container(
+                                                    //height: MediaQuery.of(context).size.height / 3.5,
+                                                    //height: 230,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.all(Radius.circular(50)),
+                                                      // borderRadius: BorderRadius.all(
+                                                      //     Radius.circular(15)),
+                                                      image: DecorationImage(
+                                                          image: imageProvider,
+                                                          fit: BoxFit.fill),
+                                                    ),
+                                                  ),
+                                                  placeholder: (context, url) =>
+                                                      new SkeletonAnimation(
+                                                          child: Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                           BorderRadius.all(Radius.circular(50)),
+                                                    ),
+                                                  )),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          new Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                          BorderRadius.all(Radius.circular(50)),
+                                                    ),
+                                                    child: Center(
+                                                      child: Icon(Icons.error),
+                                                    ),
+                                                  ),
                                                 ),
+                                                // Image.network(
+                                                //   "https://www.sfi.co.id/assets/images/menu/ic_menu/creditsimulation.png",
+                                                //   width: 60,
+                                                //   height: 60,
+                                                // ),
                                                 SizedBox(
                                                   height: 10,
                                                 ),
@@ -431,13 +637,24 @@ class _HomeViewState extends State<HomeView> {
                                     Expanded(
                                       flex: 1,
                                       child: InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    StatusKontrakView(),
-                                              ));
+                                        onTap: () async {
+                                          var connectivityResult =
+                                              await (Connectivity()
+                                                  .checkConnectivity());
+                                          if (connectivityResult ==
+                                              ConnectivityResult.none) {
+                                            DialogForm.dialogForm(
+                                                context,
+                                                'No Internet',
+                                                "You're not connected to a network");
+                                          } else {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      StatusKontrakView(),
+                                                ));
+                                          }
                                         },
                                         child: Container(
                                           child: Center(
@@ -445,11 +662,58 @@ class _HomeViewState extends State<HomeView> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: <Widget>[
-                                                Image.network(
-                                                  "https://www.sfi.co.id/assets/images/menu/ic_menu/inststat.png",
-                                                  width: 60,
-                                                  height: 60,
+                                                CachedNetworkImage(
+                                                  imageUrl: "https://www.sfi.co.id/assets/images/menu/inststat.png",
+                                                  imageBuilder: (context,
+                                                          imageProvider) =>
+                                                      Container(
+                                                    //height: MediaQuery.of(context).size.height / 3.5,
+                                                    //height: 230,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.all(Radius.circular(50)),
+                                                      // borderRadius: BorderRadius.all(
+                                                      //     Radius.circular(15)),
+                                                      image: DecorationImage(
+                                                          image: imageProvider,
+                                                          fit: BoxFit.fill),
+                                                    ),
+                                                  ),
+                                                  placeholder: (context, url) =>
+                                                      new SkeletonAnimation(
+                                                          child: Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                           BorderRadius.all(Radius.circular(50)),
+                                                    ),
+                                                  )),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          new Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                          BorderRadius.all(Radius.circular(50)),
+                                                    ),
+                                                    child: Center(
+                                                      child: Icon(Icons.error),
+                                                    ),
+                                                  ),
                                                 ),
+                                                // Image.network(
+                                                //   "https://www.sfi.co.id/assets/images/menu/ic_menu/inststat.png",
+                                                //   width: 60,
+                                                //   height: 60,
+                                                // ),
                                                 SizedBox(
                                                   height: 10,
                                                 ),
@@ -472,24 +736,82 @@ class _HomeViewState extends State<HomeView> {
                                     Expanded(
                                       flex: 1,
                                       child: InkWell(
-                                        onTap: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    //  WebView(linkurl: "https://sufismart.sfi.co.id/sufismart/api/layanan.php"),
-                                                    TestWebView(),
-                                              ));
+                                        onTap: () async {
+                                          var connectivityResult =
+                                              await (Connectivity()
+                                                  .checkConnectivity());
+                                          if (connectivityResult ==
+                                              ConnectivityResult.none) {
+                                            DialogForm.dialogForm(
+                                                context,
+                                                'No Internet',
+                                                "You're not connected to a network");
+                                          } else {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      //  WebView(linkurl: "https://sufismart.sfi.co.id/sufismart/api/layanan.php"),
+                                                      TestWebView(),
+                                                ));
+                                          }
                                         },
                                         child: Container(
                                           child: Center(
                                             child: Column(
                                               children: <Widget>[
-                                                Image.network(
-                                                  "https://www.sfi.co.id/assets/images/menu/Icon-Layanan.png",
-                                                  width: 60,
-                                                  height: 60,
+                                                CachedNetworkImage(
+                                                  imageUrl: "https://www.sfi.co.id/assets/images/menu/Icon-Layanan.png",
+                                                  imageBuilder: (context,
+                                                          imageProvider) =>
+                                                      Container(
+                                                    //height: MediaQuery.of(context).size.height / 3.5,
+                                                    //height: 230,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.all(Radius.circular(50)),
+                                                      // borderRadius: BorderRadius.all(
+                                                      //     Radius.circular(15)),
+                                                      image: DecorationImage(
+                                                          image: imageProvider,
+                                                          fit: BoxFit.fill),
+                                                    ),
+                                                  ),
+                                                  placeholder: (context, url) =>
+                                                      new SkeletonAnimation(
+                                                          child: Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                           BorderRadius.all(Radius.circular(50)),
+                                                    ),
+                                                  )),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          new Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                          BorderRadius.all(Radius.circular(50)),
+                                                    ),
+                                                    child: Center(
+                                                      child: Icon(Icons.error),
+                                                    ),
+                                                  ),
                                                 ),
+                                                // Image.network(
+                                                //   "https://www.sfi.co.id/assets/images/menu/Icon-Layanan.png",
+                                                //   width: 60,
+                                                //   height: 60,
+                                                // ),
                                                 SizedBox(
                                                   height: 10,
                                                 ),
@@ -806,11 +1128,12 @@ class _HomeViewState extends State<HomeView> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(top:10),
+                            margin: EdgeInsets.only(top: 10),
                             decoration: BoxDecoration(
-                              color: Colors.white,                              
+                              color: Colors.white,
                             ),
-                            padding: EdgeInsets.only(top:10,right: 20,left: 20),
+                            padding:
+                                EdgeInsets.only(top: 10, right: 20, left: 20),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -916,13 +1239,15 @@ class _HomeViewState extends State<HomeView> {
                                                   ? Container(
                                                       width:
                                                           MediaQuery.of(context)
-                                                              .size
-                                                              .width,
-                                                      height:
-                                                          MediaQuery.of(context)
                                                                   .size
-                                                                  .height /
-                                                              3,
+                                                                  .width *
+                                                              0.6,
+                                                      // height:
+                                                      //     MediaQuery.of(context)
+                                                      //             .size
+                                                      //             .height /
+                                                      //         3,
+                                                      height: 250,
                                                       decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius.all(
@@ -946,11 +1271,12 @@ class _HomeViewState extends State<HomeView> {
                                                                 .size
                                                                 .width *
                                                             0.6,
-                                                        height: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height /
-                                                            3,
+                                                        // height: MediaQuery.of(
+                                                        //             context)
+                                                        //         .size
+                                                        //         .height /
+                                                        //     3,
+                                                        height: 250,
                                                         child: Card(
                                                           child: Container(
                                                             // height: 60,
@@ -991,11 +1317,12 @@ class _HomeViewState extends State<HomeView> {
                                                                 .size
                                                                 .width *
                                                             0.6,
-                                                        height: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height /
-                                                            3,
+                                                        // height: MediaQuery.of(
+                                                        //             context)
+                                                        //         .size
+                                                        //         .height /
+                                                        //     3,
+                                                        height: 250,
                                                         decoration: BoxDecoration(
                                                             color: Colors
                                                                 .grey[300],
@@ -1013,11 +1340,12 @@ class _HomeViewState extends State<HomeView> {
                                                                 .size
                                                                 .width *
                                                             0.6,
-                                                        height: MediaQuery.of(
-                                                                    context)
-                                                                .size
-                                                                .height /
-                                                            3,
+                                                        // height: MediaQuery.of(
+                                                        //             context)
+                                                        //         .size
+                                                        //         .height /
+                                                        //     3,
+                                                        height: 250,
                                                         decoration: BoxDecoration(
                                                             color: Colors
                                                                 .grey[300],

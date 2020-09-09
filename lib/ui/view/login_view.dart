@@ -11,6 +11,7 @@ import 'package:sufismart/enums/viewstate.dart';
 import 'package:sufismart/ui/componen/dialog.dart';
 import 'package:sufismart/ui/view/base_view.dart';
 import 'package:sufismart/ui/view/forgotpassword_view.dart';
+import 'package:sufismart/ui/view/indexpage_view.dart';
 import 'package:sufismart/ui/view/profil_view.dart';
 //import 'package:sufismart/ui/view/profil_view.dart';
 import 'package:sufismart/ui/view/registration_view.dart';
@@ -121,7 +122,7 @@ class _LoginViewState extends State<LoginView> {
                 //   automaticallyImplyLeading: false,
                 // ),
                 body: islogin != ""
-                    ? profilView(context, islogin)
+                    ? ProfilView()//profilView(context, islogin)
                     : ModalProgressHUD(
                         inAsyncCall:
                             model.state == ViewState.Busy ?? ViewState.Idle,
@@ -394,14 +395,13 @@ class _LoginViewState extends State<LoginView> {
                                                     //     prefs =
                                                     //     await SharedPreferences
                                                     //         .getInstance();
-                                                    // Navigator.pushReplacement(
-                                                    //     context,
-                                                    //     MaterialPageRoute(
-                                                    //       builder: (context) =>
-                                                    //           ProfilView(
-                                                    //       ),
-                                                    //     ));
-                                                    profilView(context, _email);
+                                                    Navigator.pushReplacement(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              IndexView(),
+                                                        ));
+                                                    //profilView(context, _email);
                                                     // Scaffold.of(context)
                                                     //     .showSnackBar(SnackBar(
                                                     //   content: Text(_error =
@@ -545,18 +545,12 @@ class _LoginViewState extends State<LoginView> {
             );
           }
         });
-  }
-
-  
+  }  
 }
 
 // Widget dialog(BuildContext context, String title, String text) {
   
 // }
-
-
-
-
 Widget profilView(BuildContext context, String url) {
   return Scaffold(
     appBar: AppBar(
@@ -609,7 +603,9 @@ Widget profilView(BuildContext context, String url) {
       backgroundColor: Hexcolor("#0d306b"),
       automaticallyImplyLeading: false,
     ),
-    body: WebView(
+    
+    body: WebView(      
+      
       initialUrl:
           "https://sufismart.sfi.co.id/sufismart/api/profil.php?EMAIL=${url}",
       javascriptMode: JavascriptMode.unrestricted,
@@ -635,7 +631,8 @@ Widget profilView(BuildContext context, String url) {
       // },
       // onPageFinished: (String url) {
       //   print("Finish url $url");
-      // },
+      // },      
     ),
+    
   );
 }

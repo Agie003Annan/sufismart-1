@@ -10,7 +10,7 @@ class AboutViewModel extends BaseViewModel{
    DataAplikasi dataAplikasi;
 
    Future getInfoAplikasi(BuildContext context) async {
-    setState(ViewState.Busy);    
+    setState(ViewState.Busy);     
     dataAplikasi = await _api.getAplikasi(context);
     notifyListeners();
     setState(ViewState.Idle);

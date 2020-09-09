@@ -56,8 +56,10 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                         children: <Widget>[
                           widget.productImage == null
                               ? Container(
-                                  //height:MediaQuery.of(context).size.height / 3.5,
-                                  height: 230,
+                                  //height:MediaQuery.of(context).size.height / 4,
+                                  //height: 200,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 200,
                                   decoration: BoxDecoration(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(5)),
@@ -71,8 +73,10 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                                   imageUrl: widget.productImage,
                                   imageBuilder: (context, imageProvider) =>
                                       Container(
-                                    //height: MediaQuery.of(context).size.height / 3.5,
-                                    height: 230,
+                                    //height: MediaQuery.of(context).size.height / 4,
+                                    //height: 200,
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 200,
                                     child: Card(
                                       margin:
                                           const EdgeInsets.only(bottom: 5.0),
@@ -90,8 +94,10 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                                   placeholder: (context, url) =>
                                       new SkeletonAnimation(
                                           child: Container(
-                                    //height: MediaQuery.of(context).size.height / 3.5,
-                                    height: 230,
+                                    //height: MediaQuery.of(context).size.height / 4,
+                                    //height: 200,
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 200,
                                     decoration: BoxDecoration(
                                         color: Colors.grey[300],
                                         borderRadius: BorderRadius.all(
@@ -99,8 +105,10 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                                   )),
                                   errorWidget: (context, url, error) =>
                                       new Container(
-                                    //height: MediaQuery.of(context).size.height / 3.5,
-                                    height: 230,
+                                    //height: MediaQuery.of(context).size.height / 4,
+                                    //height: 200,
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 200,
                                     decoration: BoxDecoration(
                                         color: Colors.grey[300],
                                         borderRadius: BorderRadius.all(
@@ -192,23 +200,24 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                                           //text kepanjangan jadi titik-titik
                                           width:
                                               MediaQuery.of(context).size.width,
-                                          padding: const EdgeInsets.only(
+                                          padding: EdgeInsets.only(
                                               top: 10.0,
                                               bottom: 10.0,
-                                              right: 5.0,
-                                              left: 5.0),
+                                              right: 3.0,
+                                              left: 3.0),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: <Widget>[
                                               Container(
-                                                padding: EdgeInsets.all(5),
+                                                padding:
+                                                    EdgeInsets.only(left: 5),
                                                 child: Text(
                                                   model.productType[index]
                                                       .productDetailName,
                                                   style: TextStyle(
                                                     color: Hexcolor("#0d306b"),
-                                                    fontSize: 16,
+                                                    fontSize: 14,
                                                   ),
                                                 ),
                                               ),
@@ -227,7 +236,7 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                                                           .toString(),
                                                   style: TextStyle(
                                                     color: Colors.black,
-                                                    fontSize: 16,
+                                                    fontSize: 14,
                                                   ),
                                                 ),
                                               ),

@@ -68,14 +68,15 @@ class _PromoViewState extends State<PromoView> {
                                             builder: (context) => NewsDetail(
                                                 detailNewsId:
                                                     model.promo[index].newsid,
-                                                detailTitle: model
-                                                    .promo[index].newstitle,
-                                                detailDate:
-                                                    model.promo[index].newsdate,
-                                                detailDesc: model.promo[index]
-                                                    .newsdescription,
-                                                detailImg: model
-                                                    .promo[index].newsimage),
+                                                // detailTitle: model
+                                                //     .promo[index].newstitle,
+                                                // detailDate:
+                                                //     model.promo[index].newsdate,
+                                                // detailDesc: model.promo[index]
+                                                //     .newsdescription,
+                                                // detailImg: model
+                                                //     .promo[index].newsimage
+                                                    ),
                                           ));
                                     },
                                     child: Card(

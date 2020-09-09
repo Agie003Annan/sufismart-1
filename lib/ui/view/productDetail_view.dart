@@ -1,5 +1,3 @@
-
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_money_formatter/flutter_money_formatter.dart';
@@ -62,6 +60,8 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                     widget.productDImage == null
                         ? Container(
                             //height: MediaQuery.of(context).size.height / 3.5,
+                            //height: 220,
+                            width: MediaQuery.of(context).size.width,
                             height: 230,
                             decoration: BoxDecoration(
                               borderRadius:
@@ -76,6 +76,8 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                             imageUrl: widget.productDImage,
                             imageBuilder: (context, imageProvider) => Container(
                               //height: MediaQuery.of(context).size.height / 3.5,
+                              //height: 220,
+                              width: MediaQuery.of(context).size.width,
                               height: 230,
                               child: Card(
                                 margin: const EdgeInsets.only(bottom: 5.0),
@@ -93,6 +95,8 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                 new SkeletonAnimation(
                                     child: Container(
                               //height: MediaQuery.of(context).size.height / 3.5,
+                              //height: 220,
+                              width: MediaQuery.of(context).size.width,
                               height: 230,
                               decoration: BoxDecoration(
                                   color: Colors.grey[300],
@@ -100,7 +104,9 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                       BorderRadius.all(Radius.circular(10))),
                             )),
                             errorWidget: (context, url, error) => new Container(
-                              //height: MediaQuery.of(context).size.height / 3,
+                              //height: MediaQuery.of(context).size.height / 3.5,
+                              //height: 220,
+                              width: MediaQuery.of(context).size.width,
                               height: 230,
                               decoration: BoxDecoration(
                                   color: Colors.grey[300],
@@ -198,7 +204,8 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                           top: 20.0, left: 10.0, right: 10.0, bottom: 10.0),
                       child: Text(
                         "Deskripsi",
-                        style: TextStyle(fontSize: 20, color: Hexcolor("#0d306b")),
+                        style:
+                            TextStyle(fontSize: 20, color: Hexcolor("#0d306b")),
                         textAlign: TextAlign.left,
                       ),
                     ),

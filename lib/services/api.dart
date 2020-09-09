@@ -137,8 +137,8 @@ class Api extends ChangeNotifier {
   //detail news
   Future<DataDetailNews> getDetailNews(
       BuildContext context, String newsid) async {
-    String url = endpoint + 'getDetailNews/' + newsid;
-    print('$url');
+    // String url = endpoint + 'getDetailNews/' + newsid;
+    // print('$url');
     try {
       final response =
           await client.get(endpoint + 'getDetailNews/' + newsid, headers: {
@@ -159,7 +159,7 @@ class Api extends ChangeNotifier {
     }
   }
 
-  //detail news
+  //detail Aplikasi
   Future<DataAplikasi> getAplikasi(
       BuildContext context) async {
     String url = endpoint + 'getAplikasi';
@@ -183,6 +183,8 @@ class Api extends ChangeNotifier {
       //errorPage("error", "getAddressDetail", e.toString(), context);
     }
   }
+
+   
 
   //product
   Future<List<ProductModel>> getProduct(BuildContext context) async {

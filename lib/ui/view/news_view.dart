@@ -70,14 +70,15 @@ class _NewsViewState extends State<NewsView> {
                                             builder: (context) => NewsDetail(
                                                 detailNewsId:
                                                     model.news[index].newsid,
-                                                detailTitle:
-                                                    model.news[index].newstitle,
-                                                detailDate:
-                                                    model.news[index].newsdate,
-                                                detailDesc: model.news[index]
-                                                    .newsdescription,
-                                                detailImg: model
-                                                    .news[index].newsimage),
+                                                // detailTitle:
+                                                //     model.news[index].newstitle,
+                                                // detailDate:
+                                                //     model.news[index].newsdate,
+                                                // detailDesc: model.news[index]
+                                                //     .newsdescription,
+                                                // detailImg: model
+                                                //     .news[index].newsimage
+                                                    ),
                                           ));
                                     },
                                     child: Card(
@@ -89,6 +90,7 @@ class _NewsViewState extends State<NewsView> {
                                                   //         .size
                                                   //         .height /
                                                   //     2,
+                                                  width: MediaQuery.of(context).size.width,
                                                   height: 400,
                                                   decoration: BoxDecoration(
                                                     borderRadius:
@@ -111,6 +113,7 @@ class _NewsViewState extends State<NewsView> {
                                                     //             .size
                                                     //             .height /
                                                     //         2,
+                                                    width: MediaQuery.of(context).size.width,
                                                     height: 400,
                                                     child: Card(
                                                       margin:
@@ -140,6 +143,7 @@ class _NewsViewState extends State<NewsView> {
                                                     //             .size
                                                     //             .height /
                                                     //         2,
+                                                    width: MediaQuery.of(context).size.width,
                                                     height: 400,
                                                     decoration: BoxDecoration(
                                                         color: Colors.grey[300],
@@ -156,6 +160,7 @@ class _NewsViewState extends State<NewsView> {
                                                     //             .size
                                                     //             .height /
                                                     //         2,
+                                                    width: MediaQuery.of(context).size.width,
                                                     height: 400,
                                                     decoration: BoxDecoration(
                                                         color: Colors.grey[300],

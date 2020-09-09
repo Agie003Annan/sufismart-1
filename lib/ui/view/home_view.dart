@@ -830,300 +830,6 @@ class _HomeViewState extends State<HomeView> {
                                     ),
                                   ],
                                 ),
-                                // SizedBox(
-                                //   height: 10,
-                                // ),
-                                // Divider(),
-                                // SizedBox(
-                                //   height: 10,
-                                // ),
-                                // Row(
-                                //   children: <Widget>[
-                                //     Expanded(
-                                //       flex: 1,
-                                //       child: Text(
-                                //         "Promo",
-                                //         style: TextStyle(
-                                //             color: Color(0xff0d306b),
-                                //             fontSize: 16,
-                                //             fontWeight: FontWeight.bold),
-                                //       ),
-                                //     ),
-                                //     Expanded(
-                                //       flex: 1,
-                                //       child: Align(
-                                //         alignment: Alignment.topRight,
-                                //         child: InkWell(
-                                //           onTap: (){
-                                //              Navigator.push(
-                                //               context,
-                                //               MaterialPageRoute(
-                                //                 builder: (context) =>
-                                //                 PromoView(),
-                                //               ));
-                                //           },
-                                //           child: Container(
-                                //             width: 80,
-                                //             padding: EdgeInsets.all(5),
-                                //             decoration: BoxDecoration(
-                                //                 color: Color(0xff0d306b),
-                                //                 borderRadius: BorderRadius.all(
-                                //                     Radius.circular(20))),
-                                //             child: Text(
-                                //               "Show All",
-                                //               style: TextStyle(
-                                //                   color: Colors.white,
-                                //                   fontSize: 12),
-                                //               textAlign: TextAlign.center,
-                                //             ),
-                                //           ),
-                                //         ),
-                                //       ),
-                                //     )
-                                //   ],
-                                // ),
-                                // Container(
-                                //   padding: EdgeInsets.symmetric(vertical: 10.0),
-                                //   height: MediaQuery.of(context).size.height * 0.33,
-                                //   color: Colors.transparent,
-                                //   child: ListView.builder(
-                                //     shrinkWrap: true,
-                                //     itemCount: model.imgPromo.length,
-                                //     scrollDirection: Axis.horizontal,
-                                //     itemBuilder: (context, index) {
-                                //       return InkWell(
-                                //         onTap: () {
-                                //           // Navigator.push(
-                                //           //     context,
-                                //           //     MaterialPageRoute(
-                                //           //       builder: (context) =>
-                                //           //           ProductCategoryView(
-                                //           //         categoryId: model
-                                //           //             .category[index]
-                                //           //             .category_id
-                                //           //             .toString(),
-                                //           //         categoryName: model
-                                //           //             .category[index]
-                                //           //             .category_name,
-                                //           //       ),
-                                //           //     ));
-                                //         },
-                                //         child: Container(
-                                //           child: Column(
-                                //             children: <Widget>[
-                                //               model.imgPromo[index].imagepath == null ?
-                                //               Container(
-                                //                 width: MediaQuery.of(context).size.width * 0.6,
-                                //                 height: MediaQuery.of(context).size.height * 0.30,
-                                //                 decoration: BoxDecoration(
-                                //                   borderRadius: BorderRadius.all(Radius.circular(5)),
-                                //                   image: DecorationImage(
-                                //                       image: AssetImage("assets/images/image_default.jpg"), fit: BoxFit.cover),
-                                //                 ),
-                                //               ) : CachedNetworkImage(
-                                //                 imageUrl: model.imgPromo[index].imagepath,
-                                //                 imageBuilder: (context, imageProvider) => Container(
-                                //                     width: MediaQuery.of(context).size.width * 0.6,
-                                //                     height: MediaQuery.of(context).size.height * 0.30,
-                                //                     child: Card(
-                                //                       child: Container(
-                                //                         height: 60,
-                                //                         width: 30,
-                                //                         decoration: BoxDecoration(
-                                //                           borderRadius: BorderRadius.all(Radius.circular(5)),
-                                //                           image: DecorationImage(
-                                //                               image: imageProvider, fit: BoxFit.fill),
-                                //                         ),
-                                //                         // decoration: BoxDecoration(
-                                //                         //   color: Colors.green,
-                                //                         //   borderRadius: BorderRadius.all(
-                                //                         //     Radius.circular(5),
-                                //                         //   ),
-                                //                         //   image: DecorationImage(
-                                //                         //     image: NetworkImage(
-                                //                         //         "https://www.sfi.co.id/assets/images/news/Brosur-PRIME-CUSTOMER-Action-Figure.jpg"),
-                                //                         //     fit: BoxFit.fill,
-                                //                         //   ),
-                                //                         // ),
-                                //                       ),
-                                //                     ),
-                                //                 ),
-                                //                 placeholder: (context, url) => new SkeletonAnimation(
-                                //                     child: Container(
-                                //                      width: MediaQuery.of(context).size.width * 0.6,
-                                //                      height: MediaQuery.of(context).size.height * 0.30,
-                                //                       decoration: BoxDecoration(
-                                //                           color: Colors.grey[300],
-                                //                           borderRadius: BorderRadius.all(Radius.circular(50))
-                                //                       ),
-                                //                     )
-                                //                 ),
-                                //                 errorWidget: (context, url, error) => new Container(
-                                //                   width: MediaQuery.of(context).size.width * 0.6,
-                                //                   height: MediaQuery.of(context).size.height * 0.30,
-                                //                   decoration: BoxDecoration(
-                                //                       color: Colors.grey[300],
-                                //                       borderRadius: BorderRadius.all(Radius.circular(50))
-                                //                   ),
-                                //                   child: Center(
-                                //                     child: Icon(
-                                //                         Icons.error
-                                //                     ),
-                                //                   ),
-                                //                 ),
-                                //               ),
-                                //             ],
-                                //           ),
-                                //         ),
-                                //       );
-                                //     },
-                                //   ),
-                                // ),
-                                //sini
-                                // Container(
-                                //   padding: EdgeInsets.symmetric(vertical: 10.0),
-                                //   height:
-                                //       MediaQuery.of(context).size.height * 0.29,
-                                //   color: Colors.transparent,
-                                //   child: ListView(
-                                //     children: List.generate(5, (i) {
-                                //       return listImageNews(context);
-                                //     }),
-                                //     scrollDirection: Axis.horizontal,
-                                //   ),
-                                // ),
-                                // ListView.builder(
-                                //     shrinkWrap: true,
-                                //     itemCount: 5,
-                                //     controller: ScrollController(
-                                //         keepScrollOffset: false),
-                                //     itemBuilder: (BuildContext context,
-                                //             int index) =>
-                                //         Container(
-                                //           child: Column(
-                                //             mainAxisAlignment:
-                                //                 MainAxisAlignment.start,
-                                //             crossAxisAlignment:
-                                //                 CrossAxisAlignment.start,
-                                //             children: <Widget>[
-                                //               Row(
-                                //                 mainAxisAlignment:
-                                //                     MainAxisAlignment.start,
-                                //                 crossAxisAlignment:
-                                //                     CrossAxisAlignment.start,
-                                //                 children: <Widget>[
-                                //                   CachedNetworkImage(
-                                //                     imageUrl:
-                                //                         "https://www.sfi.co.id/assets/images/banner/1568254397.png",
-                                //                     imageBuilder: (context,
-                                //                             imageProvider) =>
-                                //                         Container(
-                                //                       height: 80,
-                                //                       width: 100,
-                                //                       decoration: BoxDecoration(
-                                //                         borderRadius:
-                                //                             BorderRadius.all(
-                                //                                 Radius.circular(
-                                //                                     10)),
-                                //                         image: DecorationImage(
-                                //                             image:
-                                //                                 imageProvider,
-                                //                             fit: BoxFit.cover),
-                                //                       ),
-                                //                     ),
-                                //                     placeholder: (context,
-                                //                             url) =>
-                                //                         new SkeletonAnimation(
-                                //                             child: Container(
-                                //                       height: 80,
-                                //                       width: 100,
-                                //                       margin:
-                                //                           EdgeInsets.all(10),
-                                //                       decoration: BoxDecoration(
-                                //                           color:
-                                //                               Colors.grey[300],
-                                //                           borderRadius:
-                                //                               BorderRadius.all(
-                                //                                   Radius
-                                //                                       .circular(
-                                //                                           10))),
-                                //                     )),
-                                //                     errorWidget:
-                                //                         (context, url, error) =>
-                                //                             new Container(
-                                //                       height: 80,
-                                //                       width: 100,
-                                //                       margin:
-                                //                           EdgeInsets.all(10),
-                                //                       decoration: BoxDecoration(
-                                //                           color:
-                                //                               Colors.grey[300],
-                                //                           borderRadius:
-                                //                               BorderRadius.all(
-                                //                                   Radius
-                                //                                       .circular(
-                                //                                           10))),
-                                //                       child: Center(
-                                //                         child:
-                                //                             Icon(Icons.error),
-                                //                       ),
-                                //                     ),
-                                //                   ),
-                                //                   SizedBox(
-                                //                     width: 10,
-                                //                   ),
-                                //                   Container(
-                                //                     width:
-                                //                         MediaQuery.of(context)
-                                //                                 .size
-                                //                                 .width -
-                                //                             160,
-                                //                     child: Column(
-                                //                       mainAxisAlignment:
-                                //                           MainAxisAlignment
-                                //                               .start,
-                                //                       crossAxisAlignment:
-                                //                           CrossAxisAlignment
-                                //                               .start,
-                                //                       children: <Widget>[
-                                //                         Text(
-                                //                           "Lorem Ipsum",
-                                //                           style: TextStyle(
-                                //                               fontSize: 14,
-                                //                               color: Color(
-                                //                                   0xff0d306b),
-                                //                               fontWeight:
-                                //                                   FontWeight
-                                //                                       .bold),
-                                //                         ),
-                                //                         SizedBox(
-                                //                           height: 10,
-                                //                         ),
-                                //                         Text(
-                                //                           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                                //                           style: TextStyle(
-                                //                               fontSize: 12,
-                                //                               color:
-                                //                                   Colors.grey),
-                                //                           maxLines: 3,
-                                //                           overflow: TextOverflow
-                                //                               .ellipsis,
-                                //                         )
-                                //                       ],
-                                //                     ),
-                                //                   )
-                                //                 ],
-                                //               ),
-                                //               SizedBox(
-                                //                 height: 5,
-                                //               ),
-                                //               Divider(),
-                                //               SizedBox(
-                                //                 height: 5,
-                                //               )
-                                //             ],
-                                //           ),
-                                //         ))
                               ],
                             ),
                           ),
@@ -1185,8 +891,7 @@ class _HomeViewState extends State<HomeView> {
                                 ),
                                 Container(
                                   padding: EdgeInsets.symmetric(vertical: 10.0),
-                                  height:
-                                      MediaQuery.of(context).size.height / 2.7,
+                                  height: MediaQuery.of(context).size.height / 2.4,
                                   color: Colors.transparent,
                                   child: ListView.builder(
                                     shrinkWrap: true,
@@ -1203,18 +908,19 @@ class _HomeViewState extends State<HomeView> {
                                                         detailNewsId: model
                                                             .imgNews[index]
                                                             .newsid,
-                                                        detailTitle: model
-                                                            .imgNews[index]
-                                                            .title,
-                                                        detailDate: model
-                                                            .imgNews[index]
-                                                            .newsdate,
-                                                        detailDesc: model
-                                                            .imgNews[index]
-                                                            .desc,
-                                                        detailImg: model
-                                                            .imgNews[index]
-                                                            .imagepath),
+                                                        // detailTitle: model
+                                                        //     .imgNews[index]
+                                                        //     .title,
+                                                        // detailDate: model
+                                                        //     .imgNews[index]
+                                                        //     .newsdate,
+                                                        // detailDesc: model
+                                                        //     .imgNews[index]
+                                                        //     .desc,
+                                                        // detailImg: model
+                                                        //     .imgNews[index]
+                                                        //     .imagepath
+                                                            ),
                                               ));
                                           // Navigator.push(
                                           //     context,

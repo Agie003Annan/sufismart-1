@@ -85,7 +85,7 @@ class _ProfilViewState extends State<ProfilView> {
                 automaticallyImplyLeading: false,
               ),
               body: islogin == ""
-                  ? NologinView()
+                  ? LoginView()
                   : WebView(
                       initialUrl:
                           "https://sufismart.sfi.co.id/sufismart/api/profil.php?EMAIL=${islogin}",

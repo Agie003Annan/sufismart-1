@@ -29,6 +29,12 @@ class _WebView2State extends State<WebView2>{
             withJavascript: true,
             withLocalStorage: true,
             withZoom: false,
+            initialChild: Container(
+              color: Colors.white,
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
             // javascriptChannels: <JavascriptChannel>[
             //   _alertJavascriptChannel(context),
             // ].toSet()

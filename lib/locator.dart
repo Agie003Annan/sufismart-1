@@ -1,4 +1,5 @@
 import 'package:sufismart/ViewModel/AboutViewModel.dart';
+import 'package:sufismart/ViewModel/AccountViewModel.dart';
 import 'package:sufismart/ViewModel/ContactViewModel.dart';
 import 'package:sufismart/ViewModel/DetailNews_viewmodel.dart';
 import 'package:sufismart/ViewModel/HomeViewModel.dart';
@@ -25,6 +26,7 @@ void setupLocator() {
   locator.registerFactory(() => ContactViewModel());
   locator.registerFactory(() => BranchViewModel());
   locator.registerFactory(() => AboutViewModel());
+  locator.registerFactory(() => AccountViewModel());
   // locator.registerFactory(() => RegisterViewModel());
   // locator.registerFactory(() => ForgotPasswordViewModel());
   // locator.registerFactory(() => OtpViewModel());

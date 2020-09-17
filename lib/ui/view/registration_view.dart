@@ -429,16 +429,44 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                                 ),
                                 Visibility(
                                   visible: _error == "" ? false : true,
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(
-                                        _error,
-                                        style: TextStyle(color: Colors.red),
-                                      ),
-                                    ],
-                                  ),
+                                  child: Container(
+                                      padding: EdgeInsets.all(20),
+                                      margin: EdgeInsets.only(bottom: 20),
+                                      decoration: BoxDecoration(
+                                          color: Colors.red[200],
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10))),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Row(
+                                            children: <Widget>[
+                                              // Icon(
+                                              //   FontAwesomeIcons.exclamationTriangle,
+                                              //   color: Colors.white,
+                                              //   size: 12,
+                                              // ),
+                                              // SizedBox(
+                                              //   width: 10,
+                                              // ),
+                                              Text(
+                                                "Error :",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(_error,
+                                              style: TextStyle(
+                                                  color: Colors.white)),
+                                        ],
+                                      )),
                                 ),
                                 SizedBox(
                                   height: 20,

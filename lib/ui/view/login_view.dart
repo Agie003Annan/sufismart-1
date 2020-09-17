@@ -9,6 +9,7 @@ import 'package:somedialog/somedialog.dart';
 import 'package:sufismart/ViewModel/LoginViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
 import 'package:sufismart/ui/componen/dialog.dart';
+import 'package:sufismart/ui/view/account_view.dart';
 import 'package:sufismart/ui/view/base_view.dart';
 import 'package:sufismart/ui/view/forgotpassword_view.dart';
 import 'package:sufismart/ui/view/indexpage_view.dart';
@@ -122,7 +123,7 @@ class _LoginViewState extends State<LoginView> {
                 //   automaticallyImplyLeading: false,
                 // ),
                 body: islogin != ""
-                    ? ProfilView()//profilView(context, islogin)
+                    ? AccountView() //profilView(context, islogin)
                     : ModalProgressHUD(
                         inAsyncCall:
                             model.state == ViewState.Busy ?? ViewState.Idle,
@@ -354,20 +355,67 @@ class _LoginViewState extends State<LoginView> {
                                           SizedBox(
                                             height: 10,
                                           ),
+                                          // Visibility(
+                                          //   visible:
+                                          //       _error == "" ? false : true,
+                                          //   child: Row(
+                                          //     crossAxisAlignment:
+                                          //         CrossAxisAlignment.start,
+                                          //     children: <Widget>[
+                                          //       Text(
+                                          //         _error,
+                                          //         style: TextStyle(
+                                          //             color: Colors.red),
+                                          //       ),
+                                          //     ],
+                                          //   ),
+                                          // ),
                                           Visibility(
                                             visible:
                                                 _error == "" ? false : true,
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Text(
-                                                  _error,
-                                                  style: TextStyle(
-                                                      color: Colors.red),
-                                                ),
-                                              ],
-                                            ),
+                                            child: Container(
+                                                padding: EdgeInsets.all(20),
+                                                margin:
+                                                    EdgeInsets.only(bottom: 20),
+                                                decoration: BoxDecoration(
+                                                    color: Colors.red[200],
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                10))),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: <Widget>[
+                                                    Row(
+                                                      children: <Widget>[
+                                                        // Icon(
+                                                        //   FontAwesomeIcons.exclamationTriangle,
+                                                        //   color: Colors.white,
+                                                        //   size: 12,
+                                                        // ),
+                                                        // SizedBox(
+                                                        //   width: 10,
+                                                        // ),
+                                                        Text(
+                                                          "Error :",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                        )
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height: 10,
+                                                    ),
+                                                    Text(_error,
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.white)),
+                                                  ],
+                                                )),
                                           ),
                                           SizedBox(
                                             height: 20,
@@ -379,7 +427,10 @@ class _LoginViewState extends State<LoginView> {
                                                       .checkConnectivity());
                                               if (connectivityResult ==
                                                   ConnectivityResult.none) {
-                                                DialogForm.dialogForm(context,'No Internet',"You're not connected to a network");
+                                                DialogForm.dialogForm(
+                                                    context,
+                                                    'No Internet',
+                                                    "You're not connected to a network");
                                               } else {
                                                 if (_formKey.currentState
                                                     .validate()) {
@@ -545,11 +596,11 @@ class _LoginViewState extends State<LoginView> {
             );
           }
         });
-  }  
+  }
 }
 
 // Widget dialog(BuildContext context, String title, String text) {
-  
+
 // }
 Widget profilView(BuildContext context, String url) {
   return Scaffold(
@@ -603,9 +654,7 @@ Widget profilView(BuildContext context, String url) {
       backgroundColor: Hexcolor("#0d306b"),
       automaticallyImplyLeading: false,
     ),
-    
-    body: WebView(      
-      
+    body: WebView(
       initialUrl:
           "https://sufismart.sfi.co.id/sufismart/api/profil.php?EMAIL=${url}",
       javascriptMode: JavascriptMode.unrestricted,
@@ -631,8 +680,7 @@ Widget profilView(BuildContext context, String url) {
       // },
       // onPageFinished: (String url) {
       //   print("Finish url $url");
-      // },      
+      // },
     ),
-    
   );
 }

@@ -1,6 +1,8 @@
 import 'package:custom_navigator/custom_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:sufismart/ViewModel/AccountViewModel.dart';
+import 'package:sufismart/ui/view/account_view.dart';
 import 'package:sufismart/ui/view/profil_view.dart';
 
 import 'about_view.dart';
@@ -28,7 +30,7 @@ class _IndexViewState extends State<IndexView> {
 
     GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
     final _listPage = <Widget>[
-    HomeView(), AboutView(), ContactView(), LoginView()
+    HomeView(), AboutView(), ContactView(), AccountView()
   ];
 
   @override

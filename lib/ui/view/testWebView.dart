@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:url_launcher/url_launcher.dart';
 //import 'package:sufismart/ui/view/WebView.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+//import 'package:webview_flutter/webview_flutter.dart';
 //import 'package:webview_flutter/webview_flutter.dart' as web;
 
 class TestWebView extends StatefulWidget {
@@ -13,13 +16,33 @@ class TestWebView extends StatefulWidget {
 class _TestWebViewState extends State<TestWebView> {
   //WebViewController _controller ;
   static Future<void> openbrowser(String url) async {
-    //final url = 'http://maps.google.com/maps?q=loc:${lat},${lon}(${tag})';    
+    //final url = 'http://maps.google.com/maps?q=loc:${lat},${lon}(${tag})';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
       throw 'Could not launch $url';
     }
   }
+
+  // void main() async {
+  //   final flutterWebviewPlugin = FlutterWebviewPlugin();
+  //   flutterWebviewPlugin.onStateChanged.listen((state) async {
+  //     if (state.type == WebViewState.finishLoad) {
+  //       String script =
+  //           'window.addEventListener("message", receiveMessage, false);' +
+  //               'function receiveMessage(event) { window.postMessage(event.data);}';
+  //       flutterWebviewPlugin.evalJavascript(script);
+  //     }
+  //   });
+  // }
+
+  // void initState() {
+  //   //main();
+  //   super.initState();
+  // }
+
+  // final Completer<WebViewController> _controller =
+  //     Completer<WebViewController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,35 +56,59 @@ class _TestWebViewState extends State<TestWebView> {
         backgroundColor: Hexcolor("#0d306b"),
         automaticallyImplyLeading: false,
       ),
-      body: SafeArea(
-        child: WebView(
-          initialUrl: "https://sufismart.sfi.co.id/sufismart/api/layanan_2.php",
-          javascriptMode: JavascriptMode.unrestricted,
-          onWebViewCreated: (WebViewController webViewController) {},
-          javascriptChannels: <JavascriptChannel>[
-            JavascriptChannel(
-                name: 'Toast_funct',
-                onMessageReceived: (JavascriptMessage message) {
-                  // if(message.message == "Testing Inject"){
-                    
-                  // }
-                  openbrowser(message.message);
-                  print('message.message: ${message.message}');
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) => WebView2(linkurl:message.message),
-                  //     )
-                  // );
-                }),
-          ].toSet(),
-          // onPageStarted: (String url) {
-          //   print("start url $url");
-          // },
-          // onPageFinished: (String url) {
-          //   print("Finish url $url");
-          // },
-        ),
+      // body: SafeArea(
+      //   child: WebView(
+      //     initialUrl: "https://sufismart.sfi.co.id/sufismart/api/layanan_2.php",
+      //     javascriptMode: JavascriptMode.unrestricted,
+      //     onWebViewCreated: (WebViewController webViewController) {
+      //       _controller.complete(webViewController);
+      //     },
+      //     javascriptChannels: <JavascriptChannel>[
+      //       JavascriptChannel(
+      //           name: 'Toast_funct',
+      //           onMessageReceived: (JavascriptMessage message) {
+      //             // if(message.message == "Testing Inject"){
+
+      //             // }
+      //             openbrowser(message.message);
+      //             print('message.message: ${message.message}');
+      //             // Navigator.push(
+      //             //     context,
+      //             //     MaterialPageRoute(
+      //             //       builder: (context) => WebView2(linkurl:message.message),
+      //             //     )
+      //             // );
+      //           }),
+      //     ].toSet(),
+
+      //   ),
+      // ),
+      body: Container(
+        child: WebviewScaffold(
+            url: "https://sufismart.sfi.co.id/sufismart/api/layanan_2.php",
+            withJavascript: true,
+            withLocalStorage: true,
+            withZoom: false,
+            initialChild: Container(
+              color: Colors.white,
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
+            javascriptChannels: <JavascriptChannel>[
+              JavascriptChannel(
+                  name: 'Print',
+                  onMessageReceived: (JavascriptMessage message) {
+                    openbrowser(message.message);
+                    print(message.message);
+                  }),
+            ].toSet()
+
+            // javascriptMode: JavascriptMode.unrestricted,
+            // onWebViewCreated: (WebViewController webViewController) {
+            //   _controller.complete(webViewController);
+            // },
+            ),
       ),
     );
     //return WebView(linkurl: null);

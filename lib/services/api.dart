@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +18,7 @@ import 'package:sufismart/model/pekerjaan_model.dart';
 import 'package:sufismart/model/product_model.dart';
 import 'package:sufismart/model/productlist_model.dart';
 import 'package:sufismart/model/producttype_model.dart';
+import 'package:sufismart/model/profile_model.dart';
 import 'package:sufismart/model/promo_model.dart';
 
 class Api extends ChangeNotifier {
@@ -159,14 +162,82 @@ class Api extends ChangeNotifier {
     }
   }
 
+  //Account View
+
+  Future<DataProfile> getDetailUser(BuildContext context, String email) async {
+    Map<String, dynamic> data = {"email": email};
+
+    try {
+      Response response;
+      Dio dio = new Dio();
+      FormData formData = FormData.fromMap(data);
+      var headers = {
+        "Content-Type": "multipart/form-data",
+      };
+      response = await dio
+          .post(endpoint + "getDetailUser",
+              data: formData,
+              options: Options(
+                headers: headers,
+                // followRedirects: false,
+              ))
+          .timeout(const Duration(seconds: _timeout));
+      //print(response.data['data']);
+      if (response.statusCode == 200) {
+        notifyListeners();
+        //Iterable data2 = response.data['data'];
+        final Map parsed = response.data['data'];
+        final dataProfil = DataProfile.fromJson(parsed);
+        //print("dataprofil $dataProfil");
+        return dataProfil;
+      } else {
+        print(response.statusCode);
+      }
+    } on SocketException catch (e) {
+      print(e);
+      //errorPage("no_internet", "getProfile", e.toString(), context);
+    } on TimeoutException catch (e) {
+      print(e);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  // Future<DataProfile> getDetailUser(BuildContext context, String email) async {
+  //   // String url = endpoint + 'getDetailNews/' + newsid;
+  //   // print('$url');
+  //   try {
+  //     final response =
+  //         await client.get(endpoint + 'getDetailUser/' + email, headers: {
+  //       "Content-Type": "application/json",
+  //       "Accept": "application/json",
+  //     }).timeout(const Duration(seconds: _timeout));
+  //     if (response.statusCode == 200) {
+  //       notifyListeners();
+  //       final Map parsed = json.decode(response.body)['data'];
+  //       final dataProfil = DataProfile.fromJson(parsed);
+  //       return dataProfil;
+  //     } else {
+  //       print(response.statusCode);
+  //     }
+  //   } on SocketException catch (e) {
+  //     print(e);
+  //     //errorPage("no_internet", "getProfile", e.toString(), context);
+  //   } on TimeoutException catch (e) {
+  //     print(e);
+  //     //errorPage("timeout", "getProfile", e.toString(), context);
+  //   } catch (e) {
+  //     print(e);
+  //     //errorPage("error", "getAddressDetail", e.toString(), context);
+  //   }
+  // }
+
   //detail Aplikasi
-  Future<DataAplikasi> getAplikasi(
-      BuildContext context) async {
+  Future<DataAplikasi> getAplikasi(BuildContext context) async {
     String url = endpoint + 'getAplikasi';
     print('$url');
     try {
-      final response =
-          await client.get(url, headers: {
+      final response = await client.get(url, headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
       }).timeout(const Duration(seconds: _timeout));
@@ -183,8 +254,6 @@ class Api extends ChangeNotifier {
       //errorPage("error", "getAddressDetail", e.toString(), context);
     }
   }
-
-   
 
   //product
   Future<List<ProductModel>> getProduct(BuildContext context) async {
@@ -430,27 +499,26 @@ class Api extends ChangeNotifier {
 
   Future<List<ModelPekerjaan>> getListPekerjaan(BuildContext context) async {
     try {
-      final response = await client.get(endpoint+'getPekerjaan',
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-          }
-      ).timeout(const Duration (seconds: _timeout));
+      final response = await client.get(endpoint + 'getPekerjaan', headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      }).timeout(const Duration(seconds: _timeout));
       if (response.statusCode == 200) {
         notifyListeners();
         Iterable data = json.decode(response.body)['data'];
-        List<ModelPekerjaan> listData = data.map((map) => ModelPekerjaan.fromJson(map)).toList();
+        List<ModelPekerjaan> listData =
+            data.map((map) => ModelPekerjaan.fromJson(map)).toList();
         //print(json.decode(response.body)['data']);
-        return listData;        
+        return listData;
       } else {
         print(response.statusCode);
         //errorPage(response.statusCode.toString(), "getProvinsi", response.statusCode.toString(), context);
       }
-    // }on SocketException catch(e){
-    //   errorPage("no_internet", "getProvinsi", e.toString(), context);
-    // }on TimeoutException catch (e) {
-    //   errorPage("timeout", "getProvinsi", e.toString(), context);
-    }catch(e) {
+      // }on SocketException catch(e){
+      //   errorPage("no_internet", "getProvinsi", e.toString(), context);
+      // }on TimeoutException catch (e) {
+      //   errorPage("timeout", "getProvinsi", e.toString(), context);
+    } catch (e) {
       print(e);
       //errorPage("error", "getProvinsi", e.toString(), context);
     }
@@ -459,27 +527,26 @@ class Api extends ChangeNotifier {
   //branch
   Future<List<KotaModel>> getKota(BuildContext context) async {
     try {
-      final response = await client.get(endpoint+'getData_branch',
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-          }
-      ).timeout(const Duration (seconds: _timeout));
+      final response = await client.get(endpoint + 'getData_branch', headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      }).timeout(const Duration(seconds: _timeout));
       if (response.statusCode == 200) {
         notifyListeners();
         Iterable data = json.decode(response.body)['data'];
-        List<KotaModel> listData = data.map((map) => KotaModel.fromJson(map)).toList();
+        List<KotaModel> listData =
+            data.map((map) => KotaModel.fromJson(map)).toList();
         //print(json.decode(response.body)['data']);
-        return listData;        
+        return listData;
       } else {
         print(response.statusCode);
         //errorPage(response.statusCode.toString(), "getProvinsi", response.statusCode.toString(), context);
       }
-    // }on SocketException catch(e){
-    //   errorPage("no_internet", "getProvinsi", e.toString(), context);
-    // }on TimeoutException catch (e) {
-    //   errorPage("timeout", "getProvinsi", e.toString(), context);
-    }catch(e) {
+      // }on SocketException catch(e){
+      //   errorPage("no_internet", "getProvinsi", e.toString(), context);
+      // }on TimeoutException catch (e) {
+      //   errorPage("timeout", "getProvinsi", e.toString(), context);
+    } catch (e) {
       print(e);
       //errorPage("error", "getProvinsi", e.toString(), context);
     }
@@ -499,7 +566,7 @@ class Api extends ChangeNotifier {
         List<KotaDetailModel> listdata =
             data.map((map) => KotaDetailModel.fromJson(map)).toList();
         print(json.decode(response.body)['data']);
-        return listdata;        
+        return listdata;
       } else {
         print(response.statusCode);
       }
@@ -509,9 +576,9 @@ class Api extends ChangeNotifier {
   }
 
   //forgot password
-  Future<bool> insertForgotPassword(String email,BuildContext context) async {
-    Map<String, dynamic> data = {      
-      "email": email,      
+  Future<bool> insertForgotPassword(String email, BuildContext context) async {
+    Map<String, dynamic> data = {
+      "email": email,
     };
     try {
       Response response;
@@ -530,7 +597,110 @@ class Api extends ChangeNotifier {
           .timeout(const Duration(seconds: _timeout));
       if (response.statusCode == 200) {
         if (response.data['isSuccess'] == true) {
-          SharedPreferences prefs = await SharedPreferences.getInstance();          
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('message_password', response.data['message']);
+          print(response.data['message']);
+          return true;
+        } else {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('message_password', response.data['message']);
+          print(response.data['message']);
+          return false;
+        }
+      } else {
+        print(response.statusCode);
+        return false;
+      }
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  //send profile
+  Future<bool> updateProfil(
+      String email,
+      String tgllahir,
+      String nohp,
+      String nokon1,
+      String nokon2,
+      String nokon3,
+      String noKtp,
+      BuildContext context) async {
+    Map<String, dynamic> data = {
+      "email": email,
+      "tanggal": tgllahir,
+      "nohp": nohp,
+      "nokon1": nokon1,
+      "nokon2": nokon2,
+      "nokon3": nokon3,
+      "noktp": noKtp
+    };
+
+    try {
+      Response response;
+      Dio dio = new Dio();
+      FormData formData = FormData.fromMap(data);
+      var headers = {
+        "Content-Type": "multipart/form-data",
+      };
+      response = await dio
+          .post(endpoint + "update_profil",
+              data: formData,
+              options: Options(
+                headers: headers,
+                // followRedirects: false,
+              ))
+          .timeout(const Duration(seconds: _timeout));
+      if (response.statusCode == 200) {
+        if (response.data['isSuccess'] == true) {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('message_update', response.data['message']);
+          print(response.data['message']);
+          return true;
+        } else {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('message_update', response.data['message']);
+          print(response.data['message']);
+          return false;
+        }
+      } else {
+        print(response.statusCode);
+        return false;
+      }
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  //send profile password
+  Future<bool> updatePassword(String email, String passlama, String passbaru,
+      BuildContext context) async {
+    Map<String, dynamic> data = {
+      "email": email,
+      "password_lama": passlama,
+      "password_baru": passbaru      
+    };
+
+    try {
+      Response response;
+      Dio dio = new Dio();
+      FormData formData = FormData.fromMap(data);
+      var headers = {
+        "Content-Type": "multipart/form-data",
+      };
+      response = await dio
+          .post(endpoint + "update_password",
+              data: formData,
+              options: Options(
+                headers: headers,
+                // followRedirects: false,
+              ))
+          .timeout(const Duration(seconds: _timeout));
+      if (response.statusCode == 200) {
+        if (response.data['isSuccess'] == true) {
+          SharedPreferences prefs = await SharedPreferences.getInstance();
           prefs.setString('message_password', response.data['message']);
           print(response.data['message']);
           return true;

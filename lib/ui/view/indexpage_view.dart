@@ -1,14 +1,14 @@
-import 'package:custom_navigator/custom_scaffold.dart';
+//import 'package:custom_navigator/custom_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:sufismart/ViewModel/AccountViewModel.dart';
+//import 'package:sufismart/ViewModel/AccountViewModel.dart';
 import 'package:sufismart/ui/view/account_view.dart';
-import 'package:sufismart/ui/view/profil_view.dart';
+//import 'package:sufismart/ui/view/profil_view.dart';
 
 import 'about_view.dart';
 import 'contact_view.dart';
 import 'home_view.dart';
-import 'login_view.dart';
+//import 'login_view.dart';
 
 class IndexView extends StatefulWidget {
   IndexView({Key key, this.title}) : super(key: key);

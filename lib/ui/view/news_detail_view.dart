@@ -1,15 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 //import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:skeleton_text/skeleton_text.dart';
-import 'package:sufismart/ViewModel/DetailNews_viewmodel.dart';
+//import 'package:sufismart/ViewModel/DetailNews_viewmodel.dart';
 import 'package:sufismart/ViewModel/NewsViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
-import 'package:sufismart/model/news_detail_model.dart';
+//import 'package:sufismart/model/news_detail_model.dart';
 import 'package:sufismart/ui/view/base_view.dart';
+import 'package:sufismart/ui/view/indexpage_view.dart';
 //import 'package:sufismart/ViewModel/DetailNews_viewmodel.dart';
 //import 'package:sufismart/enums/viewstate.dart';
 //import 'package:sufismart/ui/view/base_view.dart';
@@ -47,7 +49,24 @@ class _NewsDetailViewState extends State<NewsDetail> {
       builder: (context, model, child) => Scaffold(
         backgroundColor: Color(0XFFEEEEEE),
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: true,
+          actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => IndexView()),
+                ModalRoute.withName('/'),
+              );
+            },
+            icon: new Icon(
+              FontAwesomeIcons.home,
+              size: 20,
+              color: Colors.white,
+            ),
+          )
+        ],
           title: //Text("Suzuki Finance Indonesia"),
               Image.asset(
             'assets/images/logo_sfi_white.png',

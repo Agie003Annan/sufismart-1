@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_money_formatter/flutter_money_formatter.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:skeleton_text/skeleton_text.dart';
 import 'package:sufismart/ui/view/WebView.dart';
+import 'package:sufismart/ui/view/indexpage_view.dart';
 
 class ProductDetailView extends StatefulWidget {
   String productDCode,
@@ -48,7 +50,24 @@ class _ProductDetailViewState extends State<ProductDetailView> {
           height: 30,
         ),
         backgroundColor: Hexcolor("#0d306b"),
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => IndexView()),
+                ModalRoute.withName('/'),
+              );
+            },
+            icon: new Icon(
+              FontAwesomeIcons.home,
+              size: 20,
+              color: Colors.white,
+            ),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -267,7 +286,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                   ],
                 ),
               ),
-              InkWell(
+              GestureDetector(
                 onTap: () async {
                   Navigator.push(
                       context,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sufismart/locator.dart';
 import 'package:sufismart/ui/view/splashscreen_view.dart';
 
 void main() {
+  SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
   setupLocator();
   runApp(MyApp());
 }
@@ -10,6 +12,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     return MaterialApp(
       title: 'SUFI SMART',
       theme: ThemeData(

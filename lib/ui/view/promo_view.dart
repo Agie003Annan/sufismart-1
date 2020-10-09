@@ -55,7 +55,7 @@ class _PromoViewState extends State<PromoView> {
                                 itemCount: model.promo.length,
                                 physics: NeverScrollableScrollPhysics(),
                                 itemBuilder: (context, index) {
-                                  return InkWell(
+                                  return GestureDetector(
                                     onTap: () {
                                       //tampilin toast
                                       // Scaffold.of(context).showSnackBar(SnackBar(

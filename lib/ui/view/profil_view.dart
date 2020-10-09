@@ -10,12 +10,13 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:somedialog/somedialog.dart';
+//import 'package:somedialog/somedialog.dart';
 import 'package:sufismart/ViewModel/AccountViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
 import 'package:sufismart/ui/componen/dialog.dart';
 import 'package:sufismart/ui/view/base_view.dart';
-import 'package:sufismart/ui/view/success_view.dart';
+import 'package:sufismart/ui/view/indexpage_view.dart';
+//import 'package:sufismart/ui/view/success_view.dart';
 import 'package:sufismart/ui/widget/dialog_success.dart';
 // import 'package:sufismart/ui/view/nologin_view.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
@@ -98,7 +99,7 @@ class _ProfilViewState extends State<ProfilView> {
 
   @override
   Widget build(BuildContext context) {
-    final format = DateFormat("yyyy-MM-dd");
+    final format = DateFormat("yyyy/MM/dd");
     _emailController.text = widget.email;
     _namaController.text = widget.nama;
     _phoneController.text = widget.telp;
@@ -112,21 +113,40 @@ class _ProfilViewState extends State<ProfilView> {
     return BaseView<AccountViewModel>(
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-            title: Text("Profil"),
-            //     Image.asset(
-            //   'assets/images/logo_sfi_white.png',
-            //   fit: BoxFit.cover,
-            //   height: 30,
-            // ),
-            backgroundColor: Hexcolor("#0d306b"),
-            automaticallyImplyLeading: false,
-            leading: IconButton(
+          title: Text("Profil"),
+          //     Image.asset(
+          //   'assets/images/logo_sfi_white.png',
+          //   fit: BoxFit.cover,
+          //   height: 30,
+          // ),
+          centerTitle: true,
+          backgroundColor: Hexcolor("#0d306b"),
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: new Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => IndexView()),
+                  ModalRoute.withName('/'),
+                );
+              },
               icon: new Icon(
-                Icons.arrow_back,
+                FontAwesomeIcons.home,
+                size: 20,
                 color: Colors.white,
               ),
-              onPressed: () => Navigator.of(context).pop(),
-            )),
+            )
+          ],
+        ),
         body: ModalProgressHUD(
             inAsyncCall: model.state == ViewState.Busy ?? ViewState.Idle,
             child: SingleChildScrollView(

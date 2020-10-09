@@ -1,8 +1,6 @@
-import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -124,7 +122,7 @@ class _AccountViewState extends State<AccountView> {
                                                   children: <Widget>[
                                                     Column(
                                                       children: <Widget>[
-                                                        InkWell(
+                                                        GestureDetector(
                                                           onTap: () {},
                                                           child: ClipOval(
                                                             child:
@@ -220,7 +218,7 @@ class _AccountViewState extends State<AccountView> {
                                           SizedBox(
                                             height: 16,
                                           ),
-                                          InkWell(
+                                          GestureDetector(
                                             onTap: () {
                                               Navigator.push(
                                                 context,
@@ -247,7 +245,7 @@ class _AccountViewState extends State<AccountView> {
                                             width: MediaQuery.of(context)
                                                 .size
                                                 .width,
-                                            child: InkWell(
+                                            child: GestureDetector(
                                               onTap: () {
                                                 Navigator.push(
                                                     context,
@@ -331,7 +329,7 @@ class _AccountViewState extends State<AccountView> {
                                                                         "Edit Profil",
                                                                         style: TextStyle(
                                                                             fontSize:
-                                                                                12,
+                                                                                13,
                                                                             fontWeight:
                                                                                 FontWeight.bold,
                                                                             color: Colors.grey)),
@@ -471,7 +469,7 @@ class _AccountViewState extends State<AccountView> {
                                             width: MediaQuery.of(context)
                                                 .size
                                                 .width,
-                                            child: InkWell(
+                                            child: GestureDetector(
                                               onTap: () async {
                                                 SomeDialog(
                                                     context: context,
@@ -554,7 +552,7 @@ class _AccountViewState extends State<AccountView> {
                                                                         "Keluar",
                                                                         style: TextStyle(
                                                                             fontSize:
-                                                                                12,
+                                                                                13,
                                                                             fontWeight:
                                                                                 FontWeight.bold,
                                                                             color: Colors.grey)),
@@ -606,7 +604,7 @@ class _AccountViewState extends State<AccountView> {
       Widget actionType) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      child: InkWell(
+      child: GestureDetector(
         onTap: () {
           Navigator.push(
             context,
@@ -650,7 +648,7 @@ class _AccountViewState extends State<AccountView> {
                             Container(
                               child: Text(title,
                                   style: TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 13,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.grey)),
                             ),

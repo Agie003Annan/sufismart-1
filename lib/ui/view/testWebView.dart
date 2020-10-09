@@ -2,8 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'indexpage_view.dart';
 //import 'package:sufismart/ui/view/WebView.dart';
 //import 'package:webview_flutter/webview_flutter.dart';
 //import 'package:webview_flutter/webview_flutter.dart' as web;
@@ -54,7 +57,24 @@ class _TestWebViewState extends State<TestWebView> {
           height: 30,
         ),
         backgroundColor: Hexcolor("#0d306b"),
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
+         actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => IndexView()),
+                ModalRoute.withName('/'),
+              );
+            },
+            icon: new Icon(
+              FontAwesomeIcons.home,
+              size: 20,
+              color: Colors.white,
+            ),
+          )
+        ],
       ),
       // body: SafeArea(
       //   child: WebView(

@@ -13,11 +13,11 @@ import 'package:sufismart/ui/view/account_view.dart';
 import 'package:sufismart/ui/view/base_view.dart';
 import 'package:sufismart/ui/view/forgotpassword_view.dart';
 import 'package:sufismart/ui/view/indexpage_view.dart';
-import 'package:sufismart/ui/view/profil_view.dart';
+//import 'package:sufismart/ui/view/profil_view.dart';
 //import 'package:sufismart/ui/view/profil_view.dart';
 import 'package:sufismart/ui/view/registration_view.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:webview_flutter/webview_flutter.dart' as web;
+//import 'package:webview_flutter/webview_flutter.dart' as web;
 
 class LoginView extends StatefulWidget {
   @override

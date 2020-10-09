@@ -7,6 +7,7 @@ import 'package:skeleton_text/skeleton_text.dart';
 import 'package:sufismart/ViewModel/ProductViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
 import 'package:sufismart/ui/view/base_view.dart';
+import 'package:sufismart/ui/view/indexpage_view.dart';
 import 'package:sufismart/ui/view/productList_view.dart';
 
 class ProductCategory extends StatefulWidget {
@@ -29,7 +30,24 @@ class _ProductCategoryViewState extends State<ProductCategory> {
               height: 30,
             ),
             backgroundColor: Hexcolor("#0d306b"),
-            automaticallyImplyLeading: false,
+            automaticallyImplyLeading: true,
+            actions: <Widget>[
+              IconButton(
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => IndexView()),
+                    ModalRoute.withName('/'),
+                  );
+                },
+                icon: new Icon(
+                  FontAwesomeIcons.home,
+                  size: 20,
+                  color: Colors.white,
+                ),
+              )
+            ],
           ),
           body: ModalProgressHUD(
               inAsyncCall: model.state == ViewState.Busy ?? ViewState.Idle,
@@ -52,7 +70,7 @@ class _ProductCategoryViewState extends State<ProductCategory> {
                                   itemCount: model.productCategory.length,
                                   physics: NeverScrollableScrollPhysics(),
                                   itemBuilder: (context, index) {
-                                    return InkWell(
+                                    return GestureDetector(
                                       onTap: () {
                                         //tampilin toast
                                         // Scaffold.of(context).showSnackBar(SnackBar(
@@ -192,7 +210,7 @@ class _ProductCategoryViewState extends State<ProductCategory> {
                                                             FontAwesomeIcons
                                                                 .chevronCircleRight,
                                                             color: Hexcolor(
-                                                                  "#0d306b")),
+                                                                "#0d306b")),
                                                       ],
                                                     ),
                                                   ),

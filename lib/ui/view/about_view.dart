@@ -144,7 +144,7 @@ class _AboutViewState extends State<AboutView> {
                     child: Column(
                       children: <Widget>[
                         SizedBox(
-                          height: 50,
+                          height: 15,
                         ),
                         Image.asset(
                           'assets/images/sufismart.png',
@@ -177,7 +177,7 @@ class _AboutViewState extends State<AboutView> {
                         ),
                         Divider(),
                         SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width,

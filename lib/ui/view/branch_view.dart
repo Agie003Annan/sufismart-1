@@ -64,7 +64,7 @@ class _BrancViewState extends State<BranchView> {
             height: 30,
           ),
           backgroundColor: Hexcolor("#0d306b"),
-          automaticallyImplyLeading: false,
+          
         ),
         body: ModalProgressHUD(
           inAsyncCall: model.state == ViewState.Busy ?? ViewState.Idle,
@@ -133,7 +133,7 @@ class _BrancViewState extends State<BranchView> {
                             Expanded(
                               flex: 1,
                               child: Container(
-                                child: InkWell(
+                                child: GestureDetector(
                                     onTap: () async {
                                       var connectivityResult =
                                           await (Connectivity()

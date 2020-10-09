@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:sufismart/ui/view/indexpage_view.dart';
+import 'package:sufismart/ui/view/slide_view.dart';
 
 class SplashScreenView extends StatefulWidget{
   @override
@@ -11,7 +12,7 @@ class SplashScreenView extends StatefulWidget{
 }
 
 class _SplashScreenState extends State<SplashScreenView> with SingleTickerProviderStateMixin{
-  var _visible = true;
+  //var _visible = true;
 
   // AnimationController animationController;
   // Animation<double> animation;

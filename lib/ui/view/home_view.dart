@@ -263,7 +263,7 @@ class _HomeViewState extends State<HomeView> {
                                   children: <Widget>[
                                     Expanded(
                                       flex: 1,
-                                      child: InkWell(
+                                      child: GestureDetector(
                                         onTap: () {
                                           // Navigator.push(
                                           //     context,
@@ -357,7 +357,7 @@ class _HomeViewState extends State<HomeView> {
                                     ),
                                     Expanded(
                                       flex: 1,
-                                      child: InkWell(
+                                      child: GestureDetector(
                                         onTap: () {
                                           Navigator.push(
                                               context,
@@ -443,7 +443,7 @@ class _HomeViewState extends State<HomeView> {
                                     ),
                                     Expanded(
                                       flex: 1,
-                                      child: InkWell(
+                                      child: GestureDetector(
                                         onTap: () {
                                           // Navigator.push(
                                           //     context,
@@ -538,7 +538,7 @@ class _HomeViewState extends State<HomeView> {
                                   children: <Widget>[
                                     Expanded(
                                       flex: 1,
-                                      child: InkWell(
+                                      child: GestureDetector(
                                         onTap: () async {
                                           var connectivityResult =
                                               await (Connectivity()
@@ -636,7 +636,7 @@ class _HomeViewState extends State<HomeView> {
                                     ),
                                     Expanded(
                                       flex: 1,
-                                      child: InkWell(
+                                      child: GestureDetector(
                                         onTap: () async {
                                           var connectivityResult =
                                               await (Connectivity()
@@ -735,7 +735,7 @@ class _HomeViewState extends State<HomeView> {
                                     ),
                                     Expanded(
                                       flex: 1,
-                                      child: InkWell(
+                                      child: GestureDetector(
                                         onTap: () async {
                                           var connectivityResult =
                                               await (Connectivity()
@@ -860,7 +860,7 @@ class _HomeViewState extends State<HomeView> {
                                       flex: 1,
                                       child: Align(
                                         alignment: Alignment.topRight,
-                                        child: InkWell(
+                                        child: GestureDetector(
                                           onTap: () {
                                             Navigator.push(
                                                 context,
@@ -898,7 +898,7 @@ class _HomeViewState extends State<HomeView> {
                                     itemCount: model.imgNews.length,
                                     scrollDirection: Axis.horizontal,
                                     itemBuilder: (context, index) {
-                                      return InkWell(
+                                      return GestureDetector(
                                         onTap: () {
                                           Navigator.push(
                                               context,

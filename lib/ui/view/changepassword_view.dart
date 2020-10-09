@@ -7,10 +7,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sufismart/ViewModel/AccountViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
 import 'package:sufismart/ui/view/base_view.dart';
+import 'package:sufismart/ui/view/indexpage_view.dart';
 import 'package:sufismart/ui/widget/dialog_success.dart';
 
 class ChangePasswordView extends StatefulWidget {
-  String email;
+  final String email;
   ChangePasswordView({Key key, @required this.email});
 
   _ChangePasswordVIewState createState() => _ChangePasswordVIewState();
@@ -20,10 +21,7 @@ class _ChangePasswordVIewState extends State<ChangePasswordView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _autoValidate = false;
   String _passwordLama, _passwordBaru, _passwordConfirm;
-  String _error = "";
-  RegExp _phoneRegex = RegExp(r'^(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
-  var _passBaruController = TextEditingController();
-  var _passConfirmController = TextEditingController();
+  String _error = "";  
 
   initState() {
     super.initState();
@@ -45,11 +43,29 @@ class _ChangePasswordVIewState extends State<ChangePasswordView> {
           ),
           backgroundColor: Hexcolor("#0d306b"),
           elevation: 0,
+          centerTitle: true,
           automaticallyImplyLeading: false,
           leading: IconButton(
             icon: new Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
           ),
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => IndexView()),
+                  ModalRoute.withName('/'),
+                );
+              },
+              icon: new Icon(
+                FontAwesomeIcons.home,
+                size: 20,
+                color: Colors.white,
+              ),
+            )
+          ],
           // actions: <Widget>[
           //   IconButton(
           //       icon: new Icon(FontAwesomeIcons.home, size: 20, color: Colors.green,),
@@ -70,8 +86,8 @@ class _ChangePasswordVIewState extends State<ChangePasswordView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[                    
-                    Container(                      
+                  children: <Widget>[
+                    Container(
                       width: MediaQuery.of(context).size.width,
                       child: Column(
                         children: <Widget>[
@@ -102,7 +118,7 @@ class _ChangePasswordVIewState extends State<ChangePasswordView> {
                             validator: (String value) {
                               if (value.isEmpty) {
                                 return 'Password Lama tidak boleh kosong';
-                              } 
+                              }
                               return null;
                             },
                             onSaved: (String value) {
@@ -285,7 +301,6 @@ class _ChangePasswordVIewState extends State<ChangePasswordView> {
                       print(_passwordLama);
                       print(_passwordBaru);
                       print(_passwordConfirm);
-
                     } else {
                       // validation error
                       setState(() {

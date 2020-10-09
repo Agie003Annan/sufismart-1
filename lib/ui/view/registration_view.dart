@@ -13,6 +13,7 @@ import 'package:sufismart/model/pekerjaan_model.dart';
 import 'package:sufismart/services/api.dart';
 import 'package:sufismart/ui/componen/dialog.dart';
 import 'package:sufismart/ui/view/base_view.dart';
+import 'package:sufismart/ui/view/indexpage_view.dart';
 
 import 'success_view.dart';
 
@@ -81,7 +82,23 @@ class _RegistrasiViewState extends State<RegistrasiView> {
             height: 30,
           ),
           backgroundColor: Hexcolor("#0d306b"),
-          automaticallyImplyLeading: false,
+          actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => IndexView()),
+                ModalRoute.withName('/'),
+              );
+            },
+            icon: new Icon(
+              FontAwesomeIcons.home,
+              size: 20,
+              color: Colors.white,
+            ),
+          )
+        ],
         ),
         body: ModalProgressHUD(
           inAsyncCall: model.state == ViewState.Busy ?? ViewState.Idle,

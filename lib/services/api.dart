@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -463,7 +462,6 @@ class Api extends ChangeNotifier {
       "phone": nohp,
       "pesan": pesan
     };
-
     try {
       Response response;
       Dio dio = new Dio();

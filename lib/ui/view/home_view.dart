@@ -6,7 +6,9 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:skeleton_text/skeleton_text.dart';
+import 'package:somedialog/somedialog.dart';
 import 'package:sufismart/ViewModel/HomeViewModel.dart';
 //import 'package:sufismart/ViewModel/ProductViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
@@ -30,9 +32,32 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final controller = PageController(viewportFraction: 0.8);
+  String title = "Title";
+  String content = "Content";
 
   void initState() {
     super.initState();
+    OneSignal.shared
+        .setNotificationReceivedHandler((OSNotification notification) {
+      // will be called whenever a notification is received
+      title = notification.payload.title;
+      content = notification.payload.body;
+      print(title);
+      print(content);
+    });
+
+    OneSignal.shared
+        .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
+      // will be called whenever a notification is opened/button pressed.
+      print(
+          "Opened notification: \n${result.notification.jsonRepresentation().replaceAll("\\n", "\n")};");
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => NewsView(),
+          ));
+      //result.notification.["payload"].{[customr]}
+    });
   }
 
   @override
@@ -285,7 +310,8 @@ class _HomeViewState extends State<HomeView> {
                                                   MainAxisAlignment.start,
                                               children: <Widget>[
                                                 CachedNetworkImage(
-                                                  imageUrl: "https://www.sfi.co.id/assets/images/menu/Icon-Promo.png",
+                                                  imageUrl:
+                                                      "https://www.sfi.co.id/assets/images/menu/Icon-Promo.png",
                                                   imageBuilder: (context,
                                                           imageProvider) =>
                                                       Container(
@@ -295,7 +321,9 @@ class _HomeViewState extends State<HomeView> {
                                                     height: 60,
                                                     decoration: BoxDecoration(
                                                       borderRadius:
-                                                          BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                       // borderRadius: BorderRadius.all(
                                                       //     Radius.circular(15)),
                                                       image: DecorationImage(
@@ -312,7 +340,9 @@ class _HomeViewState extends State<HomeView> {
                                                     decoration: BoxDecoration(
                                                       color: Colors.grey[300],
                                                       borderRadius:
-                                                           BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                     ),
                                                   )),
                                                   errorWidget:
@@ -324,7 +354,9 @@ class _HomeViewState extends State<HomeView> {
                                                     decoration: BoxDecoration(
                                                       color: Colors.grey[300],
                                                       borderRadius:
-                                                          BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                     ),
                                                     child: Center(
                                                       child: Icon(Icons.error),
@@ -373,7 +405,8 @@ class _HomeViewState extends State<HomeView> {
                                                   MainAxisAlignment.start,
                                               children: <Widget>[
                                                 CachedNetworkImage(
-                                                  imageUrl: "https://www.sfi.co.id/assets/images/menu/ic_menu/product.png",
+                                                  imageUrl:
+                                                      "https://www.sfi.co.id/assets/images/menu/ic_menu/product.png",
                                                   imageBuilder: (context,
                                                           imageProvider) =>
                                                       Container(
@@ -383,7 +416,9 @@ class _HomeViewState extends State<HomeView> {
                                                     height: 60,
                                                     decoration: BoxDecoration(
                                                       borderRadius:
-                                                          BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                       // borderRadius: BorderRadius.all(
                                                       //     Radius.circular(15)),
                                                       image: DecorationImage(
@@ -400,7 +435,9 @@ class _HomeViewState extends State<HomeView> {
                                                     decoration: BoxDecoration(
                                                       color: Colors.grey[300],
                                                       borderRadius:
-                                                           BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                     ),
                                                   )),
                                                   errorWidget:
@@ -412,7 +449,9 @@ class _HomeViewState extends State<HomeView> {
                                                     decoration: BoxDecoration(
                                                       color: Colors.grey[300],
                                                       borderRadius:
-                                                          BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                     ),
                                                     child: Center(
                                                       child: Icon(Icons.error),
@@ -464,7 +503,8 @@ class _HomeViewState extends State<HomeView> {
                                                   MainAxisAlignment.start,
                                               children: <Widget>[
                                                 CachedNetworkImage(
-                                                  imageUrl: "https://www.sfi.co.id/assets/images/menu/dealerservice.png",
+                                                  imageUrl:
+                                                      "https://www.sfi.co.id/assets/images/menu/dealerservice.png",
                                                   imageBuilder: (context,
                                                           imageProvider) =>
                                                       Container(
@@ -474,7 +514,9 @@ class _HomeViewState extends State<HomeView> {
                                                     height: 60,
                                                     decoration: BoxDecoration(
                                                       borderRadius:
-                                                          BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                       // borderRadius: BorderRadius.all(
                                                       //     Radius.circular(15)),
                                                       image: DecorationImage(
@@ -491,7 +533,9 @@ class _HomeViewState extends State<HomeView> {
                                                     decoration: BoxDecoration(
                                                       color: Colors.grey[300],
                                                       borderRadius:
-                                                           BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                     ),
                                                   )),
                                                   errorWidget:
@@ -503,7 +547,9 @@ class _HomeViewState extends State<HomeView> {
                                                     decoration: BoxDecoration(
                                                       color: Colors.grey[300],
                                                       borderRadius:
-                                                          BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                     ),
                                                     child: Center(
                                                       child: Icon(Icons.error),
@@ -564,7 +610,8 @@ class _HomeViewState extends State<HomeView> {
                                             child: Column(
                                               children: <Widget>[
                                                 CachedNetworkImage(
-                                                  imageUrl: "https://www.sfi.co.id/assets/images/menu/creditsimulation.png",
+                                                  imageUrl:
+                                                      "https://www.sfi.co.id/assets/images/menu/creditsimulation.png",
                                                   imageBuilder: (context,
                                                           imageProvider) =>
                                                       Container(
@@ -574,7 +621,9 @@ class _HomeViewState extends State<HomeView> {
                                                     height: 60,
                                                     decoration: BoxDecoration(
                                                       borderRadius:
-                                                          BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                       // borderRadius: BorderRadius.all(
                                                       //     Radius.circular(15)),
                                                       image: DecorationImage(
@@ -591,7 +640,9 @@ class _HomeViewState extends State<HomeView> {
                                                     decoration: BoxDecoration(
                                                       color: Colors.grey[300],
                                                       borderRadius:
-                                                           BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                     ),
                                                   )),
                                                   errorWidget:
@@ -603,7 +654,9 @@ class _HomeViewState extends State<HomeView> {
                                                     decoration: BoxDecoration(
                                                       color: Colors.grey[300],
                                                       borderRadius:
-                                                          BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                     ),
                                                     child: Center(
                                                       child: Icon(Icons.error),
@@ -663,7 +716,8 @@ class _HomeViewState extends State<HomeView> {
                                                   MainAxisAlignment.start,
                                               children: <Widget>[
                                                 CachedNetworkImage(
-                                                  imageUrl: "https://www.sfi.co.id/assets/images/menu/inststat.png",
+                                                  imageUrl:
+                                                      "https://www.sfi.co.id/assets/images/menu/inststat.png",
                                                   imageBuilder: (context,
                                                           imageProvider) =>
                                                       Container(
@@ -673,7 +727,9 @@ class _HomeViewState extends State<HomeView> {
                                                     height: 60,
                                                     decoration: BoxDecoration(
                                                       borderRadius:
-                                                          BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                       // borderRadius: BorderRadius.all(
                                                       //     Radius.circular(15)),
                                                       image: DecorationImage(
@@ -690,7 +746,9 @@ class _HomeViewState extends State<HomeView> {
                                                     decoration: BoxDecoration(
                                                       color: Colors.grey[300],
                                                       borderRadius:
-                                                           BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                     ),
                                                   )),
                                                   errorWidget:
@@ -702,7 +760,9 @@ class _HomeViewState extends State<HomeView> {
                                                     decoration: BoxDecoration(
                                                       color: Colors.grey[300],
                                                       borderRadius:
-                                                          BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                     ),
                                                     child: Center(
                                                       child: Icon(Icons.error),
@@ -761,7 +821,8 @@ class _HomeViewState extends State<HomeView> {
                                             child: Column(
                                               children: <Widget>[
                                                 CachedNetworkImage(
-                                                  imageUrl: "https://www.sfi.co.id/assets/images/menu/Icon-Layanan.png",
+                                                  imageUrl:
+                                                      "https://www.sfi.co.id/assets/images/menu/Icon-Layanan.png",
                                                   imageBuilder: (context,
                                                           imageProvider) =>
                                                       Container(
@@ -771,7 +832,9 @@ class _HomeViewState extends State<HomeView> {
                                                     height: 60,
                                                     decoration: BoxDecoration(
                                                       borderRadius:
-                                                          BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                       // borderRadius: BorderRadius.all(
                                                       //     Radius.circular(15)),
                                                       image: DecorationImage(
@@ -788,7 +851,9 @@ class _HomeViewState extends State<HomeView> {
                                                     decoration: BoxDecoration(
                                                       color: Colors.grey[300],
                                                       borderRadius:
-                                                           BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                     ),
                                                   )),
                                                   errorWidget:
@@ -800,7 +865,9 @@ class _HomeViewState extends State<HomeView> {
                                                     decoration: BoxDecoration(
                                                       color: Colors.grey[300],
                                                       borderRadius:
-                                                          BorderRadius.all(Radius.circular(50)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
                                                     ),
                                                     child: Center(
                                                       child: Icon(Icons.error),
@@ -891,7 +958,8 @@ class _HomeViewState extends State<HomeView> {
                                 ),
                                 Container(
                                   padding: EdgeInsets.symmetric(vertical: 10.0),
-                                  height: MediaQuery.of(context).size.height / 2.4,
+                                  height:
+                                      MediaQuery.of(context).size.height / 2.4,
                                   color: Colors.transparent,
                                   child: ListView.builder(
                                     shrinkWrap: true,
@@ -905,22 +973,21 @@ class _HomeViewState extends State<HomeView> {
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     NewsDetail(
-                                                        detailNewsId: model
-                                                            .imgNews[index]
-                                                            .newsid,
-                                                        // detailTitle: model
-                                                        //     .imgNews[index]
-                                                        //     .title,
-                                                        // detailDate: model
-                                                        //     .imgNews[index]
-                                                        //     .newsdate,
-                                                        // detailDesc: model
-                                                        //     .imgNews[index]
-                                                        //     .desc,
-                                                        // detailImg: model
-                                                        //     .imgNews[index]
-                                                        //     .imagepath
-                                                            ),
+                                                  detailNewsId: model
+                                                      .imgNews[index].newsid,
+                                                  // detailTitle: model
+                                                  //     .imgNews[index]
+                                                  //     .title,
+                                                  // detailDate: model
+                                                  //     .imgNews[index]
+                                                  //     .newsdate,
+                                                  // detailDesc: model
+                                                  //     .imgNews[index]
+                                                  //     .desc,
+                                                  // detailImg: model
+                                                  //     .imgNews[index]
+                                                  //     .imagepath
+                                                ),
                                               ));
                                           // Navigator.push(
                                           //     context,

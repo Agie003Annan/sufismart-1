@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:sufismart/locator.dart';
 import 'package:sufismart/ui/view/splashscreen_view.dart';
 
 void main() {
-  SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+  //SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+  WidgetsFlutterBinding.ensureInitialized();
+  OneSignal.shared.init("8857c98d-aba9-45c2-abd8-692ad94f9521", iOSSettings: null);
+  OneSignal.shared
+      .setInFocusDisplayType(OSNotificationDisplayType.notification);
   setupLocator();
   runApp(MyApp());
 }
@@ -18,16 +23,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'NeoSans',
         primarySwatch: Colors.indigo,
-      //   pageTransitionsTheme: PageTransitionsTheme(
-      //   builders: {
-      //     TargetPlatform.android: SharedAxisPageTransitionsBuilder(
-      //       transitionType: SharedAxisTransitionType.horizontal,
-      //     ),
-      //     TargetPlatform.iOS: SharedAxisPageTransitionsBuilder(
-      //       transitionType: SharedAxisTransitionType.horizontal,
-      //     ),
-      //   },
-      // ),
+        //   pageTransitionsTheme: PageTransitionsTheme(
+        //   builders: {
+        //     TargetPlatform.android: SharedAxisPageTransitionsBuilder(
+        //       transitionType: SharedAxisTransitionType.horizontal,
+        //     ),
+        //     TargetPlatform.iOS: SharedAxisPageTransitionsBuilder(
+        //       transitionType: SharedAxisTransitionType.horizontal,
+        //     ),
+        //   },
+        // ),
       ),
       debugShowCheckedModeBanner: false,
       home: new SplashScreenView(),
@@ -47,7 +52,7 @@ class MyApp extends StatelessWidget {
 // class _MyHomePageState extends State<MyHomePage> {
 //   int currentIndex = 0;
 //   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-  
+
 //   @override
 //   Widget build(BuildContext context) {
 //     return CustomScaffold(

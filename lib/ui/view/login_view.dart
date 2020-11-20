@@ -206,7 +206,7 @@ class _LoginViewState extends State<LoginView> {
                                     //   ),
                                     // ),
                                     SizedBox(
-                                      height: 50,
+                                      height: 20,
                                     ),
                                     Container(
                                       width: MediaQuery.of(context).size.width,

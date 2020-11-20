@@ -228,15 +228,20 @@ class _ProductTypeViewState extends State<ProductTypeView> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: <Widget>[
-                                              Container(
-                                                padding:
-                                                    EdgeInsets.only(left: 5),
-                                                child: Text(
-                                                  model.productType[index]
-                                                      .productDetailName,
-                                                  style: TextStyle(
-                                                    color: Hexcolor("#0d306b"),
-                                                    fontSize: 14,
+                                              Flexible(
+                                                child: new Container(
+                                                  padding:
+                                                      EdgeInsets.only(right: 5),
+                                                  child: Text(
+                                                    model.productType[index]
+                                                        .productDetailName,
+                                                    style: TextStyle(
+                                                      color:
+                                                          Hexcolor("#0d306b"),
+                                                      fontSize: 13,
+                                                    ),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
                                                   ),
                                                 ),
                                               ),

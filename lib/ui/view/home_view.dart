@@ -37,27 +37,27 @@ class _HomeViewState extends State<HomeView> {
 
   void initState() {
     super.initState();
-    OneSignal.shared
-        .setNotificationReceivedHandler((OSNotification notification) {
-      // will be called whenever a notification is received
-      // title = notification.payload.title;
-      // content = notification.payload.body;
-      // print(title);
-      // print(content);
-    });
+    // OneSignal.shared
+    //     .setNotificationReceivedHandler((OSNotification notification) {
+    //   // will be called whenever a notification is received
+    //   // title = notification.payload.title;
+    //   // content = notification.payload.body;
+    //   // print(title);
+    //   // print(content);
+    // });
 
-    OneSignal.shared
-        .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
-      // will be called whenever a notification is opened/button pressed.
-      // print(
-      //     "Opened notification: \n${result.notification.jsonRepresentation().replaceAll("\\n", "\n")};");
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => NewsView(),
-          ));
-      //result.notification.["payload"].{[customr]}
-    });
+    // OneSignal.shared
+    //     .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
+    //   // will be called whenever a notification is opened/button pressed.
+    //   // print(
+    //   //     "Opened notification: \n${result.notification.jsonRepresentation().replaceAll("\\n", "\n")};");
+    //   Navigator.push(
+    //       context,
+    //       MaterialPageRoute(
+    //         builder: (context) => NewsView(),
+    //       ));
+    //   //result.notification.["payload"].{[customr]}
+    // });
   }
 
   @override

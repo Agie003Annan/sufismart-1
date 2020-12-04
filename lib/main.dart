@@ -8,8 +8,7 @@ void main() {
   //SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
   WidgetsFlutterBinding.ensureInitialized();
   OneSignal.shared.init("8857c98d-aba9-45c2-abd8-692ad94f9521", iOSSettings: null);
-  OneSignal.shared
-      .setInFocusDisplayType(OSNotificationDisplayType.notification);
+  OneSignal.shared.setInFocusDisplayType(OSNotificationDisplayType.notification);
   setupLocator();
   runApp(MyApp());
 }

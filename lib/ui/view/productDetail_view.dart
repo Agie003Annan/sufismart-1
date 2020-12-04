@@ -233,7 +233,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                       margin: EdgeInsets.only(
                           top: 5.0, left: 10.0, right: 10.0, bottom: 10.0),
                       child: Text(
-                        "Silahkan Kunjungi https://www.suzuki.co.id",
+                        "Silahkan Kunjungi https://www.sfi.co.id",
                         style:
                             TextStyle(fontSize: 13, color: Hexcolor("#0d306b")),
                         textAlign: TextAlign.left,

@@ -15,7 +15,7 @@ class RegistrasiViewModel extends BaseViewModel{
     notifyListeners();
   }
 
-  Future<bool> sendRegistrasi(String strnamalengkap,String nohp,String tanggallahir,String email,String password,String pekerjaan,String gender,BuildContext context) async{
+  Future<bool> sendRegistrasi(String strnamalengkap,String nohp,String tanggallahir,String email,String password,String pekerjaan,String gender,String playerid,BuildContext context) async{
 
     // if(strnamalengkap == "" ){
     //    Scaffold.of(context).showSnackBar(SnackBar(
@@ -33,7 +33,7 @@ class RegistrasiViewModel extends BaseViewModel{
     // print('pekerjaan masuk viewmodel -> '+pekerjaan);
     // print('gender masuk viewmodel -> '+gender);
     setState(ViewState.Busy);
-    var success = await _api.insertRegistrasi(strnamalengkap, nohp, tanggallahir, email, password, pekerjaan, gender, context);
+    var success = await _api.insertRegistrasi(strnamalengkap, nohp, tanggallahir, email, password, pekerjaan, gender,playerid,context);
     setState(ViewState.Idle);
     return success;
   }

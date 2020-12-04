@@ -35,7 +35,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                   height: 30,
                 ),
                 backgroundColor: Hexcolor("#0d306b"),
-                automaticallyImplyLeading: false,
+                automaticallyImplyLeading: true,
               ),
               body: ModalProgressHUD(
                 inAsyncCall: model.state == ViewState.Busy ?? ViewState.Idle,

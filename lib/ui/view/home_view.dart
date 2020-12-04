@@ -40,17 +40,17 @@ class _HomeViewState extends State<HomeView> {
     OneSignal.shared
         .setNotificationReceivedHandler((OSNotification notification) {
       // will be called whenever a notification is received
-      title = notification.payload.title;
-      content = notification.payload.body;
-      print(title);
-      print(content);
+      // title = notification.payload.title;
+      // content = notification.payload.body;
+      // print(title);
+      // print(content);
     });
 
     OneSignal.shared
         .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
       // will be called whenever a notification is opened/button pressed.
-      print(
-          "Opened notification: \n${result.notification.jsonRepresentation().replaceAll("\\n", "\n")};");
+      // print(
+      //     "Opened notification: \n${result.notification.jsonRepresentation().replaceAll("\\n", "\n")};");
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -466,11 +466,226 @@ class _HomeViewState extends State<HomeView> {
                                                 SizedBox(
                                                   height: 10,
                                                 ),
-                                                Text("Product\n",
+                                                Text("Produk\n",
                                                     style: TextStyle(
                                                       fontSize: 13,
                                                     ),
                                                     textAlign: TextAlign.center)
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: GestureDetector(
+                                        onTap: () async {
+                                          var connectivityResult =
+                                              await (Connectivity()
+                                                  .checkConnectivity());
+                                          if (connectivityResult ==
+                                              ConnectivityResult.none) {
+                                            DialogForm.dialogForm(
+                                                context,
+                                                'No Internet',
+                                                "You're not connected to a network");
+                                          } else {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => WebView2(
+                                                      linkurl:
+                                                          "https://sufismart.sfi.co.id/sufismart/api/simulasi_page2.php"),
+                                                ));
+                                          }
+                                        },
+                                        child: Container(
+                                          child: Center(
+                                            child: Column(
+                                              children: <Widget>[
+                                                CachedNetworkImage(
+                                                  imageUrl:
+                                                      "https://www.sfi.co.id/assets/images/menu/creditsimulation.png",
+                                                  imageBuilder: (context,
+                                                          imageProvider) =>
+                                                      Container(
+                                                    //height: MediaQuery.of(context).size.height / 3.5,
+                                                    //height: 230,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
+                                                      // borderRadius: BorderRadius.all(
+                                                      //     Radius.circular(15)),
+                                                      image: DecorationImage(
+                                                          image: imageProvider,
+                                                          fit: BoxFit.fill),
+                                                    ),
+                                                  ),
+                                                  placeholder: (context, url) =>
+                                                      new SkeletonAnimation(
+                                                          child: Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
+                                                    ),
+                                                  )),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          new Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
+                                                    ),
+                                                    child: Center(
+                                                      child: Icon(Icons.error),
+                                                    ),
+                                                  ),
+                                                ),
+                                                // Image.network(
+                                                //   "https://www.sfi.co.id/assets/images/menu/ic_menu/creditsimulation.png",
+                                                //   width: 60,
+                                                //   height: 60,
+                                                // ),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  "Simulasi\nKredit",
+                                                  style: TextStyle(
+                                                    fontSize: 13,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      flex: 1,
+                                      child: GestureDetector(
+                                        onTap: () async {
+                                          var connectivityResult =
+                                              await (Connectivity()
+                                                  .checkConnectivity());
+                                          if (connectivityResult ==
+                                              ConnectivityResult.none) {
+                                            DialogForm.dialogForm(
+                                                context,
+                                                'No Internet',
+                                                "You're not connected to a network");
+                                          } else {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      StatusKontrakView(),
+                                                ));
+                                          }
+                                        },
+                                        child: Container(
+                                          child: Center(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: <Widget>[
+                                                CachedNetworkImage(
+                                                  imageUrl:
+                                                      "https://www.sfi.co.id/assets/images/menu/inststat.png",
+                                                  imageBuilder: (context,
+                                                          imageProvider) =>
+                                                      Container(
+                                                    //height: MediaQuery.of(context).size.height / 3.5,
+                                                    //height: 230,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
+                                                      // borderRadius: BorderRadius.all(
+                                                      //     Radius.circular(15)),
+                                                      image: DecorationImage(
+                                                          image: imageProvider,
+                                                          fit: BoxFit.fill),
+                                                    ),
+                                                  ),
+                                                  placeholder: (context, url) =>
+                                                      new SkeletonAnimation(
+                                                          child: Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
+                                                    ),
+                                                  )),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          new Container(
+                                                    //height: MediaQuery.of(context).size.height / 3,
+                                                    width: 60,
+                                                    height: 60,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.grey[300],
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  50)),
+                                                    ),
+                                                    child: Center(
+                                                      child: Icon(Icons.error),
+                                                    ),
+                                                  ),
+                                                ),
+                                                // Image.network(
+                                                //   "https://www.sfi.co.id/assets/images/menu/ic_menu/inststat.png",
+                                                //   width: 60,
+                                                //   height: 60,
+                                                // ),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  "Status\nKontrak",
+                                                  style: TextStyle(
+                                                    fontSize: 13,
+                                                  ),
+                                                  textAlign: TextAlign.center,
+                                                )
                                               ],
                                             ),
                                           ),
@@ -569,221 +784,6 @@ class _HomeViewState extends State<HomeView> {
                                                       fontSize: 13,
                                                     ),
                                                     textAlign: TextAlign.center)
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Row(
-                                  children: <Widget>[
-                                    Expanded(
-                                      flex: 1,
-                                      child: GestureDetector(
-                                        onTap: () async {
-                                          var connectivityResult =
-                                              await (Connectivity()
-                                                  .checkConnectivity());
-                                          if (connectivityResult ==
-                                              ConnectivityResult.none) {
-                                            DialogForm.dialogForm(
-                                                context,
-                                                'No Internet',
-                                                "You're not connected to a network");
-                                          } else {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) => WebView2(
-                                                      linkurl:
-                                                          "https://sufismart.sfi.co.id/sufismart/api/credit_simulation2.php"),
-                                                ));
-                                          }
-                                        },
-                                        child: Container(
-                                          child: Center(
-                                            child: Column(
-                                              children: <Widget>[
-                                                CachedNetworkImage(
-                                                  imageUrl:
-                                                      "https://www.sfi.co.id/assets/images/menu/creditsimulation.png",
-                                                  imageBuilder: (context,
-                                                          imageProvider) =>
-                                                      Container(
-                                                    //height: MediaQuery.of(context).size.height / 3.5,
-                                                    //height: 230,
-                                                    width: 60,
-                                                    height: 60,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  50)),
-                                                      // borderRadius: BorderRadius.all(
-                                                      //     Radius.circular(15)),
-                                                      image: DecorationImage(
-                                                          image: imageProvider,
-                                                          fit: BoxFit.fill),
-                                                    ),
-                                                  ),
-                                                  placeholder: (context, url) =>
-                                                      new SkeletonAnimation(
-                                                          child: Container(
-                                                    //height: MediaQuery.of(context).size.height / 3,
-                                                    width: 60,
-                                                    height: 60,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.grey[300],
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  50)),
-                                                    ),
-                                                  )),
-                                                  errorWidget:
-                                                      (context, url, error) =>
-                                                          new Container(
-                                                    //height: MediaQuery.of(context).size.height / 3,
-                                                    width: 60,
-                                                    height: 60,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.grey[300],
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  50)),
-                                                    ),
-                                                    child: Center(
-                                                      child: Icon(Icons.error),
-                                                    ),
-                                                  ),
-                                                ),
-                                                // Image.network(
-                                                //   "https://www.sfi.co.id/assets/images/menu/ic_menu/creditsimulation.png",
-                                                //   width: 60,
-                                                //   height: 60,
-                                                // ),
-                                                SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  "Simulasi\nKredit",
-                                                  style: TextStyle(
-                                                    fontSize: 13,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Expanded(
-                                      flex: 1,
-                                      child: GestureDetector(
-                                        onTap: () async {
-                                          var connectivityResult =
-                                              await (Connectivity()
-                                                  .checkConnectivity());
-                                          if (connectivityResult ==
-                                              ConnectivityResult.none) {
-                                            DialogForm.dialogForm(
-                                                context,
-                                                'No Internet',
-                                                "You're not connected to a network");
-                                          } else {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      StatusKontrakView(),
-                                                ));
-                                          }
-                                        },
-                                        child: Container(
-                                          child: Center(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: <Widget>[
-                                                CachedNetworkImage(
-                                                  imageUrl:
-                                                      "https://www.sfi.co.id/assets/images/menu/inststat.png",
-                                                  imageBuilder: (context,
-                                                          imageProvider) =>
-                                                      Container(
-                                                    //height: MediaQuery.of(context).size.height / 3.5,
-                                                    //height: 230,
-                                                    width: 60,
-                                                    height: 60,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  50)),
-                                                      // borderRadius: BorderRadius.all(
-                                                      //     Radius.circular(15)),
-                                                      image: DecorationImage(
-                                                          image: imageProvider,
-                                                          fit: BoxFit.fill),
-                                                    ),
-                                                  ),
-                                                  placeholder: (context, url) =>
-                                                      new SkeletonAnimation(
-                                                          child: Container(
-                                                    //height: MediaQuery.of(context).size.height / 3,
-                                                    width: 60,
-                                                    height: 60,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.grey[300],
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  50)),
-                                                    ),
-                                                  )),
-                                                  errorWidget:
-                                                      (context, url, error) =>
-                                                          new Container(
-                                                    //height: MediaQuery.of(context).size.height / 3,
-                                                    width: 60,
-                                                    height: 60,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.grey[300],
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  50)),
-                                                    ),
-                                                    child: Center(
-                                                      child: Icon(Icons.error),
-                                                    ),
-                                                  ),
-                                                ),
-                                                // Image.network(
-                                                //   "https://www.sfi.co.id/assets/images/menu/ic_menu/inststat.png",
-                                                //   width: 60,
-                                                //   height: 60,
-                                                // ),
-                                                SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  "Status\nKontrak",
-                                                  style: TextStyle(
-                                                    fontSize: 13,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                )
                                               ],
                                             ),
                                           ),

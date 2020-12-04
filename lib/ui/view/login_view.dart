@@ -522,7 +522,7 @@ class _LoginViewState extends State<LoginView> {
                                                           Radius.circular(5))),
                                               child: Center(
                                                   child: Text(
-                                                "SIGNUP",
+                                                "SIGN UP",
                                                 style: TextStyle(
                                                   color: Hexcolor("#FFFFFF"),
                                                   fontWeight: FontWeight.bold,

@@ -402,6 +402,7 @@ class Api extends ChangeNotifier {
       String password,
       String pekerjaan,
       String gender,
+      String plyrid,
       BuildContext context) async {
     Map<String, dynamic> data = {
       "namalengkap": namalengkap,
@@ -410,7 +411,8 @@ class Api extends ChangeNotifier {
       "pass": password,
       "tgllahir": tanggallahir,
       "pekerjaan": pekerjaan,
-      "gender": gender
+      "gender": gender,
+      "player_id" : plyrid
     };
 
     try {
@@ -420,7 +422,6 @@ class Api extends ChangeNotifier {
       var headers = {
         "Content-Type": "multipart/form-data",
       };
-
       response = await dio
           .post(endpoint + "action_registrasi",
               data: formData,

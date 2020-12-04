@@ -7,6 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_version/get_version.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:package_info/package_info.dart';
 import 'package:sufismart/ViewModel/AboutViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
 import 'package:sufismart/ui/view/WebView.dart';
@@ -21,14 +22,33 @@ class AboutView extends StatefulWidget {
 class _AboutViewState extends State<AboutView> {
   //String appName = '',packageName='',version='',buildNumber='' ;
   //String notlep = "08676767676";
-  String _platformVersion = 'Unknown';
-  String _projectVersion = '';
-  String _projectCode = '';
-  String _projectAppID = '';
-  String _projectName = '';
+  // String _platformVersion = 'Unknown';
+  // String _projectVersion = '';
+  // String _projectCode = '';
+  // String _projectAppID = '';
+  // String _projectName = '';
+  
+  PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+  );
   static void openPhone(String phone) {
     launch("tel:$phone");
   }
+
+  Future<void> sendEmail(String email) async {
+    //print(email);
+    await launch('mailto:$email');
+  }
+
+  Future<void> _initPackageInfo() async {
+    final PackageInfo info = await PackageInfo.fromPlatform();
+    setState(() {
+      _packageInfo = info;
+    });
+  }  
 
   // Future<void> checkapk() async {
   //   PackageInfo packageInfo = await PackageInfo.fromPlatform();
@@ -42,64 +62,65 @@ class _AboutViewState extends State<AboutView> {
   //   return version;
   // }
 
-  void _initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      platformVersion = await GetVersion.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
+  // void _initPlatformState() async {
+  //   String platformVersion;
+  //   // Platform messages may fail, so we use a try/catch PlatformException.
+  //   try {
+  //     platformVersion = await GetVersion.platformVersion;
+  //   } on PlatformException {
+  //     platformVersion = 'Failed to get platform version.';
+  //   }
 
-    String projectVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      projectVersion = await GetVersion.projectVersion;
-    } on PlatformException {
-      projectVersion = 'Failed to get project version.';
-    }
+  //   String projectVersion;
+  //   // Platform messages may fail, so we use a try/catch PlatformException.
+  //   try {
+  //     projectVersion = await GetVersion.projectVersion;
+  //   } on PlatformException {
+  //     projectVersion = 'Failed to get project version.';
+  //   }
 
-    String projectCode;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      projectCode = await GetVersion.projectCode;
-    } on PlatformException {
-      projectCode = 'Failed to get build number.';
-    }
+  //   String projectCode;
+  //   // Platform messages may fail, so we use a try/catch PlatformException.
+  //   try {
+  //     projectCode = await GetVersion.projectCode;
+  //   } on PlatformException {
+  //     projectCode = 'Failed to get build number.';
+  //   }
 
-    String projectAppID;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      projectAppID = await GetVersion.appID;
-    } on PlatformException {
-      projectAppID = 'Failed to get app ID.';
-    }
+  //   String projectAppID;
+  //   // Platform messages may fail, so we use a try/catch PlatformException.
+  //   try {
+  //     projectAppID = await GetVersion.appID;
+  //   } on PlatformException {
+  //     projectAppID = 'Failed to get app ID.';
+  //   }
 
-    String projectName;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      projectName = await GetVersion.appName;
-    } on PlatformException {
-      projectName = 'Failed to get app name.';
-    }
+  //   String projectName;
+  //   // Platform messages may fail, so we use a try/catch PlatformException.
+  //   try {
+  //     projectName = await GetVersion.appName;
+  //   } on PlatformException {
+  //     projectName = 'Failed to get app name.';
+  //   }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
+  //   // If the widget was removed from the tree while the asynchronous platform
+  //   // message was in flight, we want to discard the reply rather than calling
+  //   // setState to update our non-existent appearance.
+  //   if (!mounted) return;
 
-    setState(() {
-      _platformVersion = platformVersion;
-      _projectVersion = projectVersion;
-      _projectCode = projectCode;
-      _projectAppID = projectAppID;
-      _projectName = projectName;
-    });
-  }
+  //   setState(() {
+  //     _platformVersion = platformVersion;
+  //     _projectVersion = projectVersion;
+  //     _projectCode = projectCode;
+  //     _projectAppID = projectAppID;
+  //     _projectName = projectName;
+  //   });
+  // }
 
   @override
   void initState() {
-    _initPlatformState();
+    //_initPlatformState();
+    _initPackageInfo();
     super.initState();
     // PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
     //   appName = packageInfo.appName;
@@ -156,7 +177,7 @@ class _AboutViewState extends State<AboutView> {
                           margin: EdgeInsets.only(top: 20),
                           child: Column(children: <Widget>[
                             Text(
-                              "SUFI SMART" ,
+                              "SUFI SMART",
                               style: TextStyle(
                                 color: Hexcolor("#0d306b"),
                                 fontSize: 18,
@@ -165,7 +186,7 @@ class _AboutViewState extends State<AboutView> {
                               textAlign: TextAlign.center,
                             ),
                             Text(
-                              "version : " + _projectVersion,
+                              "version : " + _packageInfo.version,
                               style: TextStyle(
                                 color: Hexcolor("#0d306b"),
                                 fontSize: 12,
@@ -230,13 +251,18 @@ class _AboutViewState extends State<AboutView> {
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
-                                    Text(
-                                      model.dataAplikasi.email,
-                                      style: TextStyle(
-                                        color: Hexcolor("#0d306b"),
-                                        fontSize: 18,
+                                    GestureDetector(
+                                      onTap: () async {
+                                        await sendEmail(model.dataAplikasi.email);
+                                      },
+                                      child: Text(
+                                        model.dataAplikasi.email,
+                                        style: TextStyle(
+                                          color: Hexcolor("#0d306b"),
+                                          fontSize: 18,
+                                        ),
+                                        textAlign: TextAlign.center,
                                       ),
-                                      textAlign: TextAlign.center,
                                     ),
                                   ],
                                 ),

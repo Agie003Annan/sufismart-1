@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sufismart/ViewModel/RegistrasiViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
@@ -28,6 +29,19 @@ class _RegistrasiViewState extends State<RegistrasiView> {
   String _error = "";
   Api _api = locator<Api>();
   List<ModelPekerjaan> dataPekerjaanModelList = List();
+  String playerId = "";
+  
+  
+  Future<void> _handleSendNotification() async {
+    var status = await OneSignal.shared.getPermissionSubscriptionState();
+    playerId = status.subscriptionStatus.userId;
+    print(playerId);
+    return playerId;
+  }
+  // Future<void> getToken () async{
+  //   var token = OneSignal.shared.init("8857c98d-aba9-45c2-abd8-692ad94f9521", iOSSettings: null);    
+  //   return token;
+  // }
 
   Future<String> getPekerjaanList(BuildContext context) async {
     var responsePekerjaan = await _api.getListPekerjaan(context);
@@ -40,8 +54,14 @@ class _RegistrasiViewState extends State<RegistrasiView> {
   @override
   void initState() {
     super.initState();
+    OneSignal.shared.init("8857c98d-aba9-45c2-abd8-692ad94f9521", iOSSettings: null);  
     getPekerjaanList(context);
+    //print(token);
+    _handleSendNotification();
+    //getToken();    
   }
+
+  
 
   final TextEditingController _dateFromController = TextEditingController();
   final TextEditingController _namalengkapController = TextEditingController();
@@ -118,7 +138,7 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                           Container(
                             width: MediaQuery.of(context).size.width,
                             child: Text(
-                              "Pendaftaran Akun",
+                              "Pendaftaran Akun SUFI SMART",
                               style: TextStyle(
                                   color: Hexcolor("#0d306b"),
                                   fontSize: 22,
@@ -510,6 +530,7 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                                         print(_password);
                                         print(_valDropDownGender);
                                         print(_valDropDownJob);
+                                        print(playerId);
                                         var register =
                                             await model.sendRegistrasi(
                                                 _name,
@@ -519,6 +540,7 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                                                 _password,
                                                 _valDropDownJob,
                                                 _valDropDownGender,
+                                                playerId,
                                                 context);
                                         if (register == true) {
                                           Navigator.push(
@@ -533,8 +555,8 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                                               await SharedPreferences
                                                   .getInstance();
                                           setState(() {
-                                            _error = prefs
-                                                .getString('message_regis');
+                                            // _error = prefs
+                                            //     .getString('message_regis');
                                             _autoValidate = false;
                                             _namalengkapController.clear();
                                             _nohpController.clear();

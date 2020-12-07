@@ -5,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:somedialog/somedialog.dart';
 import 'package:sufismart/ViewModel/LoginViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
 import 'package:sufismart/ui/componen/dialog.dart';
@@ -13,11 +12,7 @@ import 'package:sufismart/ui/view/account_view.dart';
 import 'package:sufismart/ui/view/base_view.dart';
 import 'package:sufismart/ui/view/forgotpassword_view.dart';
 import 'package:sufismart/ui/view/indexpage_view.dart';
-//import 'package:sufismart/ui/view/profil_view.dart';
-//import 'package:sufismart/ui/view/profil_view.dart';
 import 'package:sufismart/ui/view/registration_view.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-//import 'package:webview_flutter/webview_flutter.dart' as web;
 
 class LoginView extends StatefulWidget {
   @override
@@ -602,85 +597,3 @@ class _LoginViewState extends State<LoginView> {
 // Widget dialog(BuildContext context, String title, String text) {
 
 // }
-Widget profilView(BuildContext context, String url) {
-  return Scaffold(
-    appBar: AppBar(
-      title: //Text("Suzuki Finance Indonesia"),
-          Image.asset(
-        'assets/images/logo_sfi_white.png',
-        fit: BoxFit.cover,
-        height: 30,
-      ),
-      actions: <Widget>[
-        Visibility(
-          visible: url == "" ? false : true,
-          child: FlatButton(
-            textColor: Colors.white,
-            onPressed: () async {
-              SomeDialog(
-                  context: context,
-                  path: "assets/images/logout_img.png",
-                  mode: SomeMode.Asset,
-                  content: "apakah anda yakin ingin keluar \ndari akun ini ?",
-                  title: "Logout",
-                  appName: "",
-                  imageHeight: 150,
-                  imageWidth: 150,
-                  dialogHeight: 300,
-                  buttonConfig: ButtonConfig(
-                    dialogDone: "yakin",
-                    dialogCancel: "batal",
-                    buttonDoneColor: Hexcolor("0d306b"),
-                  ),
-                  submit: () async {
-                    SharedPreferences prefs =
-                        await SharedPreferences.getInstance();
-                    prefs.setString("username", "");
-                    prefs.setString('is_login', "");
-                    // print(prefs.getString('username'));
-                    // print(prefs.getString('is_login'));
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => LoginView(),
-                      ),
-                    );
-                  });
-            },
-            child: Icon(FontAwesomeIcons.signOutAlt),
-            shape: CircleBorder(side: BorderSide(color: Colors.transparent)),
-          ),
-        ),
-      ],
-      backgroundColor: Hexcolor("#0d306b"),
-      automaticallyImplyLeading: false,
-    ),
-    body: WebView(
-      initialUrl:
-          "https://sufismart.sfi.co.id/sufismart/api/profil.php?EMAIL=${url}",
-      javascriptMode: JavascriptMode.unrestricted,
-      onWebViewCreated: (WebViewController webViewController) {},
-      javascriptChannels: <JavascriptChannel>[
-        // JavascriptChannel(
-        //     name: 'Toast_funct',
-        //     onMessageReceived: (JavascriptMessage message) {
-        //       // if(message.message == "Testing Inject"){
-
-        //       // }
-        //       print('message.message: ${message.message}');
-        //       Navigator.push(
-        //           context,
-        //           MaterialPageRoute(
-        //             builder: (context) => WebView2(linkurl:message.message),
-        //           )
-        //       );
-        //     }),
-      ].toSet(),
-      // onPageStarted: (String url) {
-      //   print("start url $url");
-      // },
-      // onPageFinished: (String url) {
-      //   print("Finish url $url");
-      // },
-    ),
-  );
-}

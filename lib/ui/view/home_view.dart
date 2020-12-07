@@ -959,7 +959,7 @@ class _HomeViewState extends State<HomeView> {
                                 Container(
                                   padding: EdgeInsets.symmetric(vertical: 10.0),
                                   height:
-                                      MediaQuery.of(context).size.height / 2.4,
+                                      280,
                                   color: Colors.transparent,
                                   child: ListView.builder(
                                     shrinkWrap: true,

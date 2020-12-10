@@ -18,9 +18,11 @@ class NewsView extends StatefulWidget {
 }
 
 class _NewsViewState extends State<NewsView> {
+  
   void initState() {
     super.initState();
   }
+  
 
   @override
   Widget build(BuildContext context) {

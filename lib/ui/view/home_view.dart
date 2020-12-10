@@ -33,10 +33,11 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   final controller = PageController(viewportFraction: 0.8);
   String title = "Title";
-  String content = "Content";
+  String content = "Content";  
+  
 
   void initState() {
-    super.initState();
+    super.initState();    
     // OneSignal.shared
     //     .setNotificationReceivedHandler((OSNotification notification) {
     //   // will be called whenever a notification is received
@@ -959,7 +960,7 @@ class _HomeViewState extends State<HomeView> {
                                 Container(
                                   padding: EdgeInsets.symmetric(vertical: 10.0),
                                   height:
-                                      280,
+                                      300,
                                   color: Colors.transparent,
                                   child: ListView.builder(
                                     shrinkWrap: true,

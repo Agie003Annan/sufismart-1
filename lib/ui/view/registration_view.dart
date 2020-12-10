@@ -15,6 +15,7 @@ import 'package:sufismart/services/api.dart';
 import 'package:sufismart/ui/componen/dialog.dart';
 import 'package:sufismart/ui/view/base_view.dart';
 import 'package:sufismart/ui/view/indexpage_view.dart';
+import 'package:sufismart/ui/view/term_webview.dart';
 
 import 'success_view.dart';
 
@@ -27,11 +28,11 @@ class _RegistrasiViewState extends State<RegistrasiView> {
   String _valDropDownGender;
   DateTime selectedDateFrom = DateTime.now();
   String _error = "";
+  bool checkBoxvalue = false;
   Api _api = locator<Api>();
   List<ModelPekerjaan> dataPekerjaanModelList = List();
   String playerId = "";
-  
-  
+
   Future<void> _handleSendNotification() async {
     var status = await OneSignal.shared.getPermissionSubscriptionState();
     playerId = status.subscriptionStatus.userId;
@@ -39,7 +40,7 @@ class _RegistrasiViewState extends State<RegistrasiView> {
     return playerId;
   }
   // Future<void> getToken () async{
-  //   var token = OneSignal.shared.init("8857c98d-aba9-45c2-abd8-692ad94f9521", iOSSettings: null);    
+  //   var token = OneSignal.shared.init("8857c98d-aba9-45c2-abd8-692ad94f9521", iOSSettings: null);
   //   return token;
   // }
 
@@ -54,14 +55,13 @@ class _RegistrasiViewState extends State<RegistrasiView> {
   @override
   void initState() {
     super.initState();
-    OneSignal.shared.init("8857c98d-aba9-45c2-abd8-692ad94f9521", iOSSettings: null);  
+    OneSignal.shared
+        .init("8857c98d-aba9-45c2-abd8-692ad94f9521", iOSSettings: null);
     getPekerjaanList(context);
     //print(token);
     _handleSendNotification();
-    //getToken();    
+    //getToken();
   }
-
-  
 
   final TextEditingController _dateFromController = TextEditingController();
   final TextEditingController _namalengkapController = TextEditingController();
@@ -103,22 +103,22 @@ class _RegistrasiViewState extends State<RegistrasiView> {
           ),
           backgroundColor: Hexcolor("#0d306b"),
           actions: <Widget>[
-          IconButton(
-            onPressed: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => IndexView()),
-                ModalRoute.withName('/'),
-              );
-            },
-            icon: new Icon(
-              FontAwesomeIcons.home,
-              size: 20,
-              color: Colors.white,
-            ),
-          )
-        ],
+            IconButton(
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => IndexView()),
+                  ModalRoute.withName('/'),
+                );
+              },
+              icon: new Icon(
+                FontAwesomeIcons.home,
+                size: 20,
+                color: Colors.white,
+              ),
+            )
+          ],
         ),
         body: ModalProgressHUD(
           inAsyncCall: model.state == ViewState.Busy ?? ViewState.Idle,
@@ -219,7 +219,7 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                                         await showDatePicker(
                                             context: context,
                                             initialDate: DateTime.now(),
-                                            firstDate: DateTime(1990),
+                                            firstDate: DateTime(1900),
                                             lastDate: DateTime(2101));
                                     if (picked != null &&
                                         picked != selectedDateFrom)
@@ -461,6 +461,40 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                                   width: double.infinity,
                                 ),
                                 Divider(),
+                                // Container(
+                                //     margin: const EdgeInsets.only(top: 10),
+                                //     child: Row(
+                                //         crossAxisAlignment:
+                                //             CrossAxisAlignment.start,
+                                //         children: <Widget>[
+                                //           Checkbox(
+                                //             value: checkBoxvalue,
+                                //             onChanged: (bool value) {
+                                //               print(value);
+                                //               setState(() {
+                                //                 checkBoxvalue = value;
+                                //               });
+                                //             },
+                                //             activeColor: Colors.blue[900],
+                                //           ),
+                                //           GestureDetector(
+                                //             onTap: () async {
+                                //               Navigator.of(context).push(
+                                //                   MaterialPageRoute(
+                                //                       builder: (context) =>
+                                //                           WebViewTerm(
+                                //                               linkurl:
+                                //                                   "https://sufismart.sfi.co.id/sufismart/api/term_condition.php")));
+                                //             },
+                                //             child: Text(
+                                //               "Test",
+                                //               style: TextStyle(
+                                //                 color: Hexcolor("#0d306b"),
+                                //                 fontSize: 14,
+                                //               ),
+                                //             ),
+                                //           )
+                                //         ])),
                                 SizedBox(
                                   height: 10,
                                 ),
@@ -520,6 +554,16 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                                           'No Internet',
                                           "You're not connected to a network");
                                     } else {
+                                      print(checkBoxvalue);
+                                      // if (checkBoxvalue == false) {
+                                      //   print("validasi");
+                                      //   DialogForm.dialogForm(
+                                      //     context,
+                                      //     'No Internet',
+                                      //     "You're not connected to a network");
+                                      // } else {
+                                      //   print("lolos");
+                                      // }
                                       if (_formKey.currentState.validate()) {
                                         // No any error in validation
                                         _formKey.currentState.save();

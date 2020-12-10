@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,6 +13,8 @@ import 'package:sufismart/ui/view/base_view.dart';
 import 'package:sufismart/ui/view/changepassword_view.dart';
 import 'package:sufismart/ui/view/login_view.dart';
 import 'package:sufismart/ui/view/profil_view.dart';
+
+import 'indexpage_view.dart';
 
 class AccountView extends StatefulWidget {
   @override
@@ -43,6 +46,24 @@ class _AccountViewState extends State<AccountView> {
                           fit: BoxFit.cover,
                           height: 30,
                         ),
+                        actions: <Widget>[
+                          IconButton(
+                            icon: new Icon(
+                              FontAwesomeIcons.home,
+                              size: 20,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        IndexView()),
+                                ModalRoute.withName('/'),
+                              );
+                            },
+                          )
+                        ],
                         // actions: <Widget>[
                         //   Visibility(
                         //     visible: islogin == "" ? false : true,
@@ -375,7 +396,9 @@ class _AccountViewState extends State<AccountView> {
                                               context,
                                               "assets/images/ic_icon_password.png",
                                               'Atur Ulang Kata Sandi',
-                                              ChangePasswordView(email: model.dataprofile.email,)),
+                                              ChangePasswordView(
+                                                email: model.dataprofile.email,
+                                              )),
                                           Divider(),
                                           // Container(
                                           //   width: MediaQuery.of(context).size.width,
@@ -499,12 +522,22 @@ class _AccountViewState extends State<AccountView> {
                                                           'is_login', "");
                                                       // print(prefs.getString('username'));
                                                       // print(prefs.getString('is_login'));
-                                                      Navigator.of(context)
-                                                          .pushReplacement(
+                                                      // Navigator.of(context)
+                                                      //     .pushReplacement(
+                                                      //   MaterialPageRoute(
+                                                      //     builder: (context) =>
+                                                      //         LoginView(),
+                                                      //   ),
+                                                      // );
+                                                      Navigator
+                                                          .pushAndRemoveUntil(
+                                                        context,
                                                         MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              LoginView(),
-                                                        ),
+                                                            builder: (BuildContext
+                                                                    context) =>
+                                                                IndexView()),
+                                                        ModalRoute.withName(
+                                                            '/'),
                                                       );
                                                     });
                                               },

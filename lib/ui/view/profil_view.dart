@@ -253,6 +253,7 @@ class _ProfilViewState extends State<ProfilView> {
                                 keyboardType: TextInputType.datetime,
                                 autofocus: false,
                                 readOnly: true,
+                                enabled: false,
                                 decoration: const InputDecoration(
                                   labelText: 'Tanggal Lahir',
                                   labelStyle: TextStyle(

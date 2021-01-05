@@ -9,6 +9,7 @@ import 'package:skeleton_text/skeleton_text.dart';
 import 'package:somedialog/somedialog.dart';
 import 'package:sufismart/ViewModel/AccountViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
+import 'package:sufismart/ui/view/WebView.dart';
 import 'package:sufismart/ui/view/base_view.dart';
 import 'package:sufismart/ui/view/changepassword_view.dart';
 import 'package:sufismart/ui/view/login_view.dart';
@@ -271,40 +272,47 @@ class _AccountViewState extends State<AccountView> {
                                                 Navigator.push(
                                                     context,
                                                     MaterialPageRoute(
-                                                      builder: (context) => ProfilView(
-                                                          email: model
-                                                              .dataprofile
-                                                              .email,
-                                                          nama: model
-                                                              .dataprofile.nama,
-                                                          telp: model
-                                                              .dataprofile
-                                                              .nohandphone,
-                                                          tanggal: model
-                                                              .dataprofile
-                                                              .tanggallahir,
-                                                          pekerjaan: model
-                                                              .dataprofile
-                                                              .pekerjaan,
-                                                          gender: model
-                                                              .dataprofile
-                                                              .gender,
-                                                          noktp: model
-                                                              .dataprofile
-                                                              .noktp,
-                                                          kontrak1: model
-                                                              .dataprofile
-                                                              .nokontrak1,
-                                                          kontrak2: model
-                                                              .dataprofile
-                                                              .nokontrak2,
-                                                          kontrak3: model
-                                                              .dataprofile
-                                                              .nokontrak3),
-                                                    )).then((value) {
-                                                  model.getInfoCustomer(
-                                                      context, islogin);
-                                                });
+                                                        builder: (context) =>
+                                                            WebView2(
+                                                                linkurl:
+                                                                    "https://sufismart.sfi.co.id/sufismart/api/profil_2.php?EMAIL=$islogin")));
+                                                // Navigator.push(
+                                                //     context,
+                                                //     MaterialPageRoute(
+                                                //       builder: (context) => ProfilView(
+                                                //           email: model
+                                                //               .dataprofile
+                                                //               .email,
+                                                //           nama: model
+                                                //               .dataprofile.nama,
+                                                //           telp: model
+                                                //               .dataprofile
+                                                //               .nohandphone,
+                                                //           tanggal: model
+                                                //               .dataprofile
+                                                //               .tanggallahir,
+                                                //           pekerjaan: model
+                                                //               .dataprofile
+                                                //               .pekerjaan,
+                                                //           gender: model
+                                                //               .dataprofile
+                                                //               .gender,
+                                                //           noktp: model
+                                                //               .dataprofile
+                                                //               .noktp,
+                                                //           kontrak1: model
+                                                //               .dataprofile
+                                                //               .nokontrak1,
+                                                //           kontrak2: model
+                                                //               .dataprofile
+                                                //               .nokontrak2,
+                                                //           kontrak3: model
+                                                //               .dataprofile
+                                                //               .nokontrak3),
+                                                //     )).then((value) {
+                                                //   model.getInfoCustomer(
+                                                //       context, islogin);
+                                                // });
                                               },
                                               child: Container(
                                                 padding: EdgeInsets.all(5),

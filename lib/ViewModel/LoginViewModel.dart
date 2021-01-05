@@ -14,7 +14,7 @@ class LoginViewModel extends BaseViewModel{
     notifyListeners();
   }
 
-  Future<bool> checkLogin(String strEmail,String strPassword,BuildContext context) async {
+  Future<bool> checkLogin(String strEmail,String strPassword,String strPlayreid,BuildContext context) async {
     // if(strEmail == "" && strPassword == ""){
     //    Scaffold.of(context).showSnackBar(SnackBar(
     //     content: Text("Please complete this form"),
@@ -25,9 +25,10 @@ class LoginViewModel extends BaseViewModel{
 
     print('email masuk viewmodel -> '+strEmail);
     print('password masuk viewmodel -> '+strPassword);
+     print('playerid masuk viewmodel -> '+strPlayreid);
     setState(ViewState.Busy);
     //final SharedPreferences prefs = await SharedPreferences.getInstance();    
-    var success = await _api.login(strEmail, strPassword, context);
+    var success = await _api.login(strEmail, strPassword,strPlayreid, context);
     setState(ViewState.Idle);
     return success;
   }

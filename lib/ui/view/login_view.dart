@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sufismart/ViewModel/LoginViewModel.dart';
 import 'package:sufismart/enums/viewstate.dart';
@@ -23,6 +24,7 @@ class _LoginViewState extends State<LoginView> {
   String _error = "";
   String islogin = "";
   String username = "";
+  String playerid = "";
 
   // final TextEditingController _passwordController = TextEditingController();
   // final TextEditingController _emailController = TextEditingController();
@@ -49,10 +51,27 @@ class _LoginViewState extends State<LoginView> {
   //   }
   //  }
 
+  Future<void> _handleSendNotification() async {
+    var status = await OneSignal.shared.getPermissionSubscriptionState();
+    playerid = status.subscriptionStatus.userId;
+    print(playerid);
+    return playerid;
+  }
+
   Future<String> checkSessionLogin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     islogin = prefs.getString('username') ?? "";
     return islogin;
+  }
+
+  @override
+  void initState() {
+    OneSignal.shared
+        .init("8857c98d-aba9-45c2-abd8-692ad94f9521", iOSSettings: null);
+    _handleSendNotification();
+    checkSessionLogin();
+
+    super.initState();
   }
 
   @override
@@ -435,6 +454,7 @@ class _LoginViewState extends State<LoginView> {
                                                       await model.checkLogin(
                                                           _email,
                                                           _password,
+                                                          playerid,
                                                           context);
                                                   if (loginSuccess) {
                                                     // final SharedPreferences

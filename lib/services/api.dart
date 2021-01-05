@@ -321,12 +321,12 @@ class Api extends ChangeNotifier {
   }
 
   Future<bool> login(
-      String email, String password, BuildContext context) async {
+      String email, String password,String playerid, BuildContext context) async {
     // var map = new Map<String, dynamic>();
     //   map['email'] = email;
     //   map['pass'] = password;
     //   print(map);
-    Map<String, dynamic> data = {"email": email, "pass": password};
+    Map<String, dynamic> data = {"email": email, "pass": password,"plyrid":playerid};
     try {
       Response response;
       Dio dio = new Dio();
@@ -349,7 +349,7 @@ class Api extends ChangeNotifier {
       };
 
       response = await dio
-          .post(endpoint + "action_login",
+          .post(endpoint + "action_login_new",
               data: formData,
               options: Options(
                 headers: headers,

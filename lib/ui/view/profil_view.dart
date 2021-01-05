@@ -70,11 +70,13 @@ class _ProfilViewState extends State<ProfilView> {
   final TextEditingController _nokontrak1controller = TextEditingController();
   final TextEditingController _nokontrak2controller = TextEditingController();
   final TextEditingController _nokontrak3controller = TextEditingController();
+  final TextEditingController _tglEditContoller = TextEditingController();
 
   String _error = "";
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _autoValidate = false;
   String _email = "";
+  String _tgl = "";
   String _nama,
       _telp,
       _tanggal,
@@ -87,7 +89,18 @@ class _ProfilViewState extends State<ProfilView> {
 
   initState() {
     super.initState();
-    setState(() {});
+    setState(() {
+    _emailController.text = widget.email;
+    _namaController.text = widget.nama;
+    _phoneController.text = widget.telp;
+    _tanggalcontroller.text = widget.tanggal;
+    _pekerjaancontroller.text = widget.pekerjaan;
+    _gendercontroller.text = widget.gender;
+    _ktpcontroller.text = widget.noktp;
+    _nokontrak1controller.text = widget.kontrak1;
+    _nokontrak2controller.text = widget.kontrak2;
+    _nokontrak3controller.text = widget.kontrak3;
+    });
   }
 
   dispose() {
@@ -100,16 +113,7 @@ class _ProfilViewState extends State<ProfilView> {
   @override
   Widget build(BuildContext context) {
     final format = DateFormat("yyyy/MM/dd");
-    _emailController.text = widget.email;
-    _namaController.text = widget.nama;
-    _phoneController.text = widget.telp;
-    _tanggalcontroller.text = widget.tanggal;
-    _pekerjaancontroller.text = widget.pekerjaan;
-    _gendercontroller.text = widget.gender;
-    _ktpcontroller.text = widget.noktp;
-    _nokontrak1controller.text = widget.kontrak1;
-    _nokontrak2controller.text = widget.kontrak2;
-    _nokontrak3controller.text = widget.kontrak3;
+    
     return BaseView<AccountViewModel>(
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
@@ -222,8 +226,7 @@ class _ProfilViewState extends State<ProfilView> {
                               ),
                               TextFormField(
                                 controller: _namaController,
-                                autofocus: false,
-                                enabled: false,
+                                autofocus: false,                                
                                 inputFormatters: [
                                   WhitelistingTextInputFormatter(
                                       new RegExp('[a-zA-Z ]'))
@@ -253,7 +256,6 @@ class _ProfilViewState extends State<ProfilView> {
                                 keyboardType: TextInputType.datetime,
                                 autofocus: false,
                                 readOnly: true,
-                                enabled: false,
                                 decoration: const InputDecoration(
                                   labelText: 'Tanggal Lahir',
                                   labelStyle: TextStyle(
@@ -268,15 +270,17 @@ class _ProfilViewState extends State<ProfilView> {
                                   final DateTime picked = await showDatePicker(
                                       context: context,
                                       initialDate: DateTime.now(),
-                                      firstDate: DateTime(1990),
+                                      firstDate: DateTime(1900),
                                       lastDate: DateTime(2101));
                                   if (picked != null &&
-                                      picked != selectedDateFrom)
+                                      picked != selectedDateFrom) {
                                     setState(() {
                                       selectedDateFrom = picked;
                                       _tanggalcontroller.text =
                                           '${format.format(selectedDateFrom)}';
+                                      //print(_tanggalcontroller.text);
                                     });
+                                  }
                                 },
                                 validator: (String value) {
                                   if (value.isEmpty) {
@@ -288,6 +292,7 @@ class _ProfilViewState extends State<ProfilView> {
                                   _tanggal = value;
                                 },
                               ),
+
                               TextFormField(
                                 controller: _phoneController,
                                 autofocus: false,
@@ -304,8 +309,8 @@ class _ProfilViewState extends State<ProfilView> {
                                 validator: (String value) {
                                   if (value.isEmpty) {
                                     return 'Nomor telepon tidak boleh kosong';
-                                  } else if (value.length < 10) {
-                                    return 'Nomor telepon minimal 8 digit';
+                                  } else if (value.length < 11) {
+                                    return 'Nomor telepon minimal 11 digit';
                                   } else if (value.length > 15) {
                                     return 'Nomor telepon maximal 15 digit';
                                   }

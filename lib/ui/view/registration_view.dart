@@ -595,12 +595,8 @@ class _RegistrasiViewState extends State<RegistrasiView> {
                                                   msg: "Successfully send data",
                                                 ),
                                               ));
-                                          final SharedPreferences prefs =
-                                              await SharedPreferences
-                                                  .getInstance();
                                           setState(() {
-                                            // _error = prefs
-                                            //     .getString('message_regis');
+                                            _error = "";
                                             _autoValidate = false;
                                             _namalengkapController.clear();
                                             _nohpController.clear();
